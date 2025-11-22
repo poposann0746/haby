@@ -139,3 +139,6 @@ haby は、“達成感”と“シンプルな設計”を軸に「続けたく
 | **開発環境** | Docker / docker-compose |
 | **デプロイ先** | Render |
 | **その他** | Rubocop / RSpec |
+
+### 画面遷移図
+Figma: https://www.figma.com/design/eX0dReaBQAc6FFHpekVgYD/haby?node-id=0-1&p=f&t=wHlaf41nctMMZpQ8-0
