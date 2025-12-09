@@ -153,3 +153,136 @@
   color: #117BBF;
   text-shadow: 0 1px 2px rgba(17, 123, 191, 0.15);
 }
+
+/* 認証画面 共通レイアウト */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7fbff;
+}
+
+.auth-card {
+  background: #ffffff;
+  padding: 32px 28px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(17, 123, 191, 0.08);
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #117BBF;
+}
+
+/* フォームのパーツ */
+.auth-card .field {
+  margin-bottom: 16px;
+}
+
+.auth-card label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  box-sizing: border-box;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: #117BBF;
+  box-shadow: 0 0 0 2px rgba(17, 123, 191, 0.15);
+}
+
+.auth-button {
+  width: 100%;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  background: #117BBF;
+  color: #fff;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  opacity: 0.9;
+}
+
+.auth-card .actions {
+  margin-top: 16px;
+}
+
+.auth-card a {
+  color: #117BBF;
+  font-size: 13px;
+}
+/* メモの小さい文字（パスワードの説明など） */
+.field-note {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 4px 0 6px;
+}
+
+/* remember_me の横並び */
+.field-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Devise のリンク（パスワード忘れ・新規登録への導線など） */
+.auth-links {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.auth-links a {
+  display: inline-block;
+  margin: 4px 0;
+}
+
+/* エラーメッセージのスタイル（devise/shared/error_messages 用） */
+.error_explanation {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.error_explanation h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #b91c1c;
+}
+
+.error_explanation ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.error_explanation li {
+  font-size: 13px;
+  color: #b91c1c;
+}
+
