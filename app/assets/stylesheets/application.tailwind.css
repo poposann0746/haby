@@ -260,7 +260,7 @@
   margin: 4px 0;
 }
 
-/* エラーメッセージのスタイル（devise/shared/error_messages 用） */
+/* エラーメッセージのスタイル（devise/shared/error_messages） */
 .error_explanation {
   margin-bottom: 16px;
   padding: 12px 14px;
@@ -284,5 +284,96 @@
 .error_explanation li {
   font-size: 13px;
   color: #b91c1c;
+}
+
+/* ===============================
+   Header
+   =============================== */
+
+.app-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 12px;
+}
+
+.app-header__inner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+}
+
+/* 左右に同じだけの「余白エリア」を持たせるイメージ */
+.app-header__left,
+.app-header__auth {
+  flex: 1;  /* 左右が同じ比率で広がる → ロゴがど真ん中になる */
+}
+
+/* 中央ロゴ */
+.app-header__center {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.app-header__logo-link {
+  display: inline-block;
+}
+
+.app-header__logo {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* 右上のログイン/新規登録エリア */
+.app-header__auth {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* 右寄せ */
+  gap: 12px;
+}
+
+.app-header__auth-link {
+  font-size: 13px;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #117BBF;
+  color: #117BBF;
+  background-color: #ffffff;
+  white-space: nowrap; /* 「新規登録」を1行で表示する */
+}
+
+.app-header__auth-link--primary {
+  background-color: #117BBF;
+  color: #ffffff;
+}
+
+.app-header__auth-link:hover {
+  opacity: 0.9;
+}
+
+.app-header__user-name {
+  font-size: 13px;
+  color: #666666;
+}
+
+/* main コンテンツ側の余白（ヘッダー分） */
+.app-main {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 20px 40px;
+}
+
+/* 背景のオレンジ波形　*/
+.wave-background {
+  width: 100%;
+  background: 
+    radial-gradient(ellipse at bottom left, rgba(255, 198, 170, 0.55), transparent 70%),
+    radial-gradient(ellipse at bottom right, rgba(255, 198, 170, 0.45), transparent 75%);
 }
 
