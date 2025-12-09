@@ -1,4 +1,0 @@
-ja:
-  devise:
-    sessions:
-      signed_out: "ログアウトしました。"
