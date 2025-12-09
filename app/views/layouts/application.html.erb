@@ -26,16 +26,11 @@
       <p class="alert"><%= alert %></p>
     <% end %>
 
-  <header>
-    <% if user_signed_in? %>
-      <span><%= current_user.name.presence || current_user.email %></span>
-      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-button" %>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
-  </header>
-
-    <%= yield %>
+  <%= render "shared/header" %>
+  <div class="wave-background">
+    <main class="app-main">
+      <%= yield %>
+    </main>
+  </div>
   </body>
 </html>
