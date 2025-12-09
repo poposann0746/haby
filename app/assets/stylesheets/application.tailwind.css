@@ -3,6 +3,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===============================
+   Layout / 共通レイアウト
+   =============================== */
+
+/* メインコンテンツの余白（ヘッダー分） */
+.app-main {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 20px 40px;
+}
+
+
+/* ===============================
+   トップページ（ヒーロー / CTA / 機能紹介）
+   =============================== */
+
 .top-wrapper {
   max-width: 800px;
   margin: 0 auto;
@@ -26,10 +42,86 @@
   font-size: 20px;
 }
 
+/* CTA セクション */
+.cta {
+  text-align: center;
+  margin: 80px auto;
+  padding: 20px 10px;
+  background: linear-gradient(180deg, #e9f5ff, #f6fbff);
+  border-radius: 20px;
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.06),
+    0 2px 4px rgba(255, 255, 255, 0.9) inset;
+}
+
+.cta h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #117BBF;
+  text-shadow: 0 1px 2px rgba(17, 123, 191, 0.15);
+}
+
+/* 機能紹介セクション */
+.features {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #117BBF;
+  margin-bottom: 30px;
+  text-shadow: 0 1px 2px rgba(17, 123, 191, 0.15);
+}
+
+.feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.feature-list li {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 3px rgba(255, 255, 255, 0.6) inset;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-list li:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.12),
+    0 3px 5px rgba(255,255,255,0.65) inset;
+}
+
+.feature-list h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #117BBF;
+  margin-bottom: 8px;
+}
+
+.feature-list p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ===============================
+   ボタン（共通）
+   =============================== */
+
 .btn-primary {
   background-color: #117BBF;
   color: #fff;
-  
 }
 
 .btn-secondary {
@@ -44,15 +136,13 @@
   font-size: 18px;
   border-radius: 14px;
   font-weight: 600;
-
   transition:
     transform 0.18s cubic-bezier(0.17, 0.67, 0.37, 1.32),
     box-shadow 0.18s ease,
     background-color 0.18s ease;
-
   box-shadow:
     0 6px 15px rgba(0, 0, 0, 0.10),
-    0 2px 4px rgba(255, 255, 255, 0.8) inset; 
+    0 2px 4px rgba(255, 255, 255, 0.8) inset;
 }
 
 .btn-primary {
@@ -81,78 +171,9 @@
     0 0 0 rgba(0,0,0,0.1);
 }
 
-.features {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 0 20px;
-  text-align: center;
-}
-
-.features h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #117BBF;
-  margin-bottom: 30px;
-  text-shadow: 0 1px 2px rgba(17, 123, 191, 0.15);
-}
-
-.feature-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.feature-list li {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px 28px;
-  margin-bottom: 20px;
-
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    0 2px 3px rgba(255, 255, 255, 0.6) inset;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.feature-list li:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,0.12),
-    0 3px 5px rgba(255,255,255,0.65) inset;
-}
-
-.feature-list h3 {
-  font-size: 22px;
-  font-weight: 600;
-  color: #117BBF;
-  margin-bottom: 8px;
-}
-
-.feature-list p {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.6;
-}
-
-.cta {
-  text-align: center;
-  margin: 80px auto;
-  padding: 20px 10px;
-  background: linear-gradient(180deg, #e9f5ff, #f6fbff);
-  border-radius: 20px;
-
-  box-shadow:
-    0 6px 15px rgba(0, 0, 0, 0.06),
-    0 2px 4px rgba(255, 255, 255, 0.9) inset;
-}
-
-.cta h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #117BBF;
-  text-shadow: 0 1px 2px rgba(17, 123, 191, 0.15);
-}
+/* ===============================
+   認証画面（ログイン / 新規登録）
+   =============================== */
 
 /* 認証画面 共通レイアウト */
 .auth-wrapper {
@@ -235,6 +256,7 @@
   color: #117BBF;
   font-size: 13px;
 }
+
 /* メモの小さい文字（パスワードの説明など） */
 .field-note {
   font-size: 12px;
@@ -301,7 +323,6 @@
   max-width: 100%;
   margin: 0;
   padding: 0 30px;
-
   display: flex;
   align-items: center;
 }
@@ -309,7 +330,7 @@
 /* 左右に同じだけの「余白エリア」を持たせるイメージ */
 .app-header__left,
 .app-header__auth {
-  flex: 1;  /* 左右が同じ比率で広がる → ロゴがど真ん中になる */
+  flex: 1;
 }
 
 /* 中央ロゴ */
@@ -333,7 +354,7 @@
 .app-header__auth {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* 右寄せ */
+  justify-content: flex-end;
   gap: 12px;
 }
 
@@ -345,7 +366,7 @@
   border: 1px solid #117BBF;
   color: #117BBF;
   background-color: #ffffff;
-  white-space: nowrap; /* 「新規登録」を1行で表示する */
+  white-space: nowrap;
 }
 
 .app-header__auth-link--primary {
@@ -362,18 +383,51 @@
   color: #666666;
 }
 
-/* main コンテンツ側の余白（ヘッダー分） */
-.app-main {
-  max-width: 960px;
-  margin: 24px auto;
-  padding: 0 20px 40px;
+/* ===============================
+   Footer
+   =============================== */
+
+.app-footer {
+  background: #ffffff;
+  padding: 20px 0;
+  margin-top: 40px;
+  color: #333;
+  font-size: 14px;
+  border-top: 1px solid #e5e5e5;
 }
 
-/* 背景のオレンジ波形　*/
-.wave-background {
+.app-footer__inner {
   width: 100%;
-  background: 
-    radial-gradient(ellipse at bottom left, rgba(255, 198, 170, 0.55), transparent 70%),
-    radial-gradient(ellipse at bottom right, rgba(255, 198, 170, 0.45), transparent 75%);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* コピーライト */
+.app-footer__copy {
+  text-align: left;
+  flex: 1;
+}
+
+/* 右側リンク */
+.app-footer__links {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+.app-footer__links a {
+  color: #333;
+  text-decoration: none;
+}
+
+.app-footer__links a:hover {
+  text-decoration: underline;
+}
