@@ -1,0 +1,28 @@
+<div class="account-form-page">
+  <h2 class="account-form-page__title">名前を変更</h2>
+
+  <div class="account-form-card">
+
+    <%= render "devise/shared/error_messages", resource: current_user %>
+
+    <%= form_with model: current_user, url: account_name_path, method: :patch, local: true do |f| %>
+
+      <div class="account-form__field">
+        <%= f.label :name, "名前", class: "account-form__label" %><br>
+        <%= f.text_field :name,
+                          autofocus: true,
+                          class: "account-form__input" %>
+      </div>
+
+      <div class="account-form__actions">
+        <%= f.submit "名前を更新する", class: "account-form__submit" %>
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <p class="account-form-page__back">
+    <%= link_to "マイページに戻る", account_path, class: "account-form__back-link" %>
+  </p>
+</div>

@@ -1,0 +1,28 @@
+<div class="account-form-page">
+  <h2 class="account-form-page__title">アカウントを削除</h2>
+
+  <div class="account-form-card account-form-card--danger">
+    <p class="account-delete__text">
+      アカウントを削除すると、これまでのデータはすべて削除され、元に戻すことはできません。<br>
+      本当に削除してよろしいですか？
+    </p>
+
+    <ul class="account-delete__list">
+      <li>服薬・サプリの記録データが削除されます</li>
+      <li>マイページや各種設定も利用できなくなります</li>
+      <li>同じメールアドレスで再度登録することは可能ですが、データは復元されません</li>
+    </ul>
+
+    <div class="account-form__actions">
+      <%= button_to "アカウントを削除する",
+                    destroy_account_path,
+                    method: :delete,
+                    data: { confirm: "本当にアカウントを削除しますか？" },
+                    class: "account-form__submit account-form__submit--danger" %>
+    </div>
+  </div>
+
+  <p class="account-form-page__back">
+    <%= link_to "マイページに戻る", account_path, class: "account-form__back-link" %>
+  </p>
+</div>
