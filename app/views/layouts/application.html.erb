@@ -13,7 +13,7 @@
 
     <link rel="manifest" href="/manifest.json">
     <%= favicon_link_tag 'favicon.ico' %>
-    <%= favicon_link_tag 'favicon_180_new.png', rel: 'apple-touch-icon', type: 'image/png' %>
+    <%= favicon_link_tag 'favicon_180.png', rel: 'apple-touch-icon', type: 'image/png' %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
@@ -30,7 +30,7 @@
 
     <div class="app">
       <%= render "shared/header" %>
-      
+
         <%= yield %>
 
       <%= render "shared/footer" %>

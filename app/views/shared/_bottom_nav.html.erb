@@ -1,7 +1,7 @@
 <!-- app/views/shared/_bottom_nav.html.erb -->
 <nav class="bottom-nav">
   <%= link_to habits_path,
-              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(root_path)}" do %>
+              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(habits_path)}" do %>
     <div class="bottom-nav__icon-wrapper">
       <%= image_tag "icons/checkbox.png", class: "bottom-nav__icon", alt: "" %>
     </div>
@@ -17,7 +17,7 @@
   <% end %>
 
   <%= link_to manage_path,
-              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(habits_path)}" do %>
+              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(manage_path)}" do %>
     <div class="bottom-nav__icon-wrapper">
       <%= image_tag "icons/manage.png", class: "bottom-nav__icon", alt: "" %>
     </div>

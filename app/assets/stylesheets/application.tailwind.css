@@ -341,18 +341,6 @@
   padding: 0 30px;
   display: flex;
   align-items: center;
-}
-
-/* 左右に同じだけの「余白エリア」を持たせるイメージ */
-.app-header__left,
-.app-header__auth {
-  flex: 1;
-}
-
-/* 中央ロゴ */
-.app-header__center {
-  flex: 0 0 auto;
-  display: flex;
   justify-content: center;
 }
 
@@ -366,13 +354,6 @@
   display: block;
 }
 
-/* 右上のログイン/新規登録エリア */
-.app-header__auth {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-}
 
 .app-header__auth-link {
   font-size: 13px;
