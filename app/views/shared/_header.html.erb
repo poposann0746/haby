@@ -1,28 +1,8 @@
 <header class="app-header">
   <div class="app-header__inner">
-
-    <!-- 左側エリア -->
-    <div class="app-header__left"></div>
-
     <!-- 中央ロゴ -->
-    <div class="app-header__center">
       <%= link_to root_path, class: "app-header__logo-link" do %>
         <%= image_tag "haby-logo.png", alt: "haby logo", class: "app-header__logo" %>
       <% end %>
-    </div>
-
-    <!-- 右側エリア（ログイン/ログアウト） -->
-    <div class="app-header__auth">
-      <% if user_signed_in? %>
-        <span class="app-header__user-name">
-          <%= current_user.name.presence || "ログイン中" %>
-        </span>
-        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "app-header__logout-button" %>
-      <% else %>
-        <%= link_to "ログイン", new_user_session_path, class: "app-header__auth-link" %>
-        <%= link_to "新規登録", new_user_registration_path, class: "app-header__auth-link app-header__auth-link--primary" %>
-      <% end %>
-    </div>
-
   </div>
 </header>
