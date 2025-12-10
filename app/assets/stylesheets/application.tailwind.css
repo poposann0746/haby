@@ -6,13 +6,21 @@
 /* ===============================
    Layout / 共通レイアウト
    =============================== */
-
-/* メインコンテンツの余白（ヘッダー分） */
-.app-main {
-  max-width: 960px;
-  margin: 24px auto;
-  padding: 0 20px 40px;
+:root {
+  --bottom-nav-height: 100px;
 }
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-bottom: var(--bottom-nav-height);
+  width: 100%;
+
+}
+/* メインコンテンツの余白（ヘッダー分） */
+
 
 
 /* ===============================
@@ -176,20 +184,28 @@
    =============================== */
 
 /* 認証画面 共通レイアウト */
+
+.devise-main {
+  padding: 20px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
 .auth-wrapper {
-  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: #f7fbff;
+  align-items: flex-start;
+  padding: 40px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .auth-card {
-  background: #ffffff;
-  padding: 32px 28px;
-  border-radius: 16px;
   width: 100%;
-  max-width: 420px;
+  max-width: 800px;
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 16px;
   box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.08),
     0 0 0 1px rgba(17, 123, 191, 0.08);
@@ -391,6 +407,7 @@
   background: #ffffff;
   padding: 20px 0;
   margin-top: 40px;
+  margin-bottom: 16px;
   color: #333;
   font-size: 14px;
   border-top: 1px solid #e5e5e5;
@@ -430,4 +447,51 @@
 
 .app-footer__links a:hover {
   text-decoration: underline;
+}
+
+/* ===== Bottom Navigation ===== */
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 10px 24px 18px;
+  height: var(--bottom-nav-height);
+  background: #ffffff;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  z-index: 40;
+}
+
+.bottom-nav__item {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  color: #66676a;
+}
+
+.bottom-nav__icon-wrapper {
+  margin: 12px;
+}
+
+.bottom-nav__icon {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* アクティブなタブ */
+.bottom-nav__item--active {
+  color: #117BBF;
+  font-weight: 600;
 }
