@@ -11,20 +11,14 @@
 }
 
 .app {
-  min-height: 100vh;
-  display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  padding-bottom: var(--bottom-nav-height);
-  width: 100%;
-
 }
 /* メインコンテンツの余白（ヘッダー分） */
 
 
 
 /* ===============================
-   トップページ（ヒーロー / CTA / 機能紹介）
+   トップページ
    =============================== */
 
 .top-wrapper {
@@ -298,6 +292,11 @@
   margin: 4px 0;
 }
 
+.user-name {
+  font-size: 24px;
+  color: #676464
+}
+
 /* エラーメッセージのスタイル（devise/shared/error_messages） */
 .error_explanation {
   margin-bottom: 16px;
@@ -352,27 +351,6 @@
   height: 50px;
   width: auto;
   display: block;
-}
-
-
-.app-header__auth-link {
-  font-size: 13px;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid #117BBF;
-  color: #117BBF;
-  background-color: #ffffff;
-  white-space: nowrap;
-}
-
-.app-header__auth-link--primary {
-  background-color: #117BBF;
-  color: #ffffff;
-}
-
-.app-header__auth-link:hover {
-  opacity: 0.9;
 }
 
 .app-header__user-name {
@@ -430,7 +408,7 @@
   text-decoration: underline;
 }
 
-/* ===== Bottom Navigation ===== */
+/*  Bottom Navigation  */
 
 .bottom-nav {
   position: fixed;
@@ -475,4 +453,285 @@
 .bottom-nav__item--active {
   color: #117BBF;
   font-weight: 600;
+}
+
+/* マイページ全体 */
+.account-page {
+  max-width: 100%;
+  margin: 40px auto 80px;
+  padding: 24px 20px 32px;
+  background: #ffffff;
+  border-radius: 20px;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.06),
+    0 2px 4px rgba(255, 255, 255, 0.7) inset;
+}
+
+.account-page__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #117bbf;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.account-page__user {
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.account-page__user-name {
+  color: #117bbf;
+}
+
+/* メニューリスト */
+.account-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.account-menu__item {
+  margin-bottom: 12px;
+}
+
+.account-menu__link {
+  display: block;
+  width: 480px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #f5fbff;
+  color: #117bbf;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 0 auto;
+
+  /* 左にちょっとアイコンがあるっぽい余白 */
+  position: relative;
+  padding-left: 20px;
+
+  /* ふんわりした影 */
+  box-shadow:
+    0 4px 10px rgba(17, 123, 191, 0.08),
+    0 0 0 1px rgba(17, 123, 191, 0.03);
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+}
+
+/* ホバー・フォーカス時の動き */
+.account-menu__link:hover,
+.account-menu__link:focus {
+  background: #e3f2ff;
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 18px rgba(17, 123, 191, 0.12),
+    0 0 0 1px rgba(17, 123, 191, 0.06);
+}
+
+/* 危険アクション（削除）だけ色を変える */
+.account-menu__item--danger .account-menu__link {
+  background: #fff5f5;
+  color: #d9534f;
+  box-shadow:
+    0 4px 10px rgba(217, 83, 79, 0.06),
+    0 0 0 1px rgba(217, 83, 79, 0.04);
+}
+
+.account-menu__link--danger:hover,
+.account-menu__link--danger:focus {
+  background: #ffe4e4;
+  box-shadow:
+    0 8px 18px rgba(217, 83, 79, 0.14),
+    0 0 0 1px rgba(217, 83, 79, 0.08);
+}
+
+/* 小さい画面でも余白を保つ */
+@media (max-width: 480px) {
+  .account-page {
+    margin: 24px 12px 56px;
+    padding: 20px 16px 24px;
+  }
+
+  .account-page__title {
+    font-size: 20px;
+  }
+
+  .account-menu__link {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+}
+
+/* ============================
+   メールアドレス変更ページ
+   ============================ */
+.account-form-page {
+  max-width: 480px;
+  margin: 40px auto 80px;
+  padding: 0 16px;
+}
+
+.account-form-page__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #117bbf;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* カード部分 */
+.account-form-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 20px 28px;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.06),
+    0 2px 4px rgba(255, 255, 255, 0.7) inset;
+}
+
+/* フィールド */
+.account-form__field {
+  margin-bottom: 18px;
+}
+
+.account-form__label {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.account-form__input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d0e3f3;
+  font-size: 14px;
+  outline: none;
+  background: #f8fcff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.account-form__input:focus {
+  border-color: #117bbf;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(17, 123, 191, 0.18);
+}
+
+/* 説明テキスト */
+.account-form__help-text {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* ボタン */
+.account-form__actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.account-form__submit {
+  display: inline-block;
+  min-width: 220px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #117bbf, #6aacb0);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(17, 123, 191, 0.3);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.2s ease,
+    opacity 0.15s ease;
+}
+
+.account-form__submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(17, 123, 191, 0.35);
+  opacity: 0.95;
+}
+
+.account-form__submit:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(17, 123, 191, 0.25);
+}
+
+/* 戻るリンク */
+.account-form-page__back {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.account-form__back-link {
+  font-size: 13px;
+  color: #117bbf;
+  text-decoration: none;
+}
+
+.account-form__back-link:hover {
+  text-decoration: underline;
+}
+
+/* スマホ対応 */
+@media (max-width: 480px) {
+  .account-form-page {
+    margin: 28px auto 60px;
+  }
+
+  .account-form-card {
+    padding: 20px 16px 24px;
+  }
+
+  .account-form-page__title {
+    font-size: 20px;
+  }
+}
+/* アカウント削除用のカード強調 */
+.account-form-card--danger {
+  border: 1px solid #f5c2c0;
+  background: #fff7f7;
+}
+
+/* 説明文・注意リスト */
+.account-delete__text {
+  font-size: 13px;
+  color: #844;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.account-delete__list {
+  margin: 0 0 20px;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #844;
+}
+
+/* 危険アクションボタン */
+.account-form__submit--danger {
+  background: linear-gradient(135deg, #d9534f, #f37b72);
+  box-shadow: 0 8px 18px rgba(217, 83, 79, 0.35);
+}
+
+.account-form__submit--danger:hover {
+  box-shadow: 0 10px 22px rgba(217, 83, 79, 0.4);
+  opacity: 0.97;
+}
+
+.account-form__submit--danger:active {
+  box-shadow: 0 4px 10px rgba(217, 83, 79, 0.3);
 }

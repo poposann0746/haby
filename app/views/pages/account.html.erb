@@ -1,2 +1,25 @@
-<h1>Pages#account</h1>
-<p>Find me in app/views/pages/account.html.erb</p>
+<div class="account-page">
+  <h2 class="account-page__title">マイページ</h2>
+
+  <p class="account-page__user">
+    <strong class="account-page__user-name">
+      <%= current_user.name.presence || "ユーザー" %> さん
+    </strong>
+    のアカウント設定
+  </p>
+
+  <ul class="account-menu">
+    <li class="account-menu__item">
+      <%= link_to "名前を変更", edit_account_name_path, class: "account-menu__link" %>
+    </li>
+    <li class="account-menu__item">
+      <%= link_to "メールアドレスを変更", edit_account_email_path, class: "account-menu__link" %>
+    </li>
+    <li class="account-menu__item">
+      <%= link_to "パスワードを変更", edit_account_password_path, class: "account-menu__link" %>
+    </li>
+    <li class="account-menu__item account-menu__item--danger">
+      <%= link_to "アカウントの削除", confirm_delete_account_path, class: "account-menu__link account-menu__link--danger" %>
+    </li>
+  </ul>
+</div>

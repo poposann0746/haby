@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get "pages/calendar"
-  get "pages/habits"
-  get "pages/account"
-  get "pages/manage"
-  get "pages/calendar"
-  get "pages/todays_habits"
-  get "pages/accout"
-  get "pages/manage"
   devise_for :users
   root "home#index"
   get "home/index"
@@ -18,7 +10,25 @@ Rails.application.routes.draw do
   get "calendar", to: "pages#calendar"
   get "habits", to: "pages#habits"
   get "manage", to: "pages#manage"
-  get "account", to: "pages#account"
+
+  # マイページ
+  get "account", to: "pages#account", as: :account
+
+  # 名前変更
+  get   "account/name/edit", to: "pages#edit_name",   as: :edit_account_name
+  patch "account/name",      to: "pages#update_name", as: :account_name
+
+  # メールアドレス変更
+  get   "account/email/edit", to: "pages#edit_email",   as: :edit_account_email
+  patch "account/email",      to: "pages#update_email", as: :account_email
+
+  # パスワード変更
+  get   "account/password/edit", to: "pages#edit_password",   as: :edit_account_password
+  patch "account/password",      to: "pages#update_password", as: :account_password
+
+  # アカウント削除
+  get    "account/delete", to: "pages#confirm_delete_account", as: :confirm_delete_account
+  delete "account",        to: "pages#destroy_account",        as: :destroy_account
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
