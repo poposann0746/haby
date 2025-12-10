@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get "pages/calendar"
+  get "pages/habits"
+  get "pages/account"
+  get "pages/manage"
+  get "pages/calendar"
+  get "pages/todays_habits"
+  get "pages/accout"
+  get "pages/manage"
   devise_for :users
   root "home#index"
   get "home/index"
@@ -6,6 +14,11 @@ Rails.application.routes.draw do
   get "privacy",  to: "static_pages#privacy"
   get "terms",    to: "static_pages#terms"
   get "contact",  to: "static_pages#contact"
+
+  get "calendar", to: "pages#calendar"
+  get "habits", to: "pages#habits"
+  get "manage", to: "pages#manage"
+  get "account", to: "pages#account"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

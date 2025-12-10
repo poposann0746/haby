@@ -1,0 +1,34 @@
+<!-- app/views/shared/_bottom_nav.html.erb -->
+<nav class="bottom-nav">
+  <%= link_to habits_path,
+              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(root_path)}" do %>
+    <div class="bottom-nav__icon-wrapper">
+      <%= image_tag "icons/checkbox.png", class: "bottom-nav__icon", alt: "" %>
+    </div>
+    <span class="bottom-nav__label">今日の習慣</span>
+  <% end %>
+
+  <%= link_to calendar_path,
+              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(calendar_path)}" do %>
+    <div class="bottom-nav__icon-wrapper">
+      <%= image_tag "icons/calendar.png", class: "bottom-nav__icon", alt: "" %>
+    </div>
+    <span class="bottom-nav__label">カレンダー</span>
+  <% end %>
+
+  <%= link_to manage_path,
+              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(habits_path)}" do %>
+    <div class="bottom-nav__icon-wrapper">
+      <%= image_tag "icons/manage.png", class: "bottom-nav__icon", alt: "" %>
+    </div>
+    <span class="bottom-nav__label">習慣管理</span>
+  <% end %>
+
+  <%= link_to account_path,
+              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(account_path)}" do %>
+    <div class="bottom-nav__icon-wrapper">
+      <%= image_tag "icons/account.png", class: "bottom-nav__icon", alt: "" %>
+    </div>
+    <span class="bottom-nav__label">アカウント</span>
+  <% end %>
+</nav>
