@@ -1,0 +1,48 @@
+/* Bottom Navigation */
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* height: var(--bottom-nav-height); */
+  min-height: var(--bottom-nav-height);
+
+  padding: 10px 24px 18px;
+  background: #ffffff;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  z-index: 40;
+}
+
+
+.bottom-nav__item {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 6px 0;
+}
+
+.bottom-nav__icon-wrapper {
+  margin: 10px 0 6px;
+}
+
+.bottom-nav__icon {
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* アクティブ */
+.bottom-nav__item--active {
+  color: var(--brand);
+  font-weight: 700;
+}
