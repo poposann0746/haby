@@ -1,4 +1,13 @@
 /*
  *= require_self
- *= require_tree .
+ *= require base/variables
+ *= require base/layout
+ *= require components/buttons
+ *= require components/header
+ *= require components/footer
+ *= require components/bottom_nav
+ *= require pages/home
+ *= require pages/devise
+ *= require pages/account
+ *= require pages/account_forms
  */
