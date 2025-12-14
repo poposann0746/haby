@@ -9,7 +9,6 @@ class PagesController < ApplicationController
   ]
 
   def calendar; end
-  def habits; end
   def manage; end
 
   # マイページ

@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get "contact",  to: "static_pages#contact"
 
   get "calendar", to: "pages#calendar"
-  get "habits", to: "pages#habits"
   get "manage", to: "pages#manage"
 
   # マイページ
