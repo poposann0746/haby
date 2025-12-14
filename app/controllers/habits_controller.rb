@@ -3,7 +3,10 @@ class HabitsController < ApplicationController
 
   def index
     @habits = current_user.habits.order(created_at: :desc)
-    @habit  = current_user.habits.build
+  end
+
+  def new
+    @habit = current_user.habits.build
   end
 
   def create
@@ -16,6 +19,10 @@ class HabitsController < ApplicationController
       flash.now[:alert] = "入力内容を確認してください"
       render :index, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @habit = current_user.habits.find(params[:id])
   end
 
   private
