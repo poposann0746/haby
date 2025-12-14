@@ -1,33 +1,8 @@
 <h1>習慣</h1>
 
-<%= form_with model: @habit, url: habits_path do |f| %>
-  <% if @habit.errors.any? %>
-    <div>
-      <ul>
-        <% @habit.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= f.label :name, "習慣名（必須）" %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div>
-    <%= f.label :detail, "詳細" %>
-    <%= f.text_area :detail %>
-  </div>
-
-  <%= f.submit "追加" %>
-<% end %>
-
-<hr>
-
 <ul>
   <% @habits.each do |habit| %>
-    <li><%= habit.name %></li>
+    <%= link_to habit.name, habit_path(habit) %>
   <% end %>
 </ul>
+<%= link_to "習慣を追加", new_habit_path %>

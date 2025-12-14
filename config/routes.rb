@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :habits, only: %i[new create index]
+  resources :habits, only: %i[new create index show]
 
   root "home#index"
   get "home/index"
