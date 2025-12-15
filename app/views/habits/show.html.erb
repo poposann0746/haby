@@ -1,5 +1,5 @@
 <h1><%= @habit.name %></h1>
 
 <p><%= simple_format(@habit.detail) %></p>
-
+<p><%= link_to "編集", edit_habit_path(@habit) %>
 <p><%= link_to "一覧に戻る", habits_path %></p>
