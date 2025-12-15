@@ -11,3 +11,7 @@
 .app-main {
   padding-bottom: calc(var(--bottom-nav-height) + 24px);
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
