@@ -2,4 +2,7 @@
 
 <p><%= simple_format(@habit.detail) %></p>
 <p><%= link_to "編集", edit_habit_path(@habit) %>
+<p><%= link_to "削除", habit_path(@habit), 
+                      data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+                      class: "btn btn-danger" %>
 <p><%= link_to "一覧に戻る", habits_path %></p>
