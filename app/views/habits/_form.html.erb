@@ -1,0 +1,26 @@
+<!-- app/views/habits/_form.html.erb -->
+<%= form_with model: habit do |f| %>
+  <% if habit.errors.any? %>
+    <ul>
+      <% habit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :name, "習慣名" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :detail, "詳細" %><br>
+    <%= f.text_area :detail %>
+  </div>
+
+  <div>
+    <%= f.submit "追加する" %>
+  </div>
+<% end %>
+
+<p><%= link_to "一覧に戻る", habits_path %></p>
