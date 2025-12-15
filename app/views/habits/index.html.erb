@@ -1,8 +1,41 @@
-<h1>習慣</h1>
+<div class="habits-page">
+  <div class="habits-container">
 
-<ul>
-  <% @habits.each do |habit| %>
-    <%= link_to habit.name, habit_path(habit) %>
-  <% end %>
-</ul>
-<%= link_to "習慣を追加", new_habit_path %>
+    <section class="habits-hero">
+      <h1 class="habits-hero__title">習慣</h1>
+      <p class="habits-hero__subtitle">毎日ちょっとずつ、続けるためのメモ</p>
+      <div class="habit-item__actions">
+        <%= link_to "習慣を追加", new_habit_path, class: "haby-btn haby-btn--primary" %>
+      </div>
+
+    </section>
+
+    <% if @habits.any? %>
+      <section class="habits-list">
+        <% @habits.each do |habit| %>
+          <article class="habit-item">
+            <div class="habit-item__head">
+              <h2 class="habit-item__name"><%= habit.name %></h2>
+              <span class="habit-badge">習慣</span>
+            </div>
+
+            <% if habit.detail.present? %>
+              <p class="habit-item__detail"><%= habit.detail %></p>
+            <% end %>
+
+            <div class="habit-item__actions">
+              <%= link_to "詳細", habit_path(habit), class: "haby-btn haby-btn--primary" %>
+              <%= link_to "編集", edit_habit_path(habit), class: "haby-btn haby-btn--ghost" %>
+            </div>
+          </article>
+        <% end %>
+      </section>
+    <% else %>
+      <section class="habits-empty">
+        <p class="habits-empty__title">まだ習慣がありません</p>
+        <p class="habits-empty__text">上のフォームから追加してみましょう。</p>
+      </section>
+    <% end %>
+
+  </div>
+</div>

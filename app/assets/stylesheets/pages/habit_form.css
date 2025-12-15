@@ -1,0 +1,191 @@
+/* Habit Form */
+
+:root {
+  --haby-blue: #117BBF;
+  --haby-mint: #6AACB0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #e6eef5;
+  --bg: #f6fbff;
+  --card: #ffffff;
+  --danger: #c43535;
+}
+
+/* 画面全体 */
+.habit-form-page {
+  min-height: calc(100vh - var(--bottom-nav-height, 0px));
+  padding: 18px 14px 28px;
+  background:#fff;
+}
+
+.habit-form-container {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+/* 見出しカード */
+.habit-form-hero {
+  background: linear-gradient(135deg, rgba(17,123,191,0.18), rgba(106,172,176,0.14));
+  border: 1px solid rgba(17,123,191,0.18);
+  border-radius: 18px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.habit-form-hero__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.habit-form-hero__subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* フォームカード */
+.habit-form-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+/* フォーム */
+.habit-form {
+  position: relative; 
+  display: grid;
+  gap: 14px;
+}
+
+.habit-form__group {
+  display: grid;
+  gap: 6px;
+}
+
+.habit-form__label {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
+.habit-form__hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* 入力 */
+.habit-form input[type="text"],
+.habit-form textarea {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid #d9e6f2;
+  outline: none;
+  background: #fff;
+  color: var(--text);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.habit-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.habit-form input[type="text"]:focus,
+.habit-form textarea:focus {
+  border-color: rgba(17,123,191,0.55);
+  box-shadow: 0 0 0 4px rgba(17,123,191,0.12);
+}
+
+/* エラー表示 */
+.field_with_errors input,
+.field_with_errors textarea {
+  border-color: rgba(239, 68, 68, 0.75) !important;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.10) !important;
+}
+
+.habit-form-errors {
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.06);
+  border-radius: 16px;
+  padding: 12px 12px;
+  color: var(--text);
+}
+
+.habit-form-errors__title {
+  margin: 0 0 6px;
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.habit-form-errors ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+/* ボタン行 */
+.habit-form__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+/* habyボタン（一覧と揃える） */
+.haby-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-weight: 900;
+  font-size: 13px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.haby-btn--primary {
+  color: #fff;
+  background: var(--haby-blue);
+  box-shadow: 0 10px 20px rgba(17,123,191,0.22);
+}
+
+.haby-btn--ghost {
+  color: var(--text);
+  background: #fff;
+  border-color: #d9e6f2;
+}
+
+.haby-btn--danger {
+  color: #fff;
+  background: var(--danger);
+  box-shadow: 0 10px 20px rgba(239,68,68,0.18);
+}
+
+/* 補助リンク（戻る等） */
+.habit-form__back {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.habit-form__back:hover {
+  color: var(--haby-blue);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}

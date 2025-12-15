@@ -10,4 +10,7 @@
  *= require pages/devise
  *= require pages/account
  *= require pages/account_forms
+ *= require pages/habits
+ *= require pages/habit_form
+ *= require pages/habit_show
  */
