@@ -1,0 +1,136 @@
+:root{
+  --haby-primary: #117BBF;
+  --haby-primary-soft: rgba(17,123,191,0.10);
+  --haby-border: rgba(0,0,0,0.08);
+  --haby-text: rgba(0,0,0,0.86);
+  --haby-muted: rgba(0,0,0,0.45);
+}
+
+/* 外枠 */
+.simple-calendar.haby-cal{
+  background:#fff;
+  border:1px solid var(--haby-border);
+  border-radius:18px;
+  padding:30px;
+}
+
+/* header */
+.haby-cal__header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.haby-cal__title{
+  font-size:20px;
+  font-weight:900;
+  color:var(--haby-text);
+  letter-spacing:.2px;
+}
+
+/* nav buttons */
+.haby-cal__nav{ display:flex; gap:8px; }
+
+.haby-cal__nav-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.10);
+  background:#fff;
+  text-decoration:none;
+  color:var(--haby-text);
+  font-weight:800;
+  font-size:13px;
+}
+
+.haby-cal__nav-btn--ghost{
+  background:rgba(0,0,0,0.02);
+  border-color:rgba(0,0,0,0.06);
+}
+
+/* table reset */
+.haby-cal__table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:8px; /* “マス目の隙間”を作る */
+}
+
+/* weekday header */
+.haby-cal__weekday{
+  text-align:center;
+  font-size:15px;
+  font-weight:800px;
+  color:var(--haby-muted);
+  padding:6px 0;
+}
+
+/* cells */
+.haby-cal__cell{
+  border-radius: 30px;
+  border:3px solid rgba(0,0,0,0.06);
+  background:rgba(0,0,0,0.01);
+  vertical-align:top;
+  min-height:48px;
+  height:120px;
+  padding:10px;
+  overflow:hidden;
+}
+
+.haby-cal__cell-inner{
+  padding:8px;
+  height:100%;
+}
+
+.haby-cal__date{
+  font-size:13px;
+  font-weight:900;
+  color:var(--haby-text);
+}
+
+.simple-calendar .today.haby-cal__cell{
+  border-color: rgba(17,123,191,0.45);
+  background: var(--haby-primary-soft);
+  box-shadow: 0 0 0 2px rgba(17,123,191,0.10) inset;
+}
+
+.simple-calendar .not-current-month.haby-cal__cell{
+  opacity:.35;
+}
+
+/* 中身（将来：実施状況のバッジ等） */
+.haby-cal__content{
+  margin-top:6px;
+}
+
+/* 動き（基本） */
+.haby-cal__cell{
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background-color 120ms ease;
+  will-change: transform;
+}
+
+/* PC: hover */
+@media (hover: hover) and (pointer: fine){
+  .haby-cal__cell:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+    border-color: rgba(17,123,191,0.22);
+  }
+}
+
+/* スマホ: 押した瞬間 */
+.haby-cal__cell:active{
+  transform: scale(0.98);
+}
+
+/* レスポンシブ */
+@media (max-width: 420px){
+  .simple-calendar.haby-cal{ padding:12px; border-radius:16px; }
+  .haby-cal__table{ border-spacing:5px; }
+  .haby-cal__cell{ height:64px; }
+  .haby-cal__cell-inner{ padding:6px; }
+  .haby-cal__title{ font-size:15px; }
+}
