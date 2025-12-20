@@ -1,8 +1,18 @@
 class HabitLogsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_habit
+
+  def index
+    @date =params[:date]&.to_date || Date.current
+
+    @habit_logs = HabitLog
+      .includes(:habit)
+      .where(user: current_user, log_date: @date)
+      .joins(:habit)
+      .order("habits.created_at ASC")
+  end
 
   def update
+    @habit = current_user.habits.find(params[:habit_id])
     log = @habit.habit_logs.find_or_initialize_by(log_date: Date.current)
     log.user = current_user
     log.is_taken = !log.is_taken?
@@ -16,8 +26,4 @@ class HabitLogsController < ApplicationController
   end
 
   private
-
-  def set_habit
-    @habit = current_user.habits.find(params[:habit_id])
-  end
 end

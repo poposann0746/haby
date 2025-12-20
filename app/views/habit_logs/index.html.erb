@@ -1,0 +1,21 @@
+<div class="habit-logs-page">
+  <h1><%= @date.strftime("%Y年%m月%d日") %> の実施状況</h1>
+
+  <% if @habit_logs.any? %>
+    <ul class="habit-logs-list">
+      <% @habit_logs.each do |log| %>
+        <li class="habit-log-item">
+          <span class="habit-log-name"><%= log.habit.name %></span>
+
+          <% if log.is_taken? %>
+            <span class="habit-log-status is-done">✓ 実施済み</span>
+          <% else %>
+            <span class="habit-log-status">未実施</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>この日の記録はまだありません。</p>
+  <% end %>
+</div>
