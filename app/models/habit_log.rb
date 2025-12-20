@@ -5,6 +5,6 @@ class HabitLog < ApplicationRecord
 
   validates :log_date, presence: true
   validates :is_taken, inclusion: { in: [ true, false ] }
-
+  validates :log_date, uniqueness: { scope: :habit_id }
   validates :habit_id, uniqueness: { scope: [ :user_id, :log_date ] }
 end
