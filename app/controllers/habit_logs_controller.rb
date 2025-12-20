@@ -26,6 +26,4 @@ class HabitLogsController < ApplicationController
   end
 
   private
-
-
 end
