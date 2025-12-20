@@ -3,7 +3,6 @@
 one:
   user: one
   habit: one
-  habit_schedule: one
   log_date: 2025-12-20
   logged_at: 2025-12-20 18:00:22
   is_taken: false
@@ -11,7 +10,6 @@ one:
 two:
   user: two
   habit: two
-  habit_schedule: two
   log_date: 2025-12-20
   logged_at: 2025-12-20 18:00:22
   is_taken: false
