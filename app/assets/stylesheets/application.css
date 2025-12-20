@@ -5,6 +5,7 @@
  *= require components/buttons
  *= require components/header
  *= require components/footer
+ *= require components/haby_calendar
  *= require components/bottom_nav
  *= require pages/home
  *= require pages/devise
