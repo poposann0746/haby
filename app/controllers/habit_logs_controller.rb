@@ -14,7 +14,7 @@ class HabitLogsController < ApplicationController
   rescue ActiveRecord::RecordInvalid
     redirect_back fallback_location: habits_path, alert: "保存に失敗しました"
   end
-  
+
   private
 
   def set_habit

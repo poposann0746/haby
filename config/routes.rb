@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :habits, only: %i[new create index show edit update destroy]
   resources :habits do
-    resource :today_log, only: [:update], controller: "habit_logs"
+    resource :today_log, only: [ :update ], controller: "habit_logs"
   end
   root "home#index"
   get "home/index"
