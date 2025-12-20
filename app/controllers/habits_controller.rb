@@ -4,6 +4,11 @@ class HabitsController < ApplicationController
 
   def index
     @habits = current_user.habits.order(created_at: :desc)
+    today_logs = HabitLog
+    .where(user_id: current_user.id, habit_id: @habits.ids, log_date: Date.current)
+    .index_by(&:habit_id)
+
+    @today_logs_by_habit_id = today_logs
   end
 
   def new
