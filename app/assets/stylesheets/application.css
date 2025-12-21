@@ -1,5 +1,6 @@
 /*
  *= require_self
+ *= require base/reset
  *= require base/variables
  *= require base/layout
  *= require components/buttons

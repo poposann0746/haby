@@ -1,6 +1,7 @@
 /* Habit Show  */
 
-:root {
+/* 画面全体 */
+.habit-show-page {
   --haby-blue: #117BBF;
   --haby-mint: #6AACB0;
   --text: #0f172a;
@@ -9,13 +10,10 @@
   --bg: #f6fbff;
   --card: #ffffff;
   --danger: #ef4444;
-}
 
-/* 画面全体 */
-.habit-show-page {
   min-height: calc(100vh - var(--bottom-nav-height, 0px));
   padding: 18px 14px 28px;
-  background: #fff
+  background: #fff;
 }
 
 .habit-show-container {
@@ -121,7 +119,7 @@
 }
 
 /* ボタン */
-.haby-btn {
+.habit-show-page .haby-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -135,19 +133,19 @@
   cursor: pointer;
 }
 
-.haby-btn--primary {
+.habit-show-page .haby-btn--primary {
   color: #fff;
   background: var(--haby-blue);
   box-shadow: 0 10px 20px rgba(17,123,191,0.22);
 }
 
-.haby-btn--ghost {
+.habit-show-page .haby-btn--ghost {
   color: var(--text);
   background: #fff;
   border-color: #d9e6f2;
 }
 
-.haby-btn--danger {
+.habit-show-page .haby-btn--danger {
   color: #fff;
   background: var(--danger);
   box-shadow: 0 10px 20px rgba(239,68,68,0.18);

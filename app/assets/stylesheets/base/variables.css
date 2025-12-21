@@ -1,5 +1,51 @@
 :root {
+  /* Brand */
   --brand: #117BBF;
+
+  /* Layout */
   --bottom-nav-height: 80px;
-  --header-height: 74px;
+  --header-height: 70px;
+  --container-max: 960px;
+
+  /* Background / Surface */
+  --bg: #ffffff;
+  --surface: #f7fafc;        /* カード背景 */
+  --surface-2: #f1f5f9;      /* 薄いセクション背景 */
+
+  /* Text */
+  --text: #111827;
+  --text-muted: #6b7280;
+  --text-inverse: #ffffff;
+
+  /* Border / Shadow */
+  --border: #e5e7eb;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  /* Spacing */
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 18px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+               "Noto Sans JP", sans-serif;
+  --font-size-base: 15px;
+  --line-height: 1.6;
+
+  /* State colors */
+  --danger: #ef4444;
+  --success: #22c55e;
+  --warning: #f59e0b;
+
+  /* Brand variations (便利) */
+  --brand-weak: #e8f3fb;
+  --brand-hover: #0e6aa5;
 }
