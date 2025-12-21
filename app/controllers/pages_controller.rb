@@ -43,6 +43,12 @@ class PagesController < ApplicationController
 
   def manage; end
 
+  def auth
+    if user_signed_in?
+      redirect_to habits_path, notice: "すでにログインしています"
+    end
+  end
+
   # マイページ
   def account
   end
