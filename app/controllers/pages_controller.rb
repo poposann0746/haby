@@ -8,6 +8,11 @@ class PagesController < ApplicationController
     :confirm_delete_account, :destroy_account
   ]
 
+<<<<<<< Updated upstream
+  def calendar; end
+  def habits; end
+  def manage; end
+=======
   def calendar
     base_date =
       if params[:start_date].present?
@@ -39,9 +44,19 @@ class PagesController < ApplicationController
     end
   end
 
+  def auth
+    if user_signed_in?
+      redirect_to habits_path, notice: "すでにログインしています"
+    end
+  end
 
 
-  def manage; end
+  def todays_habits
+  end
+
+  def manage
+  end
+>>>>>>> Stashed changes
 
   # マイページ
   def account
