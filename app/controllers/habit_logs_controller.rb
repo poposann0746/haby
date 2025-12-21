@@ -4,16 +4,8 @@ class HabitLogsController < ApplicationController
   before_action :set_date, only: %i[index]
 
   def index
-    # その日のログ一覧
-    @habit_logs = current_user.habit_logs
-                             .where(log_date: @date)
-                             .includes(:habit)
-                             .order("habits.name ASC")
-
-
-  def index
     @date =params[:date]&.to_date || Date.current
-
+  
     @habit_logs = HabitLog
       .includes(:habit)
       .where(user: current_user, log_date: @date)
