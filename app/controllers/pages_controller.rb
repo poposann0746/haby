@@ -8,7 +8,39 @@ class PagesController < ApplicationController
     :confirm_delete_account, :destroy_account
   ]
 
-  def calendar; end
+  def calendar
+    base_date =
+      if params[:start_date].present?
+        Date.parse(params[:start_date])
+      else
+        Date.current
+      end
+
+    from = base_date.beginning_of_month
+    to   = base_date.end_of_month
+
+    logs = current_user.habit_logs.where(log_date: from..to)
+
+    logs_by_date = logs.group_by(&:log_date)
+
+    @day_class = {}
+    logs_by_date.each do |date, day_logs|
+      total = day_logs.size
+      taken = day_logs.count { |l| l.is_taken }
+
+      @day_class[date] =
+        if taken == total
+          "cal-day--all"
+        elsif taken == 0
+          "cal-day--none"
+        else
+          "cal-day--partial"
+        end
+    end
+  end
+
+
+
   def manage; end
 
   # マイページ
