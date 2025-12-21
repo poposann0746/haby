@@ -26,11 +26,20 @@
 
   <!-- ハンバーガーで開くメニュー -->
   <nav class="app-header__nav" id="global-nav">
-    <ul class="app-header__nav-list">
-      <li><a href="#" class="app-header__nav-link">habyとは</a></li>
-      <li><a href="#" class="app-header__nav-link">使い方</a></li>
-      <li><a href="#" class="app-header__nav-link">新規登録/ログイン</a></li>
-      <li><a href="#" class="app-header__nav-link">その他</a></li>
-    </ul>
-  </nav>
+  <ul class="app-header__nav-list">
+    <li>
+      <%= link_to "habyとは", home_index_path, class: "app-header__nav-link menu__link" %>
+    </li>
+    <li>
+      <%= link_to "使い方", todays_habits_path, class: "app-header__nav-link menu__link" %>
+    </li>
+    <li>
+      <%= link_to "ログイン / 新規登録", auth_path, class: "app-header__nav-link menu__link" %>
+    </li>
+    <li>
+      <%= link_to "その他", todays_habits_path, class: "app-header__nav-link menu__link" %>
+    </li>
+  </ul>
+</nav>
+
 </header>

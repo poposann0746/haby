@@ -1,0 +1,21 @@
+/*
+ *= require_self
+ *= require base/reset
+ *= require base/variables
+ *= require base/layout
+ *= require components/buttons
+ *= require components/header
+ *= require components/footer
+ *= require components/haby_calendar
+ *= require components/bottom_nav
+ *= require components/flash
+ *= require pages/home
+ *= require pages/devise
+ *= require pages/account
+ *= require pages/account_forms
+ *= require pages/habits
+ *= require pages/habit_form
+ *= require pages/habit_show
+ *= require pages/today
+ *= require pages/auth
+ */

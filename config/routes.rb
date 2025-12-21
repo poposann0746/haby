@@ -8,8 +8,14 @@ Rails.application.routes.draw do
   get "contact",  to: "static_pages#contact"
 
   get "calendar", to: "pages#calendar"
+<<<<<<< Updated upstream
   get "habits", to: "pages#habits"
   get "manage", to: "pages#manage"
+=======
+  get "todays_habits", to: "pages#todays_habits"
+  get "auth", to: "pages#auth"
+
+>>>>>>> Stashed changes
 
   # マイページ
   get "account", to: "pages#account", as: :account

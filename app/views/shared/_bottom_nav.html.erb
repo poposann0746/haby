@@ -1,7 +1,12 @@
 <!-- app/views/shared/_bottom_nav.html.erb -->
 <nav class="bottom-nav">
+<<<<<<< Updated upstream
   <%= link_to habits_path,
               class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(habits_path)}" do %>
+=======
+  <%= link_to todays_habits_path,
+              class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(todays_habits_path)}" do %>
+>>>>>>> Stashed changes
     <div class="bottom-nav__icon-wrapper">
       <%= image_tag "icons/checkbox.png", class: "bottom-nav__icon", alt: "" %>
     </div>
