@@ -5,6 +5,7 @@
       <span class="haby-cal__legend-item haby-cal__legend-item--partial">一部</span>
       <span class="haby-cal__legend-item haby-cal__legend-item--none">なし</span>
     </div>
+
     <time datetime="<%= start_date.strftime('%Y-%m') %>" class="haby-cal__title">
       <%= start_date.strftime("%Y年%-m月") %>
     </time>
@@ -19,7 +20,6 @@
   <table class="haby-cal__table">
     <thead>
       <tr class="haby-cal__weekdays">
-        <% # 月曜始まりにしたい場合はここを固定表示にするのが確実 %>
         <% %w[月 火 水 木 金 土 日].each do |w| %>
           <th class="haby-cal__weekday"><%= w %></th>
         <% end %>
@@ -35,19 +35,23 @@
             <% classes = ["haby-cal__cell", td_class, result_class].compact %>
 
             <%= content_tag :td, class: classes.join(" ") do %>
-              <div class="haby-cal__cell-inner">
-                <div class="haby-cal__date">
-                  <%= day.day %>
-                </div>
-              <% if @day_class&.[](day.to_date) == "cal-day--all" %>
-                <div class="haby-cal__complete">
-                  complete!
+              <%= link_to habit_logs_path(date: day.to_date.to_s), class: "haby-cal__cell-link" do %>
+                <div class="haby-cal__cell-inner">
+                  <div class="haby-cal__date">
+                    <%= day.day %>
+                  </div>
+
+                  <% if @day_class&.[](day.to_date) == "cal-day--all" %>
+                    <div class="haby-cal__complete">
+                      complete!
+                    </div>
+                  <% end %>
+
+                  <div class="haby-cal__content">
+                    <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+                  </div>
                 </div>
               <% end %>
-                <div class="haby-cal__content">
-                  <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
-                </div>
-              </div>
             <% end %>
           <% end %>
         </tr>

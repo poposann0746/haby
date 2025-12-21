@@ -1,0 +1,14 @@
+<h1><%= @date.strftime("%Y年%-m月%-d日") %> の記録</h1>
+
+<% if @habit_logs.any? %>
+  <ul>
+    <% @habit_logs.each do |log| %>
+      <li>
+        <%= log.habit.name %>：
+        <%= log.is_taken? ? "実施" : "未実施" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>この日の記録はまだありません。</p>
+<% end %>
