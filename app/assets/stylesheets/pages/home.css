@@ -1,0 +1,136 @@
+/* Top Page */
+.top-wrapper {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+
+/* タイトル */
+.app-title {
+  margin: 0 0 12px;
+  font-weight: 900;
+  color: #117BBF;
+  letter-spacing: 0.2px;
+  font-size: clamp(36px, 7vw, 56px);
+}
+
+/* ヒーローボタン */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.hero-buttons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* CTA セクション */
+.cta {
+  width: min(92vw, 720px);
+  text-align: center;
+  margin: 44px auto 0;
+  padding: 22px 16px;
+  background: linear-gradient(180deg, #e9f5ff, #f6fbff);
+  border-radius: 20px;
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.06),
+    0 2px 4px rgba(255, 255, 255, 0.9) inset;
+}
+
+.cta h2 {
+  margin: 0 0 10px;
+  font-size: clamp(18px, 4.5vw, 24px);
+  font-weight: 900;
+  color: #117BBF;
+  text-shadow: 0 1px 2px rgba(17, 123, 191, 0.12);
+}
+
+/* 機能紹介セクション */
+.features {
+  width: min(92vw, 720px);
+  margin: 44px auto 0;
+  padding: 0 0;
+  text-align: center;
+}
+
+.features h2 {
+  margin: 0 0 18px;
+  font-size: clamp(18px, 4.5vw, 26px);
+  font-weight: 900;
+  color: #117BBF;
+  text-shadow: 0 1px 2px rgba(17, 123, 191, 0.12);
+}
+
+.feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.feature-list li {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 16px;
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.06),
+    0 2px 3px rgba(255, 255, 255, 0.6) inset;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-list li:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 14px 35px rgba(15, 23, 42, 0.10),
+    0 3px 5px rgba(255,255,255,0.65) inset;
+}
+
+.feature-list h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #117BBF;
+}
+
+.feature-list p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* スマホ最適化 */
+@media (max-width: 480px) {
+  .top-wrapper {
+    padding: 24px 14px;
+  }
+
+  .hero-buttons a {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cta {
+    margin-top: 32px;
+  }
+
+  .features {
+    margin-top: 32px;
+  }
+}

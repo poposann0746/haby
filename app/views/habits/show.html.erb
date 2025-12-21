@@ -1,0 +1,35 @@
+<div class="habit-show-page">
+  <div class="habit-show-container">
+
+    <section class="habit-show-hero">
+      <div class="habit-show-hero__titleRow">
+        <h1 class="habit-show-hero__title"><%= @habit.name %></h1>
+        <span class="habit-badge">習慣</span>
+      </div>
+      <p class="habit-show-hero__subtitle">習慣の内容を確認できます</p>
+    </section>
+
+    <section class="habit-show-card">
+      <div class="habit-show-card__content">
+        <p class="habit-show-card__label">メモ</p>
+
+        <% if @habit.detail.present? %>
+          <p class="habit-show-card__text"><%= @habit.detail %></p>
+        <% else %>
+          <div class="habit-show-empty">
+            まだメモがありません。必要なら編集で追加できます。
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="habit-show-actions">
+      <%= link_to "一覧に戻る", habits_path, class: "haby-btn haby-btn--ghost" %>
+      <%= link_to "編集", edit_habit_path(@habit), class: "haby-btn haby-btn--primary" %>
+      <%= button_to "削除", habit_path(@habit), method: :delete,
+            data: { turbo_confirm: "この習慣を削除しますか？" },
+            class: "haby-btn haby-btn--danger" %>
+    </section>
+
+  </div>
+</div>

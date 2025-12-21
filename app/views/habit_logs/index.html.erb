@@ -1,0 +1,49 @@
+<div class="habits-page">
+  <div class="habits-container">
+
+    <!-- 日付ヒーロー -->
+    <section class="habits-hero">
+      <h1 class="habits-hero__title">
+        <%= @date.strftime("%Y年%-m月%-d日") %> の記録
+      </h1>
+      <p class="habits-hero__subtitle">
+        この日の服用・習慣の実施状況
+      </p>
+    </section>
+
+    <% if @habit_logs.any? %>
+      <section class="habits-list">
+        <% @habit_logs.each do |log| %>
+          <article class="habit-item">
+            <div class="habit-item__head">
+              <h2 class="habit-item__name">
+                <%= log.habit.name %>
+              </h2>
+
+              <% if log.is_taken? %>
+                <span class="habit-badge">実施</span>
+              <% else %>
+                <span class="habit-badge">未実施</span>
+              <% end %>
+            </div>
+
+            <p class="habit-item__detail">
+              <%= log.is_taken? ? "この習慣は実施されました。" : "この習慣は未実施です。" %>
+            </p>
+          </article>
+        <% end %>
+      </section>
+
+    <% else %>
+      <div class="habits-empty">
+        <p class="habits-empty__title">
+          この日の記録はまだありません
+        </p>
+        <p class="habits-empty__text">
+          習慣を実施すると、ここに記録が表示されます。
+        </p>
+      </div>
+    <% end %>
+
+  </div>
+</div>

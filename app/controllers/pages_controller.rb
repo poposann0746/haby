@@ -8,11 +8,9 @@ class PagesController < ApplicationController
     :confirm_delete_account, :destroy_account
   ]
 
-<<<<<<< Updated upstream
   def calendar; end
   def habits; end
   def manage; end
-=======
   def calendar
     base_date =
       if params[:start_date].present?
@@ -56,7 +54,6 @@ class PagesController < ApplicationController
 
   def manage
   end
->>>>>>> Stashed changes
 
   # マイページ
   def account

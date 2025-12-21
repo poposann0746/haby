@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :habits, only: %i[new create index show edit update destroy]
+  resources :habits do
+    resource :today_log, only: [ :update ], controller: "habit_logs"
+  end
+  resources :habit_logs, only: %i[index]
+
   root "home#index"
   get "home/index"
 
@@ -8,14 +14,10 @@ Rails.application.routes.draw do
   get "contact",  to: "static_pages#contact"
 
   get "calendar", to: "pages#calendar"
-<<<<<<< Updated upstream
   get "habits", to: "pages#habits"
   get "manage", to: "pages#manage"
-=======
   get "todays_habits", to: "pages#todays_habits"
   get "auth", to: "pages#auth"
-
->>>>>>> Stashed changes
 
   # マイページ
   get "account", to: "pages#account", as: :account

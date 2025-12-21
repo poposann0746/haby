@@ -1,0 +1,157 @@
+/* 認証画面 共通レイアウト */
+
+.devise-main {
+  padding: 20px;
+}
+
+/* 外側：中央寄せ */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* カード */
+.auth-card {
+  width: min(92vw, 520px);
+  background: #fff;
+  padding: 28px 20px;
+  border-radius: 16px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(17, 123, 191, 0.08);
+}
+
+/* タイトル */
+.auth-title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #117BBF;
+}
+
+/* フォームのパーツ */
+.auth-card .field {
+  margin-bottom: 16px;
+}
+
+.auth-card label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #d0d7de;
+  box-sizing: border-box;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: #117BBF;
+  box-shadow: 0 0 0 2px rgba(17, 123, 191, 0.15);
+}
+
+/* ボタン */
+.auth-button {
+  width: 100%;
+  border: none;
+  padding: 12px 12px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  background: #117BBF;
+  color: #fff;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  opacity: 0.9;
+}
+
+.auth-card .actions {
+  margin-top: 16px;
+}
+
+/* links */
+.auth-card a {
+  color: #117BBF;
+  font-size: 13px;
+}
+
+/* メモの小さい文字 */
+.field-note {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 4px 0 6px;
+}
+
+/* remember_me */
+.field-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.auth-links {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.auth-links a {
+  display: inline-block;
+  margin: 4px 0;
+}
+
+/* エラーメッセージ */
+.error_explanation {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.error_explanation h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #b91c1c;
+}
+
+.error_explanation ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.error_explanation li {
+  font-size: 13px;
+  color: #b91c1c;
+}
+
+/* スマホ微調整 */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: 24px 12px;
+  }
+
+  .auth-card {
+    padding: 24px 16px;
+  }
+
+  .auth-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+}

@@ -19,6 +19,13 @@
       <%= link_to "パスワードを変更", edit_account_password_path, class: "account-menu__link" %>
     </li>
     <li class="account-menu__item account-menu__item--danger">
+      <%= button_to "ログアウト",
+                    destroy_user_session_path,
+                    method: :delete,
+                    form: { data: { turbo_confirm: "ログアウトしますか？" } },
+                    class: "account-menu__link account-menu__link--danger" %>
+    </li>
+    <li class="account-menu__item account-menu__item--danger">
       <%= link_to "アカウントの削除", confirm_delete_account_path, class: "account-menu__link account-menu__link--danger" %>
     </li>
   </ul>

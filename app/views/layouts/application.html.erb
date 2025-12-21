@@ -16,26 +16,23 @@
     <%= favicon_link_tag 'favicon_180.png', rel: 'apple-touch-icon', type: 'image/png' %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
+  <div class="app">
+    <%= render "shared/header" %>
 
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-
-    <div class="app">
-      <%= render "shared/header" %>
-
+    <main class="app-main">
+      <div class="app-container">
+        <%= render "shared/flash" %>
         <%= yield %>
+      </div>
+    </main>
 
-      <%= render "shared/footer" %>
-    </div>
+    <%= render "shared/footer" %>
+  </div>
 
-    <%= render "shared/bottom_nav" %>
-  </body>
+  <%= render "shared/bottom_nav" %>
+</body>
 </html>

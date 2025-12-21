@@ -7,19 +7,6 @@
       つい忘れがちな“服薬・サプリ習慣”を、<br>
       やさしく続けられるようにデザインしました。
     </p>
-
-    <div class="hero-buttons">
-      <% if user_signed_in? %>
-        <span class="user-name">
-          <p><%= current_user.name.presence || "名称未設定" %>さん</p>
-        </span>
-        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
-      <% else %>
-        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" %>
-      <% end %>
-
-    </div>
   </section>
 
   <section class="features">
