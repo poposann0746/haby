@@ -5,7 +5,7 @@ class HabitLogsController < ApplicationController
 
   def index
     @date =params[:date]&.to_date || Date.current
-  
+
     @habit_logs = HabitLog
       .includes(:habit)
       .where(user: current_user, log_date: @date)
