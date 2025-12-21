@@ -1,0 +1,10 @@
+<% if model.errors.any? %>
+  <div class="form-errors" role="alert">
+    <p class="form-errors__title">入力内容を確認してください</p>
+    <ul class="form-errors__list">
+      <% model.errors.full_messages.each do |msg| %>
+        <li class="form-errors__item"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

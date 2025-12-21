@@ -20,25 +20,19 @@
   </head>
 
   <body>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-
   <div class="app">
     <%= render "shared/header" %>
 
     <main class="app-main">
-    <%= yield %>
+      <div class="app-container">
+        <%= render "shared/flash" %>
+        <%= yield %>
+      </div>
     </main>
 
     <%= render "shared/footer" %>
   </div>
 
   <%= render "shared/bottom_nav" %>
-
-  </body>
+</body>
 </html>
