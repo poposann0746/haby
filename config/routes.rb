@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :habits do
     resource :today_log, only: [ :update ], controller: "habit_logs"
   end
-  
   resources :habit_logs, only: %i[index]
 
   root "home#index"
