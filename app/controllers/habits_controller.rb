@@ -4,6 +4,8 @@ class HabitsController < ApplicationController
 
   def index
     @habits = current_user.habits.order(created_at: :desc)
+    prepare_index
+    @habit = Habit.new
     today_logs = HabitLog
     .where(user_id: current_user.id, habit_id: @habits.ids, log_date: Date.current)
     .index_by(&:habit_id)
@@ -19,10 +21,9 @@ class HabitsController < ApplicationController
     @habit = current_user.habits.build(habit_params)
 
     if @habit.save
-      redirect_to habits_path, notice: "習慣を登録しました！"
+      redirect_to habits_path, notice: "習慣を追加しました"
     else
-      @habits = current_user.habits.order(created_at: :desc)
-      flash.now[:alert] = "入力内容を確認してください"
+      prepare_index
       render :index, status: :unprocessable_entity
     end
   end
@@ -56,5 +57,13 @@ class HabitsController < ApplicationController
 
   def habit_params
     params.require(:habit).permit(:name, :detail)
+  end
+
+  def prepare_index
+    @habits = current_user.habits.order(created_at: :desc)
+
+    today = Date.current
+    logs = HabitLog.where(user_id: current_user.id, log_date: today, habit_id: @habits.pluck(:id))
+    @today_logs_by_habit_id = logs.index_by(&:habit_id)
   end
 end

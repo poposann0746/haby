@@ -3,7 +3,6 @@
     <h2 class="auth-title">ログイン</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
         <%= f.label :email, "メールアドレス" %><br/>
