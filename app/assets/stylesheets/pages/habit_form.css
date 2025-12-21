@@ -1,6 +1,7 @@
 /* Habit Form */
 
-:root {
+/* 画面全体 */
+.habit-form-page {
   --haby-blue: #117BBF;
   --haby-mint: #6AACB0;
   --text: #0f172a;
@@ -9,13 +10,10 @@
   --bg: #f6fbff;
   --card: #ffffff;
   --danger: #c43535;
-}
 
-/* 画面全体 */
-.habit-form-page {
   min-height: calc(100vh - var(--bottom-nav-height, 0px));
   padding: 18px 14px 28px;
-  background:#fff;
+  background: #fff;
 }
 
 .habit-form-container {
@@ -27,8 +25,12 @@
 
 /* 見出しカード */
 .habit-form-hero {
-  background: linear-gradient(135deg, rgba(17,123,191,0.18), rgba(106,172,176,0.14));
-  border: 1px solid rgba(17,123,191,0.18);
+  background: linear-gradient(
+    135deg,
+    rgba(17, 123, 191, 0.18),
+    rgba(106, 172, 176, 0.14)
+  );
+  border: 1px solid rgba(17, 123, 191, 0.18);
   border-radius: 18px;
   padding: 14px 14px 12px;
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
@@ -60,7 +62,7 @@
 
 /* フォーム */
 .habit-form {
-  position: relative; 
+  position: relative;
   display: grid;
   gap: 14px;
 }
@@ -103,8 +105,8 @@
 
 .habit-form input[type="text"]:focus,
 .habit-form textarea:focus {
-  border-color: rgba(17,123,191,0.55);
-  box-shadow: 0 0 0 4px rgba(17,123,191,0.12);
+  border-color: rgba(17, 123, 191, 0.55);
+  box-shadow: 0 0 0 4px rgba(17, 123, 191, 0.12);
 }
 
 /* エラー表示 */
@@ -143,8 +145,8 @@
   margin-top: 4px;
 }
 
-/* habyボタン（一覧と揃える） */
-.haby-btn {
+/* habyボタン */
+.habit-form-page .haby-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -158,25 +160,25 @@
   cursor: pointer;
 }
 
-.haby-btn--primary {
+.habit-form-page .haby-btn--primary {
   color: #fff;
   background: var(--haby-blue);
-  box-shadow: 0 10px 20px rgba(17,123,191,0.22);
+  box-shadow: 0 10px 20px rgba(17, 123, 191, 0.22);
 }
 
-.haby-btn--ghost {
+.habit-form-page .haby-btn--ghost {
   color: var(--text);
   background: #fff;
   border-color: #d9e6f2;
 }
 
-.haby-btn--danger {
+.habit-form-page .haby-btn--danger {
   color: #fff;
   background: var(--danger);
-  box-shadow: 0 10px 20px rgba(239,68,68,0.18);
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.18);
 }
 
-/* 補助リンク（戻る等） */
+/* 補助リンク */
 .habit-form__back {
   font-size: 13px;
   color: var(--muted);

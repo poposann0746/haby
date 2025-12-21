@@ -1,6 +1,7 @@
 /* Habits Index */
 
-:root {
+/* ページ全体 */
+.habits-page {
   --haby-blue: #117BBF;
   --haby-mint: #6AACB0;
   --text: #0f172a;
@@ -8,13 +9,10 @@
   --line: #e6eef5;
   --bg: #f6fbff;
   --card: #ffffff;
-}
 
-/* ページ全体 */
-.habits-page {
   min-height: calc(100vh - var(--bottom-nav-height, 0px));
   padding: 18px 14px 28px;
-  background:#fff
+  background: #fff;
 }
 
 .habits-container {
@@ -24,9 +22,13 @@
   gap: 14px;
 }
 
-/* タイトル帯（ページ見出し） */
+/* タイトル */
 .habits-hero {
-  background: linear-gradient(135deg, rgba(17,123,191,0.18), rgba(106,172,176,0.14));
+  background: linear-gradient(
+    135deg,
+    rgba(17,123,191,0.18),
+    rgba(106,172,176,0.14)
+  );
   border: 1px solid rgba(17,123,191,0.18);
   border-radius: 18px;
   padding: 14px 14px 12px;
@@ -71,7 +73,10 @@
   border-radius: 18px;
   padding: 14px;
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
-  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    border-color 0.12s ease;
 }
 
 .habit-item:hover {
@@ -106,7 +111,7 @@
   text-underline-offset: 3px;
 }
 
-/* 右側のバッジ（例：カテゴリ/曜日/状態） */
+/* 右側のバッジ（カテゴリなど） */
 .habit-badge {
   flex: 0 0 auto;
   padding: 7px 10px;
@@ -114,7 +119,7 @@
   font-size: 12px;
   font-weight: 800;
   color: var(--haby-blue);
-  background: rgba(88, 157, 200, 0.1);
+  background: rgba(88, 157, 200, 0.10);
   border: 1px solid rgba(17,123,191,0.18);
 }
 
@@ -133,7 +138,8 @@
   gap: 15px;
 }
 
-.haby-btn {
+/* ボタン */
+.habits-page .haby-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -147,13 +153,13 @@
   cursor: pointer;
 }
 
-.haby-btn--primary {
+.habits-page .haby-btn--primary {
   color: #fff;
   background: var(--haby-blue);
   box-shadow: 0 10px 20px rgba(17,123,191,0.22);
 }
 
-.haby-btn--ghost {
+.habits-page .haby-btn--ghost {
   color: var(--text);
   background: #fff;
   border-color: var(--line);

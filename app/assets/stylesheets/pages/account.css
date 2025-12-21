@@ -1,8 +1,8 @@
 /* マイページ全体 */
 .account-page {
-  max-width: 100%;
-  margin: 40px auto 80px;
-  padding: 24px 20px 32px;
+  width: min(92vw, 640px);
+  margin: 24px auto;
+  padding: 24px 16px;
   background: #ffffff;
   border-radius: 20px;
 
@@ -10,6 +10,7 @@
     0 12px 30px rgba(0, 0, 0, 0.06),
     0 2px 4px rgba(255, 255, 255, 0.7) inset;
 }
+
 
 .account-page__title {
   font-size: 24px;
@@ -32,18 +33,22 @@
 
 /* メニューリスト */
 .account-menu {
-  list-style: none;
-  margin: 0;
+  margin-top: 40px;
   padding: 0;
+  list-style: none;
 }
 
 .account-menu__item {
   margin-bottom: 12px;
 }
 
+/* メニューリンク */
 .account-menu__link {
   display: block;
-  width: 480px;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+
   padding: 14px 16px;
   border-radius: 14px;
   background: #f5fbff;
@@ -53,11 +58,9 @@
   text-decoration: none;
   margin: 0 auto;
 
-  /* 左にちょっとアイコンがあるっぽい余白 */
   position: relative;
   padding-left: 20px;
 
-  /* ふんわりした影 */
   box-shadow:
     0 4px 10px rgba(17, 123, 191, 0.08),
     0 0 0 1px rgba(17, 123, 191, 0.03);
@@ -66,6 +69,7 @@
     transform 0.1s ease,
     box-shadow 0.2s ease;
 }
+
 
 /* ホバー・フォーカス時の動き */
 .account-menu__link:hover,

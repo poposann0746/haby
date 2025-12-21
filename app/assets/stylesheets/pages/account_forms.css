@@ -1,6 +1,4 @@
-/* ============================
-   メールアドレス変更ページ
-   ============================ */
+/* メールアドレス変更ページ */
 .account-form-page {
   max-width: 480px;
   margin: 40px auto 80px;
@@ -46,10 +44,11 @@
   font-size: 14px;
   outline: none;
   background: #f8fcff;
+  min-height: 44px;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
-    back-ground 0.2s ease;
+    background 0.2s ease;
 }
 
 .account-form__input:focus {
