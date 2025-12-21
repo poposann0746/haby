@@ -57,13 +57,15 @@
   width:100%;
   border-collapse:separate;
   border-spacing:8px; /* “マス目の隙間”を作る */
+  table-layout: fixed;
+  width: 100%;
 }
 
 /* weekday header */
 .haby-cal__weekday{
   text-align:center;
   font-size:15px;
-  font-weight:800px;
+  font-weight:800;
   color:var(--haby-muted);
   padding:6px 0;
 }
@@ -83,18 +85,14 @@
 .haby-cal__cell-inner{
   padding:8px;
   height:100%;
+  display:flex;
+  flex-direction:column;
 }
 
 .haby-cal__date{
   font-size:13px;
   font-weight:900;
   color:var(--haby-text);
-}
-
-.simple-calendar .today.haby-cal__cell{
-  border-color: rgba(17,123,191,0.45);
-  background: var(--haby-primary-soft);
-  box-shadow: 0 0 0 2px rgba(17,123,191,0.10) inset;
 }
 
 .simple-calendar .not-current-month.haby-cal__cell{
@@ -110,6 +108,9 @@
 .haby-cal__cell{
   transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background-color 120ms ease;
   will-change: transform;
+  /* 外側セル（td）の基本枠 */
+  
+  box-sizing: border-box;
 }
 
 /* PC: hover */
@@ -134,3 +135,46 @@
   .haby-cal__cell-inner{ padding:6px; }
   .haby-cal__title{ font-size:15px; }
 }
+
+
+.haby-cal__cell .haby-cal__cell-inner {
+  border: none;
+  box-shadow: none;
+  background: #fff;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+/* 全部達成 */
+.haby-cal__cell.cal-day--all {
+  border-color: rgba(17, 132, 59, 0.85);
+}
+
+/* 一部達成 */
+.haby-cal__cell.cal-day--partial {
+  border-color: rgba(123, 201, 102, 0.85);
+}
+
+/* 未達成 */
+.haby-cal__cell.cal-day--none {
+
+}
+
+.haby-cal__complete {
+  display: inline-block;
+
+  margin: 6px 0 0;        
+  align-self: center;
+
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+
+  color: #fff;
+  background-color: rgba(17, 132, 59, 0.85);
+
+  padding: 2px 8px;
+  border-radius: 999px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+

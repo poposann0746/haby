@@ -26,16 +26,19 @@
         <tr class="haby-cal__row">
           <% week.each do |day| %>
             <% td_class = calendar.td_classes_for(day) %>
-            <% # simple_calendarのclassに加えて、haby用classも足す %>
-            <% classes = ["haby-cal__cell", td_class] %>
+            <% result_class = @day_class&.[](day.to_date) %>
+            <% classes = ["haby-cal__cell", td_class, result_class].compact %>
 
             <%= content_tag :td, class: classes.join(" ") do %>
               <div class="haby-cal__cell-inner">
                 <div class="haby-cal__date">
                   <%= day.day %>
                 </div>
-
-                <%# ここは将来の実施状況表示用の枠（今は空でOK） %>
+              <% if @day_class&.[](day.to_date) == "cal-day--all" %>
+                <div class="haby-cal__complete">
+                  complete!
+                </div>
+              <% end %>
                 <div class="haby-cal__content">
                   <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
                 </div>
