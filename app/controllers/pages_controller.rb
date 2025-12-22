@@ -9,35 +9,40 @@ class PagesController < ApplicationController
   ]
 
   def calendar
-    base_date =
-      if params[:start_date].present?
-        Date.parse(params[:start_date])
-      else
-        Date.current
-      end
-
-    from = base_date.beginning_of_month
-    to   = base_date.end_of_month
-
-    logs = current_user.habit_logs.where(log_date: from..to)
-
-    logs_by_date = logs.group_by(&:log_date)
-
-    @day_class = {}
-    logs_by_date.each do |date, day_logs|
-      total = day_logs.size
-      taken = day_logs.count { |l| l.is_taken }
-
-      @day_class[date] =
-        if taken == total
-          "cal-day--all"
-        elsif taken == 0
-          "cal-day--none"
-        else
-          "cal-day--partial"
-        end
+  base_date =
+    if params[:start_date].present?
+      Date.parse(params[:start_date])
+    else
+      Date.current
     end
+
+  from = base_date.beginning_of_month
+  to   = base_date.end_of_month
+
+  logs = current_user.habit_logs.where(log_date: from..to)
+  logs_by_date = logs.group_by(&:log_date)
+
+  total_habits = current_user.habits.count
+
+  @day_class = {}
+
+  (from..to).each do |date|
+    day_logs = logs_by_date[date] || []
+    taken = day_logs.count { |l| l.is_taken }
+
+    @day_class[date] =
+      if total_habits == 0
+        "cal-day--none"
+      elsif taken == 0
+        "cal-day--none"
+      elsif taken < total_habits
+        "cal-day--partial"
+      else
+        "cal-day--all"
+      end
   end
+end
+
 
 
 
