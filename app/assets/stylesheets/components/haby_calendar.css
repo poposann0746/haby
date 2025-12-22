@@ -6,10 +6,10 @@
   --haby-muted: rgba(0,0,0,0.45);
 
   /* 実施状況色分け */
-  --cal-all: rgba(17, 132, 59, 0.16);
-  --cal-all-border: rgba(17, 132, 59, 0.65);
-  --cal-partial: rgba(123, 201, 102, 0.18);
-  --cal-partial-border: rgba(123, 201, 102, 0.75);
+  --cal-all: rgb(238, 178, 156);
+  --cal-all-border: rgb(244, 146, 111);
+  --cal-partial: rgb(243, 222, 216);
+  --cal-partial-border: rgb(241, 196, 179);
   --cal-none: rgba(0,0,0,0.03);
   --cal-none-border: rgba(0,0,0,0.08);
 }
@@ -125,8 +125,8 @@
   background: rgba(0,0,0,0.14);
 }
 
-.haby-cal__legend-item--all::before{ background: rgba(17, 132, 59, 0.85); }
-.haby-cal__legend-item--partial::before{ background: rgba(123, 201, 102, 0.95); }
+.haby-cal__legend-item--all::before{ background: rgb(247, 130, 87); }
+.haby-cal__legend-item--partial::before{ background: rgb(243, 222, 216); }
 .haby-cal__legend-item--none::before{ background: rgba(0,0,0,0.28); }
 
 /* table */
@@ -190,14 +190,6 @@
   opacity:.35;
 }
 
-@media (hover: hover) and (pointer: fine){
-  .haby-cal__cell:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 12px 26px rgba(0,0,0,0.07);
-    border-color: rgba(17,123,191,0.22);
-  }
-}
-
 .haby-cal__cell:active{
   transform: scale(0.98);
 }
@@ -219,16 +211,19 @@
 }
 
 .haby-cal__complete{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 6px 0 0;
-  align-self: flex-start;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.04em;
   color: #fff;
-  background-color: rgba(17, 132, 59, 0.85);
+  background-color: rgb(238, 108, 15);
   padding: 2px 8px;
   border-radius: 999px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
@@ -329,5 +324,13 @@
 @media (max-width: 480px) {
   .haby-cal__cell-inner {
     min-height: 56px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine){
+  .haby-cal__cell:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.07);
+    border-color: rgba(17,123,191,0.22);
   }
 }

@@ -7,7 +7,7 @@
   bottom: 0;
 
   /* height: var(--bottom-nav-height); */
-  min-height: var(--bottom-nav-height);
+  height: var(--bottom-nav-height);
 
   padding: 10px 24px 18px;
   background: #ffffff;
@@ -48,4 +48,15 @@
 .bottom-nav__item--active {
   color: var(--brand);
   font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .bottom-nav {
+    justify-content: center;
+    gap: 35px;
+  }
+
+  .bottom-nav__item {
+    flex: 0 0 auto;
+  }
 }

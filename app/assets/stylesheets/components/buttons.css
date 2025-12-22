@@ -78,7 +78,7 @@
 
 /* ON状態 */
 .toggle-switch.is-on {
-  background-color: #2da44e;
+  background-color: rgb(247, 130, 87);
 }
 
 /* 白い丸（つまみ） */

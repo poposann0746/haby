@@ -1,7 +1,4 @@
-
-
 /* Header */
-
 .app-header {
   overflow-x: clip;
   position: sticky;
@@ -35,10 +32,6 @@
   justify-self: center;
 }
 
-.app-header__right {
-  justify-self: end;
-}
-
 .app-header__logo-link {
   display: inline-block;
 }
@@ -49,18 +42,18 @@
   display: block;
 }
 
-/* 右側：ハンバーガー */
-.app-header__right {
-  display: flex;
-  align-items: center;
-}
-
-/* ハンバーガーボタン */
+/* ハンバーガーボタン（右上固定） */
 .app-header__menu-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 60;
+
   background: transparent;
   border: none;
   padding: 2px;
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -87,36 +80,34 @@
   transform: translateY(-12px) rotate(-45deg);
 }
 
-/* 右からスライドするメニュー */
-
-/* ドロワー本体 */
+/* ドロワーメニュー本体（右からスライド） */
 .app-header__nav {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
 
-  width: 70%;          /* メニューの横幅 */
-  max-width: 320px;    /* PCで広くなりすぎないように */
-  background-color: #fbfbfb;
+  width: 70%;
+  max-width: 320px;
+
+  background: #fff;
+  border-radius: 16px 0 0 16px; /* 右端は画面に接するので0に */
+  padding: 12px;
 
   box-shadow: -4px 0 16px rgba(0, 0, 0, 0.12);
+  z-index: 55;
 
-  z-index: 55;         /* ヘッダー（50） & bottom-nav（40）より上 */
-
-  /* 初期状態：画面外（右）に隠す */
   transform: translateX(100%);
   transition: transform 0.3s ease-out;
 }
 
-/* 開いているとき：右からスッと出てくる */
 .app-header.is-menu-open .app-header__nav {
   transform: translateX(0);
 }
 
 /* メニューの中身 */
 .app-header__nav-list {
-  margin: 64px 16px 16px;   /* 上の余白でロゴ＆×印から少し下げる */
+  margin: 64px 16px 16px;
   padding: 12px 8px 16px;
   list-style: none;
 }
@@ -125,24 +116,39 @@
   margin-top: 12px;
 }
 
-.app-header__nav-link {
+/* メニューリンク（menu__link運用） */
+.menu__link {
+  position: relative;
   display: block;
-  padding: 10px 12px;
-  border-radius: 8px;
+
+  padding: 16px 20px;
+  border-radius: 12px;
+
   text-decoration: none;
-  color: #333333;
-  font-size: 15px;
+  color: var(--text, #333);
+
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  transition: background-color 0.2s ease;
 }
 
-.app-header__nav-link:hover {
-  background-color: #e5e7eb;
+.menu__link:hover {
+  background-color: rgba(17, 123, 191, 0.08);
 }
 
-
-/* 右端に固定配置されるハンバーガー */
-.app-header__menu-button--fixed {
+.menu__link::after {
+  content: "";
   position: absolute;
-  top: 12px;   /* ヘッダー内での上下位置 */
-  right: 12px; /* 画面右端からの距離 */
-  z-index: 60;
+  left: 20px;
+  bottom: 10px;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary, #117BBF);
+  transition: width 0.25s ease;
+}
+
+.menu__link:hover::after {
+  width: calc(100% - 40px);
 }
