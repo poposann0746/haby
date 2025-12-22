@@ -123,12 +123,15 @@
   border: 1px solid rgba(17,123,191,0.18);
 }
 
-/* 詳細文 */
-.habit-item__detail {
-  margin: 8px 0 0;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--muted);
+.habit-badge-danger {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  color: rgb(255, 255, 255);
+  background: rgb(241, 104, 104);
+  border: 1px solid rgb(251, 93, 93);
 }
 
 /* アクション（編集/削除など） */
