@@ -1,7 +1,6 @@
 <div class="habits-page">
   <div class="habits-container">
 
-    <!-- 日付ヒーロー -->
     <section class="habits-hero">
       <h1 class="habits-hero__title">
         <%= @date.strftime("%Y年%-m月%-d日") %> の記録
@@ -11,19 +10,19 @@
       </p>
     </section>
 
-    <% if @habit_logs.any? %>
+    <% if @rows.any? %>
       <section class="habits-list">
-        <% @habit_logs.each do |log| %>
+        <% @rows.each do |row| %>
           <article class="habit-item">
             <div class="habit-item__head">
               <h2 class="habit-item__name">
-                <%= log.habit.name %>
+                <%= row[:habit].name %>
               </h2>
 
-              <% if log.is_taken? %>
-                <span class="habit-badge">実施</span>
+              <% if row[:is_taken] %>
+                <span class="habit-badge-danger">実施</span>
               <% else %>
-                <span class="habit-badge-danger">未実施</span>
+                <span class="habit-badge">未実施</span>
               <% end %>
             </div>
           </article>

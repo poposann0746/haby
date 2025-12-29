@@ -4,13 +4,35 @@ class HabitLogsController < ApplicationController
   before_action :set_date, only: %i[index]
 
   def index
-    @date =params[:date]&.to_date || Date.current
+    @rows = []
 
-    @habit_logs = HabitLog
-      .includes(:habit)
-      .where(user: current_user, log_date: @date)
-      .joins(:habit)
-      .order("habits.created_at ASC")
+    @date =
+      if params[:date].present?
+        Date.parse(params[:date])
+      else
+        Date.current
+      end
+
+    habits =
+      current_user.habits
+        .where("created_at <= ?", @date.end_of_day)
+        .order(created_at: :asc)
+
+    day_logs =
+      current_user.habit_logs
+        .includes(:habit)
+        .where(log_date: @date.beginning_of_day..@date.end_of_day)
+
+    logs_by_habit_id = day_logs.index_by(&:habit_id)
+
+    @rows = habits.map do |habit|
+      log = logs_by_habit_id[habit.id]
+      {
+        habit: habit,
+        log: log,
+        is_taken: log&.is_taken || false
+      }
+    end
   end
 
   def update

@@ -1,16 +1,17 @@
 class HabitsController < ApplicationController
+  require "ostruct"
   before_action :authenticate_user!
   before_action :set_habit, only: %i[show edit update destroy]
 
   def index
-    @habits = current_user.habits.order(created_at: :desc)
-    prepare_index
-    @habit = Habit.new
-    today_logs = HabitLog
-    .where(user_id: current_user.id, habit_id: @habits.ids, log_date: Date.current)
-    .index_by(&:habit_id)
+    @habits = current_user.habits.order(created_at: :asc)
 
-    @today_logs_by_habit_id = today_logs
+    # もし habits/index で「今日の実施/未実施」も表示するなら（エラー文に出てるので）
+    today_logs =
+      current_user.habit_logs
+        .where(log_date: Date.current.beginning_of_day..Date.current.end_of_day)
+
+    @today_logs_by_habit_id = today_logs.index_by(&:habit_id)
   end
 
   def new

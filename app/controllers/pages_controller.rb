@@ -9,36 +9,29 @@ class PagesController < ApplicationController
   ]
 
   def calendar
-    base_date =
-      if params[:start_date].present?
-        Date.parse(params[:start_date])
-      else
-        Date.current
-      end
-
+    base_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.current
     from = base_date.beginning_of_month
     to   = base_date.end_of_month
 
-    # log_date が date/datetime どちらでも安全な範囲指定
-    logs = current_user.habit_logs.where(log_date: from.beginning_of_day..to.end_of_day)
-    logs_by_date = logs.group_by { |l| l.log_date.to_date }
+    # その月の taken を「日付ごと」に DB で集計（habit_id の重複も排除）
+    taken_counts =
+      current_user.habit_logs
+        .where(log_date: from..to)
+        .where(is_taken: true)
+        .group("DATE(log_date)")
+        .distinct
+        .count(:habit_id)
+    # => { "2025-12-21" => 2, ... } みたいなHash（DBによりDateキーになる場合も）
 
     @day_class = {}
 
     (from..to).each do |date|
-      # ✅「その日までに存在していた習慣」を対象にする（過去の整合性が取れる）
       total =
         current_user.habits
           .where("created_at <= ?", date.end_of_day)
           .count
 
-      day_logs = logs_by_date[date] || []
-      taken =
-        day_logs
-          .select(&:is_taken)
-          .map(&:habit_id)
-          .uniq
-          .count
+      taken = taken_counts[date] || taken_counts[date.to_s] || 0
 
       @day_class[date] =
         if total == 0
