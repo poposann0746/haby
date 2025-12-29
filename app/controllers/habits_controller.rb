@@ -13,7 +13,7 @@ class HabitsController < ApplicationController
 
     @today_logs_by_habit_id = today_logs.index_by(&:habit_id)
   end
-  
+
   def new
     @habit = current_user.habits.build
   end
