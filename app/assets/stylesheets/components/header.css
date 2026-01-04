@@ -54,31 +54,70 @@
   padding: 2px;
   cursor: pointer;
 
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  /* ここ重要：内部の線をabsoluteで重ねられるようにする */
+  position: absolute;
 }
 
+.app-header__menu-button {
+  /* 見た目のクリック領域を安定させる（任意だけどおすすめ） */
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+}
+
+/* 3本線の共通 */
 .app-header__menu-line {
   width: 38px;
   height: 3px;
   border-radius: 999px;
   background-color: #117BBF;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  /* ここ重要：回転時に中心がブレないよう基準を固定 */
+  transform-origin: 50% 50%;
+  transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease;
 }
 
-/* 開いたときにXマーク化 */
+/* 閉じてる時は普通に縦並びっぽく配置（gridで3本作る） */
+.app-header__menu-button {
+  grid-auto-rows: min-content;
+  row-gap: 8px;
+}
+
+.app-header__menu-button .app-header__menu-line:nth-child(1),
+.app-header__menu-button .app-header__menu-line:nth-child(2),
+.app-header__menu-button .app-header__menu-line:nth-child(3) {
+  position: relative;
+}
+
+/* 開いたとき：3本を中央に重ねる → 1本目と3本目だけ回転 */
+.app-header.is-menu-open .app-header__menu-button {
+  row-gap: 0; /* gapの影響を消す */
+}
+
+.app-header.is-menu-open .app-header__menu-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 1本目：＼ */
 .app-header.is-menu-open .app-header__menu-line:nth-child(1) {
-  transform: translateY(12px) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
+/* 2本目：消す */
 .app-header.is-menu-open .app-header__menu-line:nth-child(2) {
   opacity: 0;
 }
 
+/* 3本目：／ */
 .app-header.is-menu-open .app-header__menu-line:nth-child(3) {
-  transform: translateY(-12px) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
+
 
 /* ドロワーメニュー本体（右からスライド） */
 .app-header__nav {
