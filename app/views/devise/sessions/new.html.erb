@@ -26,8 +26,9 @@
       </div>
     <% end %>
     
-    <%# <div class="auth-links">
-      <%= render "devise/shared/links" %>
-    <%# </div> %>
+    <div class="auth-links">
+      <p class="auth-links__text">アカウントをお持ちでない方は</p>
+      <%= link_to "新規登録はこちら", new_user_registration_path, class: "auth-links__signup" %>
+    </div>
   </div>
 </div>

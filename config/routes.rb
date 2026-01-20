@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   get "calendar", to: "pages#calendar"
   get "manage", to: "pages#manage"
-  get "auth", to: "pages#auth"
   get "todays_habits", to: "pages#todays_habits"
 
   # マイページ
