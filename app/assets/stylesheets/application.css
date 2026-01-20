@@ -16,7 +16,6 @@
  *= require pages/habits
  *= require pages/habit_form
  *= require pages/habit_show
- *= require pages/auth
  *= require pages/today
  *= require pages/static_pages
  */

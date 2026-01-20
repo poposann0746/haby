@@ -105,8 +105,34 @@
 }
 
 .auth-links {
-  margin-top: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
   text-align: center;
+}
+
+.auth-links__text {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.auth-links__signup {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #117BBF;
+  background: #f0f7fc;
+  border: 1px solid rgba(17, 123, 191, 0.2);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.auth-links__signup:hover {
+  background: #e0f0fa;
+  border-color: rgba(17, 123, 191, 0.3);
 }
 
 .auth-links a {
