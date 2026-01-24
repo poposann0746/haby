@@ -30,13 +30,15 @@
             <%= link_to "詳細", habit_path(habit), class: "haby-btn haby-btn--primary" %>
             <%= link_to "編集", edit_habit_path(habit), class: "haby-btn haby-btn--ghost" %>
 
-            <%= button_to habit_today_log_path(habit),
-                  method: :patch,
-                  data: { turbo: false },
-                  class: "toggle-switch #{'is-on' if taken}",
-                  aria: { pressed: taken } do %>
-              <span class="toggle-knob"></span>
-            <% end %>
+            <div data-controller="habit-toggle" data-habit-toggle-url-value="<%= habit_today_log_path(habit) %>">
+              <button type="button"
+                      class="toggle-switch <%= 'is-on' if taken %>"
+                      aria-pressed="<%= taken %>"
+                      data-habit-toggle-target="button"
+                      data-action="click->habit-toggle#toggle">
+                <span class="toggle-knob"></span>
+              </button>
+            </div>
           </div>
         </article>
       <% end %>

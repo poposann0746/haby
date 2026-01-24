@@ -13,6 +13,7 @@ class PagesController < ApplicationController
     from = base_date.beginning_of_month
     to   = base_date.end_of_month
 
+    
     # その月の taken を「日付ごと」に DB で集計（habit_id の重複も排除）
     taken_counts =
       current_user.habit_logs

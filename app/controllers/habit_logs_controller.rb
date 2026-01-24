@@ -42,10 +42,20 @@ class HabitLogsController < ApplicationController
     log.is_taken = !log.is_taken?
     log.save!
 
-    redirect_back fallback_location: habits_path,
-                  notice: log.is_taken? ? "実施にチェックしました" : "実施チェックを外しました"
+    respond_to do |format|
+      format.html do
+        redirect_back fallback_location: habits_path,
+                      notice: log.is_taken? ? "実施にチェックしました" : "実施チェックを外しました"
+      end
+      format.json { render json: { is_taken: log.is_taken? }, status: :ok }
+      format.any { head :ok }
+    end
   rescue ActiveRecord::RecordInvalid
-    redirect_back fallback_location: habits_path, alert: "保存に失敗しました"
+    respond_to do |format|
+      format.html { redirect_back fallback_location: habits_path, alert: "保存に失敗しました" }
+      format.json { render json: { error: "保存に失敗しました" }, status: :unprocessable_entity }
+      format.any { head :unprocessable_entity }
+    end
   end
 
   private

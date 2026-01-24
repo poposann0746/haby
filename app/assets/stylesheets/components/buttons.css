@@ -127,3 +127,98 @@
 .habit-item__actions form {
   margin-left: auto;
 }
+
+/* 習慣記録アニメーション */
+
+/* トグル成功時のアニメーション */
+.toggle-switch.toggle-success {
+  animation: toggle-pulse 0.5s ease-out;
+}
+
+@keyframes toggle-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.12) inset,
+      0 0 0 1px rgba(0,0,0,0.06);
+  }
+  30% {
+    transform: scale(1.15);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.12) inset,
+      0 0 0 1px rgba(0,0,0,0.06),
+      0 0 20px rgba(247, 130, 87, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.12) inset,
+      0 0 0 1px rgba(0,0,0,0.06);
+  }
+}
+
+/* パーティクル（紙吹雪）エフェクト */
+.habit-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100;
+  animation: particle-burst 0.7s ease-out forwards;
+}
+
+@keyframes particle-burst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-50% + var(--tx, 0px)),
+      calc(-50% + var(--ty, 0px))
+    ) scale(0);
+  }
+}
+
+/* チェックマークアニメーション */
+.habit-checkmark {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 101;
+  animation: checkmark-pop 0.8s ease-out forwards;
+}
+
+.habit-checkmark svg {
+  width: 100%;
+  height: 100%;
+  color: #117BBF;
+  filter: drop-shadow(0 2px 8px rgba(17, 123, 191, 0.5));
+}
+
+@keyframes checkmark-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% - 20px)) scale(1.2) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% - 25px)) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 35px)) scale(0.8) rotate(0deg);
+  }
+}
+
+/* 習慣カードにposition:relativeを確保（パーティクル用） */
+.habit-item {
+  position: relative;
+  overflow: visible;
+}
