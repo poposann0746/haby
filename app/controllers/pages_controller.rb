@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [
-    :calendar, :habits, :manage,
+    :calendar, :habits, :manage, :todays_habits,
     :account,
     :edit_name, :update_name,
     :edit_email, :update_email,
@@ -13,26 +13,29 @@ class PagesController < ApplicationController
     from = base_date.beginning_of_month
     to   = base_date.end_of_month
 
+    # その月のログを一括取得
+    logs_in_month = current_user.habit_logs
+      .where(log_date: from..to)
+      .where(is_taken: true)
+      .pluck(:habit_id, :log_date)
+      .group_by { |_, date| date }
+      .transform_values { |records| records.map(&:first).uniq }
+    # => { Date => [habit_id, habit_id, ...], ... }
 
-    # その月の taken を「日付ごと」に DB で集計（habit_id の重複も排除）
-    taken_counts =
-      current_user.habit_logs
-        .where(log_date: from..to)
-        .where(is_taken: true)
-        .group("DATE(log_date)")
-        .distinct
-        .count(:habit_id)
-    # => { "2025-12-21" => 2, ... } みたいなHash（DBによりDateキーになる場合も）
+    # 全習慣を取得（曜日設定と作成日を含む）
+    all_habits = current_user.habits.select(:id, :schedule_days, :created_at).to_a
 
     @day_class = {}
 
     (from..to).each do |date|
-      total =
-        current_user.habits
-          .where("created_at <= ?", date.end_of_day)
-          .count
+      # その日に実施すべき習慣を計算（曜日設定 + 作成日を考慮）
+      scheduled_habits = all_habits.select do |habit|
+        habit.created_at <= date.end_of_day && habit.scheduled_on?(date)
+      end
 
-      taken = taken_counts[date] || taken_counts[date.to_s] || 0
+      total = scheduled_habits.size
+      completed_habit_ids = logs_in_month[date] || []
+      taken = scheduled_habits.count { |h| completed_habit_ids.include?(h.id) }
 
       @day_class[date] =
         if total == 0
@@ -53,6 +56,37 @@ class PagesController < ApplicationController
 
 
   def manage; end
+
+  # 今日の習慣
+  def todays_habits
+    today = Date.current
+
+    # 今日実施すべき習慣を取得
+    habits = current_user.habits
+      .scheduled_for(today)
+      .active_on(today)
+      .order(created_at: :asc)
+
+    # 今日のログを一括取得（N+1対策）
+    today_logs = current_user.habit_logs
+      .where(habit: habits, log_date: today)
+      .index_by(&:habit_id)
+
+    # 完了/未完了に分類
+    @incomplete_habits = []
+    @completed_habits = []
+
+    habits.each do |habit|
+      log = today_logs[habit.id]
+      if log&.is_taken?
+        @completed_habits << { habit: habit, log: log }
+      else
+        @incomplete_habits << { habit: habit, log: log }
+      end
+    end
+
+    @today = today
+  end
 
   # マイページ
   def account

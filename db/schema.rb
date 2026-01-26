@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_20_090022) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_26_074437) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_20_090022) do
     t.integer "longest_streak", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "schedule_days", default: [], array: true
+    t.index ["schedule_days"], name: "index_habits_on_schedule_days", using: :gin
     t.index ["user_id", "name"], name: "index_habits_on_user_id_and_name"
     t.index ["user_id"], name: "index_habits_on_user_id"
   end

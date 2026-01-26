@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import HabitToggleController from "./habit_toggle_controller"
 application.register("habit-toggle", HabitToggleController)
+
+import ScheduleDaysController from "./schedule_days_controller"
+application.register("schedule-days", ScheduleDaysController)
