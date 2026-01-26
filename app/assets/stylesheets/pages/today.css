@@ -202,3 +202,264 @@
   .comingsoon__title { font-size: 32px; }
   .comingsoon__br { display: inline; }
 }
+
+/* ==========================================
+   Today's Habits Page
+   ========================================== */
+
+.todays-habits-page {
+  min-height: calc(100vh - var(--bottom-nav-height, 0px));
+  padding: 18px 14px 28px;
+  background: #fff;
+}
+
+.todays-habits-container {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+/* Hero Section */
+.todays-habits-hero {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 123, 191, 0.18),
+    rgba(106, 172, 176, 0.14)
+  );
+  border: 1px solid rgba(17, 123, 191, 0.18);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.todays-habits-hero__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--haby-text);
+}
+
+.todays-habits-hero__date {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--haby-muted);
+}
+
+/* Section */
+.todays-habits-section {
+  background: #fff;
+  border: 1px solid rgba(17, 123, 191, 0.12);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
+
+.todays-habits-section--completed {
+  background: rgba(17, 123, 191, 0.02);
+}
+
+.todays-habits-section__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--haby-text);
+}
+
+.todays-habits-section__icon {
+  display: flex;
+  color: var(--haby-muted);
+}
+
+.todays-habits-section__icon--completed {
+  color: var(--haby-primary);
+}
+
+.todays-habits-section__count {
+  font-weight: 600;
+  color: var(--haby-muted);
+}
+
+/* Habit List */
+.todays-habits-list {
+  display: grid;
+  gap: 10px;
+}
+
+/* Habit Item */
+.todays-habit-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid rgba(17, 123, 191, 0.12);
+  border-radius: 14px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  overflow: hidden;
+}
+
+.todays-habit-item:hover {
+  box-shadow: 0 4px 12px rgba(17, 123, 191, 0.08);
+}
+
+.todays-habit-item--completed {
+  background: rgba(17, 123, 191, 0.04);
+  border-color: rgba(17, 123, 191, 0.18);
+}
+
+.todays-habit-item__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.todays-habit-item__name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--haby-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.todays-habit-item--completed .todays-habit-item__name {
+  color: var(--haby-muted);
+}
+
+.todays-habit-item__schedule {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--haby-muted);
+}
+
+/* Habit Button */
+.todays-habit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.todays-habit-btn:not(.todays-habit-btn--completed) {
+  background: var(--haby-primary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(17, 123, 191, 0.25);
+}
+
+.todays-habit-btn:not(.todays-habit-btn--completed):hover {
+  background: #0e6aa3;
+  box-shadow: 0 6px 16px rgba(17, 123, 191, 0.30);
+  transform: translateY(-1px);
+}
+
+.todays-habit-btn:not(.todays-habit-btn--completed):active {
+  transform: translateY(0);
+}
+
+.todays-habit-btn--completed {
+  background: rgba(17, 123, 191, 0.08);
+  color: var(--haby-primary);
+  border: 1px solid rgba(17, 123, 191, 0.18);
+}
+
+.todays-habit-btn--completed:hover {
+  background: rgba(17, 123, 191, 0.12);
+}
+
+/* Complete Message */
+.todays-habits-complete-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(17, 123, 191, 0.08),
+    rgba(106, 172, 176, 0.06)
+  );
+  border: 1px solid rgba(17, 123, 191, 0.15);
+  border-radius: 18px;
+  text-align: center;
+}
+
+.todays-habits-complete-message__icon {
+  color: var(--haby-primary);
+  margin-bottom: 12px;
+}
+
+.todays-habits-complete-message__text {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--haby-text);
+}
+
+/* Empty State */
+.todays-habits-empty {
+  text-align: center;
+  padding: 32px 16px;
+  background: rgba(17, 123, 191, 0.04);
+  border: 1px solid rgba(17, 123, 191, 0.12);
+  border-radius: 18px;
+}
+
+.todays-habits-empty__title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--haby-text);
+}
+
+.todays-habits-empty__text {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: var(--haby-muted);
+}
+
+.todays-habits-empty__actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.todays-habits-empty__actions .haby-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.todays-habits-empty__actions .haby-btn--primary {
+  background: var(--haby-primary);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(17, 123, 191, 0.25);
+}
+
+.todays-habits-empty__actions .haby-btn--ghost {
+  background: #fff;
+  color: var(--haby-text);
+  border-color: rgba(17, 123, 191, 0.18);
+}

@@ -27,4 +27,21 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get manage_url
     assert_response :success
   end
+
+  test "should get todays_habits" do
+    get todays_habits_url
+    assert_response :success
+  end
+
+  test "todays_habits displays incomplete and completed sections" do
+    get todays_habits_url
+    assert_response :success
+    assert_select ".todays-habits-page"
+  end
+
+  test "todays_habits requires authentication" do
+    sign_out @user
+    get todays_habits_url
+    assert_response :redirect
+  end
 end

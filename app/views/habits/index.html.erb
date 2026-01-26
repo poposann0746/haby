@@ -13,9 +13,6 @@
     <% if @habits.any? %>
     <section class="habits-list">
       <% @habits.each do |habit| %>
-        <% log = @today_logs_by_habit_id[habit.id] %>
-        <% taken = log&.is_taken? %>
-
         <article class="habit-item">
           <div class="habit-item__head">
             <h2 class="habit-item__name"><%= habit.name %></h2>
@@ -29,16 +26,6 @@
           <div class="habit-item__actions">
             <%= link_to "詳細", habit_path(habit), class: "haby-btn haby-btn--primary" %>
             <%= link_to "編集", edit_habit_path(habit), class: "haby-btn haby-btn--ghost" %>
-
-            <div data-controller="habit-toggle" data-habit-toggle-url-value="<%= habit_today_log_path(habit) %>">
-              <button type="button"
-                      class="toggle-switch <%= 'is-on' if taken %>"
-                      aria-pressed="<%= taken %>"
-                      data-habit-toggle-target="button"
-                      data-action="click->habit-toggle#toggle">
-                <span class="toggle-knob"></span>
-              </button>
-            </div>
           </div>
         </article>
       <% end %>

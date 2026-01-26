@@ -5,13 +5,6 @@ class HabitsController < ApplicationController
 
   def index
     @habits = current_user.habits.order(created_at: :asc)
-
-    # もし habits/index で「今日の実施/未実施」も表示するなら（エラー文に出てるので）
-    today_logs =
-      current_user.habit_logs
-        .where(log_date: Date.current.beginning_of_day..Date.current.end_of_day)
-
-    @today_logs_by_habit_id = today_logs.index_by(&:habit_id)
   end
 
   def new
@@ -57,14 +50,10 @@ class HabitsController < ApplicationController
   end
 
   def habit_params
-    params.require(:habit).permit(:name, :detail)
+    params.require(:habit).permit(:name, :detail, schedule_days: [])
   end
 
   def prepare_index
     @habits = current_user.habits.order(created_at: :desc)
-
-    today = Date.current
-    logs = HabitLog.where(user_id: current_user.id, log_date: today, habit_id: @habits.pluck(:id))
-    @today_logs_by_habit_id = logs.index_by(&:habit_id)
   end
 end

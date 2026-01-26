@@ -2,16 +2,45 @@
 
 one:
   user: one
-  category_id: 
-  name: MyString
-  detail: MyText
+  category_id:
+  name: 毎日の習慣
+  detail: 毎日実施する習慣です
   current_streak: 1
   longest_streak: 1
+  schedule_days: []
 
 two:
   user: two
-  category_id: 
-  name: MyString
+  category_id:
+  name: ユーザー2の習慣
   detail: MyText
   current_streak: 1
   longest_streak: 1
+  schedule_days: []
+
+weekday_habit:
+  user: one
+  category_id:
+  name: 平日の習慣
+  detail: 平日のみ実施
+  current_streak: 0
+  longest_streak: 0
+  schedule_days: [1, 2, 3, 4, 5]
+
+weekend_habit:
+  user: one
+  category_id:
+  name: 週末の習慣
+  detail: 週末のみ実施
+  current_streak: 0
+  longest_streak: 0
+  schedule_days: [0, 6]
+
+monday_only_habit:
+  user: one
+  category_id:
+  name: 月曜日の習慣
+  detail: 月曜日のみ実施
+  current_streak: 0
+  longest_streak: 0
+  schedule_days: [1]

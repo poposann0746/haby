@@ -1,25 +1,116 @@
-<div class="comingsoon">
-  <div class="comingsoon__card">
-    <div class="comingsoon__badge">
-      <span class="comingsoon__badge-dot"></span>
-      <span class="comingsoon__badge-text">NOW BUILDING</span>
-    </div>
+<div class="todays-habits-page">
+  <div class="todays-habits-container">
 
-    <h1 class="comingsoon__title">
-      実装準備中です
-    </h1>
+    <section class="todays-habits-hero">
+      <h1 class="todays-habits-hero__title">今日の習慣</h1>
+      <p class="todays-habits-hero__date"><%= l(@today, format: :long) %></p>
+    </section>
 
-    <p class="comingsoon__lead">
-      只今実装準備中。完成するまでしばらくお待ちください。
-    </p>
+    <% total_count = @incomplete_habits.size + @completed_habits.size %>
 
-    <div class="comingsoon__meter" aria-hidden="true">
-      <div class="comingsoon__meter-bar"></div>
-    </div>
+    <% if total_count > 0 %>
+      <%# 未完了セクション %>
+      <% if @incomplete_habits.any? %>
+        <section class="todays-habits-section">
+          <h2 class="todays-habits-section__title">
+            <span class="todays-habits-section__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+              </svg>
+            </span>
+            未完了
+            <span class="todays-habits-section__count">(<%= @incomplete_habits.size %>件)</span>
+          </h2>
 
-    <div class="comingsoon__actions">
-      <%= link_to "習慣一覧に戻る", habits_path, class: "btn btn--primary" %>
-      <%= link_to "カレンダーを見る", calendar_path, class: "btn comingsoon__btn--ghost" %>
-    </div>
+          <div class="todays-habits-list">
+            <% @incomplete_habits.each do |item| %>
+              <% habit = item[:habit] %>
+              <article class="todays-habit-item">
+                <div class="todays-habit-item__info">
+                  <h3 class="todays-habit-item__name"><%= habit.name %></h3>
+                  <% if habit.schedule_days_set? %>
+                    <span class="todays-habit-item__schedule"><%= habit.schedule_days_display %></span>
+                  <% end %>
+                </div>
+
+                <div class="todays-habit-item__action" data-controller="habit-toggle" data-habit-toggle-url-value="<%= habit_today_log_path(habit) %>">
+                  <button type="button"
+                          class="toggle-switch"
+                          aria-pressed="false"
+                          data-habit-toggle-target="button"
+                          data-action="click->habit-toggle#toggle">
+                    <span class="toggle-knob"></span>
+                  </button>
+                </div>
+              </article>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+
+      <%# 完了セクション %>
+      <% if @completed_habits.any? %>
+        <section class="todays-habits-section todays-habits-section--completed">
+          <h2 class="todays-habits-section__title">
+            <span class="todays-habits-section__icon todays-habits-section__icon--completed">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </span>
+            完了済み
+            <span class="todays-habits-section__count">(<%= @completed_habits.size %>件)</span>
+          </h2>
+
+          <div class="todays-habits-list">
+            <% @completed_habits.each do |item| %>
+              <% habit = item[:habit] %>
+              <article class="todays-habit-item todays-habit-item--completed">
+                <div class="todays-habit-item__info">
+                  <h3 class="todays-habit-item__name"><%= habit.name %></h3>
+                  <% if habit.schedule_days_set? %>
+                    <span class="todays-habit-item__schedule"><%= habit.schedule_days_display %></span>
+                  <% end %>
+                </div>
+
+                <div class="todays-habit-item__action" data-controller="habit-toggle" data-habit-toggle-url-value="<%= habit_today_log_path(habit) %>">
+                  <button type="button"
+                          class="toggle-switch is-on"
+                          aria-pressed="true"
+                          data-habit-toggle-target="button"
+                          data-action="click->habit-toggle#toggle">
+                    <span class="toggle-knob"></span>
+                  </button>
+                </div>
+              </article>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+
+      <%# 全完了メッセージ %>
+      <% if @incomplete_habits.empty? && @completed_habits.any? %>
+        <section class="todays-habits-complete-message">
+          <div class="todays-habits-complete-message__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <p class="todays-habits-complete-message__text">今日の習慣をすべて達成しました！</p>
+        </section>
+      <% end %>
+
+    <% else %>
+      <section class="todays-habits-empty">
+        <p class="todays-habits-empty__title">今日やる習慣はありません</p>
+        <p class="todays-habits-empty__text">曜日設定を確認するか、新しい習慣を追加してみましょう。</p>
+        <div class="todays-habits-empty__actions">
+          <%= link_to "習慣を追加", new_habit_path, class: "haby-btn haby-btn--primary" %>
+          <%= link_to "習慣一覧", habits_path, class: "haby-btn haby-btn--ghost" %>
+        </div>
+      </section>
+    <% end %>
+
   </div>
 </div>

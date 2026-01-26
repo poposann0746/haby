@@ -31,6 +31,31 @@
           <p class="habit-form__hint">飲む時間帯や注意点など（任意）</p>
         </div>
 
+        <div class="habit-form__group" data-controller="schedule-days">
+          <label class="habit-form__label">実施曜日</label>
+          <p class="habit-form__hint">習慣を実施する曜日を選択してください（未選択＝毎日）</p>
+
+          <div class="schedule-days-presets">
+            <button type="button" class="schedule-preset-btn" data-action="schedule-days#selectAll">毎日</button>
+            <button type="button" class="schedule-preset-btn" data-action="schedule-days#selectWeekdays">平日</button>
+            <button type="button" class="schedule-preset-btn" data-action="schedule-days#selectWeekends">週末</button>
+          </div>
+
+          <div class="schedule-days-buttons">
+            <% [[1, "月"], [2, "火"], [3, "水"], [4, "木"], [5, "金"], [6, "土"], [0, "日"]].each do |day_value, day_name| %>
+              <label class="schedule-day-toggle" data-schedule-days-target="dayLabel" data-day="<%= day_value %>">
+                <input type="checkbox"
+                       name="habit[schedule_days][]"
+                       value="<%= day_value %>"
+                       <%= "checked" if @habit.schedule_days&.include?(day_value) %>
+                       data-schedule-days-target="checkbox"
+                       data-action="schedule-days#updateState">
+                <span class="schedule-day-toggle__label"><%= day_name %></span>
+              </label>
+            <% end %>
+          </div>
+        </div>
+
         <div class="habit-form__actions">
           <%= f.submit "更新する", class: "haby-btn haby-btn--primary" %>
           <%= link_to "戻る", habits_path, class: "habit-form__back" %>
