@@ -172,3 +172,26 @@
     font-size: 13px;
   }
 }
+
+.contact-form {
+  max-width: 640px;
+}
+
+.contact-form__field {
+  margin: 16px 0;
+}
+
+.contact-form__errors {
+  padding: 12px;
+  border: 1px solid #fca5a5;
+  background: #fef2f2;
+  border-radius: 8px;
+}
+
+.contact-form__actions {
+  margin-top: 20px;
+}
+
+.contact-form__honeypot {
+  display: none;
+}

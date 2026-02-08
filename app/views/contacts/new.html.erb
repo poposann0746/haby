@@ -1,0 +1,37 @@
+<h1>お問い合わせ</h1>
+
+<%= form_with model: @contact, url: contact_path, local: true, class: "contact-form" do |f| %>
+  <% if @contact.errors.any? %>
+    <div class="contact-form__errors">
+      <ul>
+        <% @contact.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="contact-form__field">
+    <%= f.label :name, "お名前（任意）" %>
+    <%= f.text_field :name, maxlength: 100 %>
+  </div>
+
+  <div class="contact-form__field">
+    <%= f.label :email, "メールアドレス（必須）" %>
+    <%= f.email_field :email, required: true %>
+  </div>
+
+  <div class="contact-form__field">
+    <%= f.label :message, "お問い合わせ内容（必須）" %>
+    <%= f.text_area :message, required: true, maxlength: 5000, rows: 8 %>
+  </div>
+
+  <%# HoneyPot %>
+  <div class="contact-form__honeypot" aria-hidden="true">
+    <%= hidden_field_tag :website, "", autocomplete: "off", tabindex: "-1" %>
+  </div>
+
+  <div class="contact-form__actions">
+    <%= f.submit "送信する" %>
+  </div>
+<% end %>

@@ -27,6 +27,8 @@ services:
       - node_modules:/haby/node_modules
     environment:
       TZ: Asia/Tokyo
+      ADMIN_EMAIL: "supica0746@example.com"
+      MAIL_FROM: "no-reply@yourhaby.com"
     ports:
       - "3000:3000"
     depends_on:

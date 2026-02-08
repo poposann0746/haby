@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_26_074437) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_03_121909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", limit: 100
+    t.string "email", null: false
+    t.text "message", null: false
+    t.boolean "replied", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_contacts_on_created_at"
+    t.index ["replied"], name: "index_contacts_on_replied"
+  end
 
   create_table "habit_logs", force: :cascade do |t|
     t.bigint "user_id", null: false
