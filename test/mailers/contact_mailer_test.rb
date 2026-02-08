@@ -11,8 +11,8 @@ class ContactMailerTest < ActionMailer::TestCase
     mail = ContactMailer.admin_notification(contact)
 
     assert_equal "[haby] 新しいお問い合わせがありました", mail.subject
-    assert_equal [ENV.fetch("ADMIN_EMAIL")], mail.to
-    assert_equal [ENV.fetch("MAIL_FROM", "no-reply@yourhaby.com")], mail.from
+    assert_equal [ ENV.fetch("ADMIN_EMAIL") ], mail.to
+    assert_equal [ ENV.fetch("MAIL_FROM", "no-reply@yourhaby.com") ], mail.from
 
     # multipartメールなので、textパート（なければbody）をデコードして検証する
     body =
