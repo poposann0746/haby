@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -46,7 +48,7 @@ Rails.application.configure do
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
-  # config.assume_ssl = true
+  config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
@@ -78,26 +80,42 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
+  # ---------------------------------------------------------------------------
+  # Action Mailer (SMTP)
+  #
+  # NOTE:
+  # Render の Docker build 時（assets:precompile）では環境変数が揃っていないことがあるため、
+  # ENV.fetch で必須化するとビルドが落ちます。
+  # ここでは SMTP の必要な値が揃っている時だけ delivery_method を設定します。
+  # ---------------------------------------------------------------------------
+  smtp_address  = ENV["SMTP_ADDRESS"]
+  smtp_username = ENV["SMTP_USERNAME"]
+  smtp_password = ENV["SMTP_PASSWORD"]
 
-  config.action_mailer.smtp_settings = {
-    address:              ENV.fetch("SMTP_ADDRESS"),
-    port:                 ENV.fetch("SMTP_PORT", 587),
-    user_name:            ENV.fetch("SMTP_USERNAME"),
-    password:             ENV.fetch("SMTP_PASSWORD"),
-    authentication:       :plain,
-    enable_starttls_auto: true
-  }
+  if smtp_address.present? && smtp_username.present? && smtp_password.present?
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
 
+    config.action_mailer.smtp_settings = {
+      address: smtp_address,
+      port: ENV.fetch("SMTP_PORT", 587),
+      user_name: smtp_username,
+      password: smtp_password,
+      authentication: :plain,
+      enable_starttls_auto: true
+    }
+  else
+    # build 時の保険。実行環境では必ず SMTP_* を設定する
+    config.action_mailer.perform_deliveries = false
+    config.action_mailer.raise_delivery_errors = false
+  end
 
   # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
+  # the I18n.default_locale).
   config.i18n.fallbacks = true
 
   # Don't log any deprecations.
