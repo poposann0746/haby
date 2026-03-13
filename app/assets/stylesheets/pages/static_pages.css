@@ -142,6 +142,30 @@
   text-decoration: underline;
 }
 
+/* ヒーローサブタイトル */
+.static-page__hero-subtitle {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* ステップ番号バッジ */
+.static-page__step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--haby-blue);
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 /* レスポンシブ */
 @media (max-width: 480px) {
   .static-page {

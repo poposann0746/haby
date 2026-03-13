@@ -1,0 +1,77 @@
+<div class="static-page">
+  <div class="static-page__container">
+    <!-- ヒーローセクション -->
+    <div class="static-page__hero">
+      <h1 class="static-page__title">使い方ガイド</h1>
+      <p class="static-page__hero-subtitle">habyの基本的な使い方をご紹介します</p>
+    </div>
+
+    <!-- コンテンツカード -->
+    <div class="static-page__content">
+      <section class="static-page__section">
+        <h2 class="static-page__section-title">
+          <span class="static-page__step-number">1</span>
+          アカウントを登録する
+        </h2>
+        <p class="static-page__text">
+          まずは<%= link_to "新規登録ページ", new_user_registration_path %>からアカウントを作成しましょう。
+          お名前、メールアドレス、パスワードを入力するだけで、すぐに利用を開始できます。
+        </p>
+      </section>
+
+      <section class="static-page__section">
+        <h2 class="static-page__section-title">
+          <span class="static-page__step-number">2</span>
+          習慣を登録する
+        </h2>
+        <p class="static-page__text">
+          ログイン後、習慣の新規登録画面から、記録したい薬やサプリメントを登録します。
+        </p>
+        <ul class="static-page__list">
+          <li><strong>名前：</strong>薬やサプリメントの名前を入力</li>
+          <li><strong>詳細：</strong>服用量や飲むタイミングなどのメモを記入（任意）</li>
+        </ul>
+      </section>
+
+      <section class="static-page__section">
+        <h2 class="static-page__section-title">
+          <span class="static-page__step-number">3</span>
+          今日の服用を記録する
+        </h2>
+        <p class="static-page__text">
+          「今日の習慣」ページでは、登録した習慣の一覧が表示されます。
+          服用したらボタンをタップするだけで、今日の記録が完了します。
+        </p>
+      </section>
+
+      <section class="static-page__section">
+        <h2 class="static-page__section-title">
+          <span class="static-page__step-number">4</span>
+          カレンダーで振り返る
+        </h2>
+        <p class="static-page__text">
+          カレンダーページでは、日ごとの服用状況を一目で確認できます。
+          継続できている日とできていない日が視覚的にわかるので、習慣の振り返りに役立ちます。
+        </p>
+      </section>
+
+      <section class="static-page__section">
+        <h2 class="static-page__section-title">
+          <span class="static-page__step-number">5</span>
+          習慣を管理する
+        </h2>
+        <p class="static-page__text">
+          登録した習慣はいつでも編集・削除が可能です。
+          また、アカウント設定ページからお名前やメールアドレス、パスワードの変更もできます。
+        </p>
+      </section>
+
+      <section class="static-page__section">
+        <h2 class="static-page__section-title">お問い合わせ</h2>
+        <p class="static-page__text">
+          使い方でわからないことがあれば、お気軽に<%= link_to "お問い合わせページ", contact_path %>からご連絡ください。
+        </p>
+      </section>
+    </div>
+  </div>
+</div>

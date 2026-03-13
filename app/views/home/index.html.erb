@@ -1,37 +1,338 @@
 
-<div class="top-wrapper">
+<div class="top-wrapper" data-controller="scroll-reveal">
 
+  <!-- ヒーローセクション -->
   <section class="hero">
-    <h1 class="app-title">服用習慣化アプリ「haby」</h1>
-    <p class="catch-copy">
-      つい忘れがちな“服薬・サプリ習慣”を、<br>
-      やさしく続けられるようにデザインしました。
-    </p>
+    <div class="hero__bg-shapes">
+      <div class="hero__shape hero__shape--1"></div>
+      <div class="hero__shape hero__shape--2"></div>
+      <div class="hero__shape hero__shape--3"></div>
+      <div class="hero__shape hero__shape--4"></div>
+      <div class="hero__shape hero__shape--5"></div>
+    </div>
+    <div class="hero__glow"></div>
+    <div class="hero__content">
+      <!-- ロゴ＋キャッチ -->
+      <div class="hero__logo-area">
+        <%= image_tag "haby-logo.png", alt: "haby", class: "hero__logo-img" %>
+      </div>
+      <p class="hero__tagline">服用習慣化アプリ</p>
+
+      <!-- グラスカード -->
+      <div class="hero__glass-card">
+        <p class="hero__glass-text">
+          つい忘れがちな"服薬・サプリ習慣"を、<br>
+          やさしく続けられるようにデザインしました。
+        </p>
+        <div class="hero__glass-features">
+          <span class="hero__glass-chip">ワンタップ記録</span>
+          <span class="hero__glass-chip">カレンダー管理</span>
+          <span class="hero__glass-chip">連続記録</span>
+        </div>
+      </div>
+
+      <!-- ボタン -->
+      <div class="hero__buttons">
+        <% if user_signed_in? %>
+          <%= link_to todays_habits_path, class: "hero__btn hero__btn--primary" do %>
+            <span class="hero__btn-text">今日の習慣を確認する</span>
+            <span class="hero__btn-arrow">&rarr;</span>
+          <% end %>
+        <% else %>
+          <%= link_to new_user_registration_path, class: "hero__btn hero__btn--primary" do %>
+            <span class="hero__btn-text">無料ではじめる</span>
+            <span class="hero__btn-arrow">&rarr;</span>
+          <% end %>
+          <%= link_to new_user_session_path, class: "hero__btn hero__btn--secondary" do %>
+            ログイン
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="hero__wave">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 60C240 120 480 0 720 60C960 120 1200 0 1440 60V120H0V60Z" fill="#f9fafb"/>
+        <path d="M0 90C360 40 720 120 1080 70C1260 50 1380 80 1440 90V120H0V90Z" fill="#f9fafb" opacity="0.5"/>
+      </svg>
+    </div>
   </section>
 
-  <section class="features">
-    <h2>habyでできること</h2>
-
-    <ul class="feature-list">
-      <li>
-        <h3>ワンタップで服薬記録</h3>
-        <p>忙しいときでも素早く記録。毎日の負担を最小限に。</p>
-      </li>
-
-      <li>
-        <h3>カレンダーで習慣を可視化</h3>
-        <p>続けた日がひと目で分かるから、小さな達成が積み重なる。</p>
-      </li>
-
-      <li>
-        <h3>習慣ごとの管理</h3>
-        <p>サプリ・薬・生活習慣など、項目ごとにすっきり整理。</p>
-      </li>
-    </ul>
+  <!-- 数字で見るセクション -->
+  <section class="stats" data-scroll-reveal>
+    <div class="stats__item">
+      <div class="stats__icon-wrap stats__icon-wrap--blue">
+        <span class="stats__icon-text">Rec</span>
+      </div>
+      <span class="stats__number">3ステップ</span>
+      <span class="stats__label">で記録完了</span>
+    </div>
+    <div class="stats__divider"></div>
+    <div class="stats__item">
+      <div class="stats__icon-wrap stats__icon-wrap--green">
+        <span class="stats__icon-text">10s</span>
+      </div>
+      <span class="stats__number">10秒</span>
+      <span class="stats__label">で毎日の記録</span>
+    </div>
+    <div class="stats__divider"></div>
+    <div class="stats__item">
+      <div class="stats__icon-wrap stats__icon-wrap--purple">
+        <span class="stats__icon-text">Cal</span>
+      </div>
+      <span class="stats__number">一目</span>
+      <span class="stats__label">で習慣を把握</span>
+    </div>
   </section>
 
-  <section class="cta">
-    <h2>まずは今日から、続けやすい習慣を。</h2>
+  <!-- スライダーセクション -->
+  <section class="slider-section" data-scroll-reveal>
+    <div class="slider" data-controller="slider">
+      <div class="slider__track">
+        <!-- Slide 1: 女性 サプリメント -->
+        <div class="slider__slide slider__slide--photo is-active" data-slider-target="slide">
+          <%= image_tag "woman_2_.png", class: "slider__slide-bg", alt: "" %>
+          <div class="slider__slide-overlay"></div>
+          <div class="slider__slide-body">
+            <h3 class="slider__slide-title">毎日のサプリ、もう忘れない。</h3>
+            <p class="slider__slide-text">habyがあなたの服用習慣をやさしくサポートします。</p>
+          </div>
+        </div>
+        <!-- Slide 2: ランニング男性 -->
+        <div class="slider__slide slider__slide--photo" data-slider-target="slide">
+          <%= image_tag "running_man.png", class: "slider__slide-bg", alt: "" %>
+          <div class="slider__slide-overlay"></div>
+          <div class="slider__slide-body">
+            <h3 class="slider__slide-title">健康は、小さな習慣から。</h3>
+            <p class="slider__slide-text">続けた先に、なりたい自分が待っている。</p>
+          </div>
+        </div>
+        <!-- Slide 3: カレンダー -->
+        <div class="slider__slide slider__slide--photo" data-slider-target="slide">
+          <%= image_tag "calender_2_.png", class: "slider__slide-bg", alt: "" %>
+          <div class="slider__slide-overlay"></div>
+          <div class="slider__slide-body">
+            <h3 class="slider__slide-title">カレンダーで習慣を見える化</h3>
+            <p class="slider__slide-text">続けた日がひと目でわかる。<br>小さな達成が、自信に変わる。</p>
+          </div>
+        </div>
+        <!-- Slide 4: スマートフォン -->
+        <div class="slider__slide slider__slide--photo" data-slider-target="slide">
+          <%= image_tag "phone.png", class: "slider__slide-bg", alt: "" %>
+          <div class="slider__slide-overlay"></div>
+          <div class="slider__slide-body">
+            <h3 class="slider__slide-title">いつでも手元で、習慣管理。</h3>
+            <p class="slider__slide-text">スマホひとつで記録も振り返りも。<br>あなたの健康を、もっと身近に。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation arrows -->
+      <button class="slider__arrow slider__arrow--prev" type="button" data-action="slider#prev" aria-label="前のスライド">
+        &#x2039;
+      </button>
+      <button class="slider__arrow slider__arrow--next" type="button" data-action="slider#next" aria-label="次のスライド">
+        &#x203A;
+      </button>
+
+      <!-- Dots -->
+      <div class="slider__dots">
+        <button class="slider__dot is-active" type="button" data-slider-target="dot" data-action="slider#goToDot" data-index="0" aria-label="スライド1"></button>
+        <button class="slider__dot" type="button" data-slider-target="dot" data-action="slider#goToDot" data-index="1" aria-label="スライド2"></button>
+        <button class="slider__dot" type="button" data-slider-target="dot" data-action="slider#goToDot" data-index="2" aria-label="スライド3"></button>
+        <button class="slider__dot" type="button" data-slider-target="dot" data-action="slider#goToDot" data-index="3" aria-label="スライド4"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- こんなお悩みありませんか？ -->
+  <section class="pain-points" data-scroll-reveal>
+    <h2 class="section-heading">
+      <span class="section-heading__accent"></span>
+      こんなお悩みありませんか？
+    </h2>
+    <div class="pain-points__grid">
+      <div class="pain-point" data-scroll-reveal>
+        <div class="pain-point__icon-area">
+          <span class="pain-point__icon-mark">?</span>
+        </div>
+        <div class="pain-point__body">
+          <p class="pain-point__title">薬を飲んだか思い出せない…</p>
+          <p class="pain-point__desc">朝飲んだのか昼飲んだのか、記憶が曖昧になりがち。</p>
+        </div>
+      </div>
+      <div class="pain-point" data-scroll-reveal>
+        <div class="pain-point__icon-area">
+          <span class="pain-point__icon-mark">…</span>
+        </div>
+        <div class="pain-point__body">
+          <p class="pain-point__title">サプリが三日坊主になる…</p>
+          <p class="pain-point__desc">買ったのに飲み続けられず、いつの間にか放置。</p>
+        </div>
+      </div>
+      <div class="pain-point" data-scroll-reveal>
+        <div class="pain-point__icon-area">
+          <span class="pain-point__icon-mark">!</span>
+        </div>
+        <div class="pain-point__body">
+          <p class="pain-point__title">飲み忘れで体調を崩してしまう…</p>
+          <p class="pain-point__desc">処方薬の飲み忘れは体調に直結するから不安。</p>
+        </div>
+      </div>
+    </div>
+    <div class="pain-points__solution" data-scroll-reveal>
+      <p class="pain-points__solution-text">habyなら、すべて<strong>かんたん</strong>に解決できます</p>
+    </div>
+  </section>
+
+  <!-- ビジュアルセクション -->
+  <section class="visual-break" data-scroll-reveal>
+    <div class="visual-break__inner">
+      <div class="visual-break__image-col" data-scroll-reveal>
+        <div class="visual-break__image-frame">
+          <%= image_tag "woman_1_.png", alt: "サプリメントを手にする女性", class: "visual-break__img" %>
+          <div class="visual-break__image-accent"></div>
+        </div>
+      </div>
+      <div class="visual-break__text-col" data-scroll-reveal>
+        <span class="visual-break__label">Why haby?</span>
+        <h2 class="visual-break__title">あなたの「続ける」を、<br>そっと支える。</h2>
+        <p class="visual-break__text">
+          サプリや薬の管理は、意外とむずかしい。<br>
+          でも、habyがあれば大丈夫。<br>
+          シンプルな記録と、やさしいリマインドで、<br>
+          毎日の健康習慣が自然と身につきます。
+        </p>
+        <div class="visual-break__chips">
+          <span class="visual-break__chip">かんたん記録</span>
+          <span class="visual-break__chip">カレンダー管理</span>
+          <span class="visual-break__chip">連続記録で習慣化</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 機能紹介セクション -->
+  <section class="features-section">
+    <div class="features" data-scroll-reveal>
+      <h2 class="section-heading section-heading--light">
+        <span class="section-heading__accent section-heading__accent--white"></span>
+        habyでできること
+      </h2>
+
+      <ul class="feature-list">
+        <li class="feature-card" data-scroll-reveal>
+          <div class="feature-card__number">01</div>
+          <div class="feature-card__icon-wrap feature-card__icon-wrap--blue">
+            <span class="feature-card__icon-text">Tap</span>
+          </div>
+          <div class="feature-card__body">
+            <h3 class="feature-card__title">ワンタップで服薬記録</h3>
+            <p class="feature-card__text">忙しいときでも素早く記録。毎日の負担を最小限に。タップひとつで今日の服用状況を更新できます。</p>
+            <div class="feature-card__tag">
+              <span class="feature-card__tag-dot"></span>
+              かんたん操作
+            </div>
+          </div>
+        </li>
+
+        <li class="feature-card" data-scroll-reveal>
+          <div class="feature-card__number">02</div>
+          <div class="feature-card__icon-wrap feature-card__icon-wrap--green">
+            <span class="feature-card__icon-text">Cal</span>
+          </div>
+          <div class="feature-card__body">
+            <h3 class="feature-card__title">カレンダーで習慣を可視化</h3>
+            <p class="feature-card__text">続けた日がひと目で分かるから、小さな達成が積み重なる。カレンダー表示で習慣の流れを一望できます。</p>
+            <div class="feature-card__tag">
+              <span class="feature-card__tag-dot"></span>
+              モチベーション維持
+            </div>
+          </div>
+        </li>
+
+        <li class="feature-card" data-scroll-reveal>
+          <div class="feature-card__number">03</div>
+          <div class="feature-card__icon-wrap feature-card__icon-wrap--purple">
+            <span class="feature-card__icon-text">List</span>
+          </div>
+          <div class="feature-card__body">
+            <h3 class="feature-card__title">習慣ごとにすっきり管理</h3>
+            <p class="feature-card__text">サプリ・薬・生活習慣など、項目ごとに整理して管理。連続記録日数もひと目でわかります。</p>
+            <div class="feature-card__tag">
+              <span class="feature-card__tag-dot"></span>
+              整理整頓
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 使い方ステップセクション -->
+  <section class="how-it-works" data-scroll-reveal>
+    <h2 class="section-heading">
+      <span class="section-heading__accent"></span>
+      かんたん3ステップ
+    </h2>
+
+    <div class="steps">
+      <div class="step" data-scroll-reveal>
+        <div class="step__left">
+          <div class="step__number">1</div>
+          <div class="step__connector"></div>
+        </div>
+        <div class="step__card">
+          <span class="step__label">STEP 1</span>
+          <h3 class="step__title">習慣を登録</h3>
+          <p class="step__text">飲んでいる薬やサプリメントを登録するだけ。名前とメモを入力して、あなただけのリストを作りましょう。</p>
+        </div>
+      </div>
+
+      <div class="step" data-scroll-reveal>
+        <div class="step__left">
+          <div class="step__number">2</div>
+          <div class="step__connector"></div>
+        </div>
+        <div class="step__card">
+          <span class="step__label">STEP 2</span>
+          <h3 class="step__title">毎日ワンタップ</h3>
+          <p class="step__text">飲んだらタップ。たった10秒で記録完了。忙しい朝でも負担になりません。</p>
+        </div>
+      </div>
+
+      <div class="step" data-scroll-reveal>
+        <div class="step__left">
+          <div class="step__number">3</div>
+        </div>
+        <div class="step__card">
+          <span class="step__label">STEP 3</span>
+          <h3 class="step__title">カレンダーで振り返り</h3>
+          <p class="step__text">続けた日が一目瞭然。連続記録が伸びていくのを見ると、モチベーションが自然と続きます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTAセクション -->
+  <section class="cta" data-scroll-reveal>
+    <div class="cta__inner">
+      <div class="cta__decoration cta__decoration--1"></div>
+      <div class="cta__decoration cta__decoration--2"></div>
+      <div class="cta__decoration cta__decoration--3"></div>
+      <h2 class="cta__title">まずは今日から、<br>続けやすい習慣を。</h2>
+      <p class="cta__text">登録は無料。いつでも、どこでも、あなたの習慣をサポートします。</p>
+      <% unless user_signed_in? %>
+        <%= link_to new_user_registration_path, class: "cta__btn" do %>
+          <span>無料で始める</span>
+          <span class="cta__btn-arrow">&rarr;</span>
+        <% end %>
+      <% else %>
+        <%= link_to todays_habits_path, class: "cta__btn" do %>
+          <span>今日の習慣へ</span>
+          <span class="cta__btn-arrow">&rarr;</span>
+        <% end %>
+      <% end %>
+    </div>
   </section>
 
 </div>
