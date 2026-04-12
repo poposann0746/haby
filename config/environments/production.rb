@@ -109,6 +109,11 @@ Rails.application.configure do
     config.action_mailer.raise_delivery_errors = false
   end
 
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch("APP_HOST", "yourhaby.com"),
+    protocol: "https"
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
