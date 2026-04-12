@@ -24,7 +24,7 @@
       </div>
 
       <div class="account-form__actions">
-        <%= f.submit "メールアドレスを更新する", class: "account-form__submit" %>
+        <%= f.submit "メールアドレスを更新する", class: "account-form__submit", data: { loading_text: "更新中..." } %>
       </div>
     <% end %>
   </div>
