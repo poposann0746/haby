@@ -32,10 +32,11 @@ bin/rails db:migrate
 bin/rails db:seed
 bin/rails db:prepare
 
-# テスト実行
-bin/rails test              # ユニットテスト
-bin/rails test:system       # システムテスト (Capybara/Selenium)
-bin/rails db:test:prepare test test:system  # フルテストスイート (CI)
+# テスト実行 (RSpec)
+bundle exec rspec              # 全テスト
+bundle exec rspec spec/models  # モデルスペックのみ
+bundle exec rspec spec/requests  # リクエストスペックのみ
+bundle exec rspec spec/system  # システムスペック (Capybara/Selenium)
 
 # Lint
 bin/rubocop                 # Rubyスタイルチェック

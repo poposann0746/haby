@@ -68,8 +68,11 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+
       - name: Prepare DB
         run: bin/rails db:prepare
 
       - name: Run tests
-        run: bin/rails test
+        run: bundle exec rspec
