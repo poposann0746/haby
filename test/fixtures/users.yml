@@ -14,3 +14,10 @@ two:
   name: テストユーザー2
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
 
+google_user:
+  email: google@example.com
+  name: Googleユーザー
+  encrypted_password: <%= Devise::Encryptor.digest(User, Devise.friendly_token[0, 20]) %>
+  provider: google_oauth2
+  uid: "google-uid-123"
+

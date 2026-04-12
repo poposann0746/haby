@@ -166,6 +166,61 @@
   color: #b91c1c;
 }
 
+/* SNSログイン セパレーター */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0 20px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.auth-divider__text {
+  padding: 0 12px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* SNSボタン */
+.auth-sns-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-sns-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid #d0d7de;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.auth-sns-button--google {
+  background: #fff;
+  color: #3c4043;
+}
+
+.auth-sns-button--google:hover {
+  background: #f8f9fa;
+}
+
+.auth-sns-icon {
+  flex-shrink: 0;
+}
+
 /* スマホ微調整 */
 @media (max-width: 480px) {
   .auth-wrapper {
