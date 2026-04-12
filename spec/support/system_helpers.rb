@@ -4,6 +4,7 @@ module SystemHelpers
     fill_in "メールアドレス", with: user.email
     fill_in "パスワード", with: password
     click_button "ログイン"
+    expect(page).not_to have_current_path(new_user_session_path)
   end
 end
 

@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Habits", type: :system do
   let(:user) { create(:user) }
 
-  before { login_as(user, scope: :user) }
+  before { sign_in_via_form(user) }
 
   describe "習慣の作成" do
     it "新しい習慣を作成できる" do

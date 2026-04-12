@@ -5,7 +5,7 @@ RSpec.describe "HabitLogs", type: :system do
 
   before do
     create(:habit, user: user, name: "テスト習慣", schedule_days: [])
-    login_as(user, scope: :user)
+    sign_in_via_form(user)
   end
 
   describe "今日の習慣ページ" do
