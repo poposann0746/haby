@@ -53,6 +53,11 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-byebug"
   gem "annotate"
+
+  # RSpec testing framework
+  gem "rspec-rails", "~> 7.1"
+  gem "factory_bot_rails"
+  gem "shoulda-matchers", "~> 6.0"
 end
 
 group :development do
