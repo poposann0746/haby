@@ -81,32 +81,30 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # ---------------------------------------------------------------------------
-  # Action Mailer (SMTP)
+  # Action Mailer (Resend SMTP)
   #
   # NOTE:
   # Render の Docker build 時（assets:precompile）では環境変数が揃っていないことがあるため、
   # ENV.fetch で必須化するとビルドが落ちます。
-  # ここでは SMTP の必要な値が揃っている時だけ delivery_method を設定します。
+  # ここでは RESEND_API_KEY が揃っている時だけ delivery_method を設定します。
   # ---------------------------------------------------------------------------
-  smtp_address  = ENV["SMTP_ADDRESS"]
-  smtp_username = ENV["SMTP_USERNAME"]
-  smtp_password = ENV["SMTP_PASSWORD"]
+  resend_api_key = ENV["RESEND_API_KEY"]
 
-  if smtp_address.present? && smtp_username.present? && smtp_password.present?
+  if resend_api_key.present?
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.delivery_method = :smtp
 
     config.action_mailer.smtp_settings = {
-      address: smtp_address,
-      port: ENV.fetch("SMTP_PORT", 587),
-      user_name: smtp_username,
-      password: smtp_password,
+      address: "smtp.resend.com",
+      port: 587,
+      user_name: "resend",
+      password: resend_api_key,
       authentication: :plain,
       enable_starttls_auto: true
     }
   else
-    # build 時の保険。実行環境では必ず SMTP_* を設定する
+    # build 時の保険。実行環境では必ず RESEND_API_KEY を設定する
     config.action_mailer.perform_deliveries = false
     config.action_mailer.raise_delivery_errors = false
   end
