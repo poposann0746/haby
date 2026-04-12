@@ -19,7 +19,22 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
+  <body data-controller="loading">
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" data-loading-target="overlay">
+    <div class="loading-dots">
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+    </div>
+    <span class="loading-text">読み込み中...</span>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="loading-progress" data-loading-target="progress">
+    <div class="loading-progress__bar" data-loading-target="progressBar"></div>
+  </div>
+
   <div class="app">
     <%= render "shared/header" %>
 
