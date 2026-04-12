@@ -20,7 +20,7 @@ RSpec.describe "OmniAuth UI", type: :system do
   describe "SNSユーザーのアカウントページ" do
     it "パスワード変更リンクが非表示で、Google連携中が表示される" do
       google_user = create(:user, :google)
-      sign_in_via_form(google_user)
+      login_as(google_user, scope: :user)
       visit account_path
       expect(page).not_to have_text("パスワードを変更")
       expect(page).to have_text("Googleアカウントで連携中")
@@ -30,7 +30,7 @@ RSpec.describe "OmniAuth UI", type: :system do
   describe "通常ユーザーのアカウントページ" do
     it "パスワード変更リンクが表示される" do
       user = create(:user)
-      sign_in_via_form(user)
+      login_as(user, scope: :user)
       visit account_path
       expect(page).to have_text("パスワードを変更")
       expect(page).not_to have_text("Googleアカウントで連携中")
