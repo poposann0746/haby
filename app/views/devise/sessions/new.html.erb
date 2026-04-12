@@ -25,7 +25,9 @@
         <%= f.submit "ログイン", class: "auth-button", data: { loading_text: "ログイン中..." } %>
       </div>
     <% end %>
-    
+
+    <%= render "devise/shared/sns_buttons" %>
+
     <div class="auth-links">
       <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name), class: "auth-links__forgot" %>
     </div>

@@ -26,6 +26,9 @@ ja:
       signed_up: "登録が完了しました。"
       destroyed: "アカウントが削除されました。"
       updated: "アカウント情報を更新しました。"
+    omniauth_callbacks:
+      success: "%{kind}アカウントでログインしました。"
+      failure: "%{kind}アカウントでの認証に失敗しました。(%{reason})"
     mailer:
       reset_password_instructions:
         subject: "パスワードリセットのご案内"

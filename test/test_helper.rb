@@ -2,6 +2,9 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
+OmniAuth.config.test_mode = true
+OmniAuth.config.silence_get_warning = true
+
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers

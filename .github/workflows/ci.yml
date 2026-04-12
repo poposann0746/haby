@@ -34,6 +34,8 @@ jobs:
       ADMIN_EMAIL: "admin@example.com"
       MAIL_FROM: "no-reply@yourhaby.com"
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/haby_test
+      GOOGLE_CLIENT_ID: "test"
+      GOOGLE_CLIENT_SECRET: "test"
 
     services:
       postgres:

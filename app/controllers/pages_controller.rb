@@ -109,21 +109,33 @@ class PagesController < ApplicationController
   end
 
   def update_email
-    # Devise の update_with_password を利用（current_password が必要）
-    if current_user.update_with_password(email_params)
-      # メールやパスワードを変えたら再ログイン状態を維持
-      bypass_sign_in(current_user)
-      redirect_to account_path, notice: "メールアドレスを変更しました。"
+    if current_user.provider.present?
+      # SNSユーザーはパスワード不要で更新
+      if current_user.update(params.require(:user).permit(:email))
+        bypass_sign_in(current_user)
+        redirect_to account_path, notice: "メールアドレスを変更しました。"
+      else
+        render :edit_email, status: :unprocessable_entity
+      end
     else
-      render :edit_email, status: :unprocessable_entity
+      # Devise の update_with_password を利用（current_password が必要）
+      if current_user.update_with_password(email_params)
+        bypass_sign_in(current_user)
+        redirect_to account_path, notice: "メールアドレスを変更しました。"
+      else
+        render :edit_email, status: :unprocessable_entity
+      end
     end
   end
 
   # パスワード変更
   def edit_password
+    redirect_to account_path, alert: "SNSログインのためパスワード変更はできません。" if current_user.provider.present?
   end
 
   def update_password
+    return redirect_to account_path, alert: "SNSログインのためパスワード変更はできません。" if current_user.provider.present?
+
     if current_user.update_with_password(password_params)
       bypass_sign_in(current_user)
       redirect_to account_path, notice: "パスワードを変更しました。"
