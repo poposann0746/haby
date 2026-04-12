@@ -9,7 +9,7 @@ RSpec.describe "Habits", type: :system do
     it "新しい習慣を作成できる" do
       visit new_habit_path
       fill_in "習慣名", with: "毎朝の運動"
-      click_button "追加"
+      click_button "登録する"
       expect(page).to have_text("習慣を追加しました")
       expect(page).to have_text("毎朝の運動")
     end
@@ -20,18 +20,18 @@ RSpec.describe "Habits", type: :system do
       habit = create(:habit, user: user, name: "元の名前")
       visit edit_habit_path(habit)
       fill_in "習慣名", with: "変更後の名前"
-      click_button "更新"
+      click_button "更新する"
       expect(page).to have_text("習慣を更新しました")
     end
   end
 
   describe "習慣の削除" do
     it "習慣を削除できる" do
-      create(:habit, user: user, name: "削除する習慣")
-      visit habits_path
+      habit = create(:habit, user: user, name: "削除する習慣")
+      visit habit_path(habit)
       expect(page).to have_text("削除する習慣")
 
-      accept_confirm { click_link "削除" }
+      accept_confirm("この習慣を削除しますか？") { click_button "削除" }
       expect(page).to have_text("習慣を削除しました")
     end
   end
