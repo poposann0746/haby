@@ -222,3 +222,59 @@
   position: relative;
   overflow: visible;
 }
+
+/* ── アプリ内共通ボタン ── */
+.haby-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: var(--btn-padding);
+  border-radius: var(--btn-radius);
+  font-weight: var(--btn-font-weight);
+  font-size: var(--btn-font-size);
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.haby-btn--primary {
+  color: #fff;
+  background: var(--brand);
+  box-shadow: 0 10px 20px rgba(17, 123, 191, 0.22);
+}
+
+.haby-btn--primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.haby-btn--ghost {
+  color: var(--text);
+  background: #fff;
+  border-color: var(--card-border);
+}
+
+.haby-btn--ghost:hover {
+  background: var(--brand-weak);
+}
+
+.haby-btn--danger {
+  color: #fff;
+  background: var(--danger);
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.18);
+}
+
+.haby-btn--danger:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .haby-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: var(--radius-sm);
+  }
+}

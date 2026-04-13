@@ -3,19 +3,16 @@
   width: min(92vw, 640px);
   margin: 24px auto;
   padding: 24px 16px;
-  background: #ffffff;
-  border-radius: 20px;
-
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.06),
-    0 2px 4px rgba(255, 255, 255, 0.7) inset;
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
 }
 
 
 .account-page__title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #117bbf;
+  font-size: var(--page-title-size);
+  font-weight: var(--page-title-weight);
+  color: var(--page-title-color);
   text-align: center;
   margin-bottom: 12px;
 }
@@ -28,7 +25,7 @@
 }
 
 .account-page__user-name {
-  color: #117bbf;
+  color: var(--brand);
 }
 
 .account-page__sns-info {
@@ -62,9 +59,9 @@
   text-align: center;
 
   padding: 14px 16px;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   background: #f5fbff;
-  color: #117bbf;
+  color: var(--brand);
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
