@@ -286,5 +286,68 @@
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
 }
 
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .habit-form-page {
+    padding: 14px 10px 24px;
+  }
+
+  .habit-form-hero {
+    padding: 12px 12px 10px;
+    border-radius: 14px;
+  }
+
+  .habit-form-hero__title {
+    font-size: 16px;
+  }
+
+  .habit-form-card {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .habit-form input[type="text"],
+  .habit-form textarea {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .schedule-days-presets {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .schedule-preset-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .schedule-day-toggle__label {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .schedule-days-buttons {
+    gap: 4px;
+  }
+
+  .habit-form__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .habit-form__actions .haby-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .habit-form-page .haby-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+}
+
 
 

@@ -188,3 +188,49 @@
   margin: 6px 0 0;
   font-size: 13px;
 }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .habits-page {
+    padding: 14px 10px 24px;
+  }
+
+  .habits-hero {
+    padding: 12px 12px 10px;
+    border-radius: 14px;
+  }
+
+  .habits-hero__title {
+    font-size: 16px;
+  }
+
+  .habit-item {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .habit-item__head {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .habit-item__name {
+    font-size: 14px;
+  }
+
+  .habit-badge,
+  .habit-badge-danger {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .habit-item__actions {
+    gap: 10px;
+  }
+
+  .habits-page .haby-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+}
