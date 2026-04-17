@@ -129,25 +129,20 @@ class PagesController < ApplicationController
 
   # メールアドレス変更（現在のパスワードを要求）
   def edit_email
+    redirect_to account_path, alert: "Googleアカウントで連携中のため、メールアドレスは変更できません。" if current_user.provider.present?
   end
 
   def update_email
     if current_user.provider.present?
-      # SNSユーザーはパスワード不要で更新
-      if current_user.update(params.require(:user).permit(:email))
-        bypass_sign_in(current_user)
-        redirect_to account_path, notice: "メールアドレスを変更しました。"
-      else
-        render :edit_email, status: :unprocessable_entity
-      end
+      redirect_to account_path, alert: "Googleアカウントで連携中のため、メールアドレスは変更できません。"
+      return
+    end
+
+    if current_user.update_with_password(email_params)
+      bypass_sign_in(current_user)
+      redirect_to account_path, notice: "メールアドレスを変更しました。"
     else
-      # Devise の update_with_password を利用（current_password が必要）
-      if current_user.update_with_password(email_params)
-        bypass_sign_in(current_user)
-        redirect_to account_path, notice: "メールアドレスを変更しました。"
-      else
-        render :edit_email, status: :unprocessable_entity
-      end
+      render :edit_email, status: :unprocessable_entity
     end
   end
 
