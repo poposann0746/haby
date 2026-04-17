@@ -7,9 +7,9 @@ RSpec.describe Contact, type: :model do
     it { is_expected.to validate_length_of(:message).is_at_most(5000) }
     it { is_expected.to validate_length_of(:name).is_at_most(100) }
 
-    it "名前が空でもバリデーション通過する" do
+    it "名前が空だとバリデーションエラーになる" do
       contact = build(:contact, name: "")
-      expect(contact).to be_valid
+      expect(contact).not_to be_valid
     end
 
     it "正しいメールアドレス形式を受け入れる" do

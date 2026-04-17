@@ -111,12 +111,12 @@ RSpec.describe "Pages", type: :request do
     context "SNSユーザー" do
       before { sign_in sns_user }
 
-      it "パスワードなしでメールアドレスを更新できる" do
+      it "メールアドレスの変更が拒否される" do
         patch account_email_path, params: {
           user: { email: "newsns@example.com" }
         }
         expect(response).to redirect_to(account_path)
-        expect(sns_user.reload.email).to eq("newsns@example.com")
+        expect(sns_user.reload.email).not_to eq("newsns@example.com")
       end
     end
   end
