@@ -2,11 +2,30 @@ ja:
   activerecord:
     models:
       contact: "お問い合わせ"
+      user: "ユーザー"
+      habit: "習慣"
+      habit_log: "服用ログ"
     attributes:
       contact:
         name: "お名前"
         email: "メールアドレス"
         message: "お問い合わせ内容"
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        current_password: "現在のパスワード"
+      habit:
+        name: "習慣名"
+        detail: "メモ"
+        current_streak: "現在の連続日数"
+        longest_streak: "最長連続日数"
+        schedule_days: "実施曜日"
+      habit_log:
+        log_date: "記録日"
+        is_taken: "服用状況"
+        logged_at: "記録日時"
   devise:
     passwords:
       no_token: "リセットトークンがありません。パスワードリセットメールのリンクからアクセスしてください。"
