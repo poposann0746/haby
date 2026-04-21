@@ -25,8 +25,12 @@ services:
       - .:/haby
       - bundle_data:/usr/local/bundle:cached
       - node_modules:/haby/node_modules
+    env_file:
+      - .env
     environment:
       TZ: Asia/Tokyo
+      ADMIN_EMAIL: "supica0746@example.com"
+      MAIL_FROM: "no-reply@yourhaby.com"
     ports:
       - "3000:3000"
     depends_on:

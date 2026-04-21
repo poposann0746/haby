@@ -13,18 +13,20 @@
                           class: "account-form__input" %>
       </div>
 
-      <div class="account-form__field">
-        <%= f.label :current_password, "現在のパスワード", class: "account-form__label" %><br>
-        <%= f.password_field :current_password,
-                             autocomplete: "current-password",
-                             class: "account-form__input" %>
-        <p class="account-form__help-text">
-          本人確認のため、現在のパスワードを入力してください。
-        </p>
-      </div>
+      <% unless current_user.provider.present? %>
+        <div class="account-form__field">
+          <%= f.label :current_password, "現在のパスワード", class: "account-form__label" %><br>
+          <%= f.password_field :current_password,
+                               autocomplete: "current-password",
+                               class: "account-form__input" %>
+          <p class="account-form__help-text">
+            本人確認のため、現在のパスワードを入力してください。
+          </p>
+        </div>
+      <% end %>
 
       <div class="account-form__actions">
-        <%= f.submit "メールアドレスを更新する", class: "account-form__submit" %>
+        <%= f.submit "メールアドレスを更新する", class: "account-form__submit", data: { loading_text: "更新中..." } %>
       </div>
     <% end %>
   </div>
