@@ -1,0 +1,41 @@
+<div class="auth-wrapper">
+  <div class="auth-card">    
+    <h2 class="auth-title">新規登録</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      
+      <div class="field">
+        <%= f.label :name, "名前" %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
+      <div class="field">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード" %>
+        <% if @minimum_password_length %>
+          <p class="field-note">※ <%= @minimum_password_length %>文字以上で入力してください</p>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "パスワード（確認用）" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "登録する", class: "auth-button", data: { loading_text: "登録中..." } %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/sns_buttons" %>
+
+    <div class="auth-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

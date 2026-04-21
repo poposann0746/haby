@@ -1,0 +1,238 @@
+/* 認証画面 共通レイアウト */
+
+.devise-main {
+  padding: 20px;
+}
+
+/* 外側：中央寄せ */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* カード */
+.auth-card {
+  width: min(92vw, 520px);
+  background: var(--card-bg);
+  padding: 28px 20px;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+
+/* タイトル */
+.auth-title {
+  font-size: var(--page-title-size);
+  font-weight: var(--page-title-weight);
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--page-title-color);
+}
+
+/* フォームのパーツ */
+.auth-card .field {
+  margin-bottom: 16px;
+}
+
+.auth-card label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  box-sizing: border-box;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  background: #fff;
+  box-shadow: var(--input-focus-shadow);
+}
+
+/* ボタン */
+.auth-button {
+  width: 100%;
+  border: none;
+  padding: 12px 12px;
+  border-radius: var(--btn-radius);
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--brand);
+  color: #fff;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  opacity: 0.9;
+}
+
+.auth-card .actions {
+  margin-top: 16px;
+}
+
+/* links */
+.auth-card a {
+  color: var(--brand);
+  font-size: 13px;
+}
+
+/* メモの小さい文字 */
+.field-note {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 4px 0 6px;
+}
+
+/* remember_me */
+.field-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.auth-links {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.auth-links__text {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.auth-links__signup {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-weak);
+  border: 1px solid rgba(17, 123, 191, 0.2);
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.auth-links__signup:hover {
+  background: #e0f0fa;
+  border-color: rgba(17, 123, 191, 0.3);
+}
+
+.auth-links a {
+  display: inline-block;
+  margin: 4px 0;
+}
+
+/* エラーメッセージ */
+.error_explanation {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: var(--input-radius);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.error_explanation h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #b91c1c;
+}
+
+.error_explanation ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.error_explanation li {
+  font-size: 13px;
+  color: #b91c1c;
+}
+
+/* SNSログイン セパレーター */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0 20px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.auth-divider__text {
+  padding: 0 12px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* SNSボタン */
+.auth-sns-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-sns-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--btn-radius);
+  border: 1px solid var(--input-border);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.auth-sns-button--google {
+  background: #fff;
+  color: #3c4043;
+}
+
+.auth-sns-button--google:hover {
+  background: #f8f9fa;
+}
+
+.auth-sns-icon {
+  flex-shrink: 0;
+}
+
+/* スマホ微調整 */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: 24px 12px;
+  }
+
+  .auth-card {
+    padding: 24px 16px;
+  }
+
+  .auth-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+}

@@ -1,7 +1,9 @@
+<!-- app/views/layouts/application.html.erb -->
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Haby" %></title>
+    <title><%= content_for(:title) || "haby" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -10,14 +12,46 @@
     <%= yield :head %>
 
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'favicon_180.png', rel: 'apple-touch-icon', type: 'image/png' %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+  <body data-controller="loading">
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" data-loading-target="overlay">
+    <div class="loading-dots">
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+    </div>
+    <span class="loading-text">読み込み中...</span>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="loading-progress" data-loading-target="progress">
+    <div class="loading-progress__bar" data-loading-target="progressBar"></div>
+  </div>
+
+  <div class="app">
+    <%= render "shared/header" %>
+
+    <main class="app-main">
+      <div class="app-container">
+        <%= render "shared/flash" %>
+        <%= yield %>
+      </div>
+    </main>
+
+    <%= render "shared/footer" %>
+  </div>
+
+  <%= render "shared/bottom_nav" %>
+</body>
 </html>

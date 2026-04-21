@@ -1,0 +1,414 @@
+/* ==========================================================================
+   Haby Calendar — ブランド青 + 水緑グラデの柔らかカード
+   今日の習慣 / 習慣一覧と兄弟デザイン
+   ========================================================================== */
+
+.haby-cal-page {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: var(--page-padding);
+}
+
+/* --------------------------------------------------------------------------
+   Hero: 月タイトル + ナビ + 統計
+   -------------------------------------------------------------------------- */
+.haby-cal-hero {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 123, 191, 0.18),
+    rgba(106, 172, 176, 0.14)
+  );
+  border: 1px solid rgba(17, 123, 191, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px 16px;
+  box-shadow: 0 10px 25px rgba(17, 123, 191, 0.06);
+}
+
+.haby-cal-hero__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.haby-cal-hero__title-block {
+  min-width: 0;
+}
+
+.haby-cal-hero__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+
+.haby-cal-hero__subtitle {
+  margin: 3px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+/* ナビ(ピル型) */
+.haby-cal-hero__nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(17, 123, 191, 0.16);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(17, 123, 191, 0.05);
+  backdrop-filter: blur(4px);
+}
+
+.haby-cal-hero__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  color: var(--brand);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background-color 160ms ease, color 160ms ease, transform 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.haby-cal-hero__nav-btn:hover {
+  background: rgba(17, 123, 191, 0.10);
+}
+
+.haby-cal-hero__nav-btn:active { transform: scale(0.96); }
+
+.haby-cal-hero__nav-btn--today {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 0 14px;
+  color: #fff;
+  background: var(--brand);
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 10px rgba(17, 123, 191, 0.22);
+}
+
+.haby-cal-hero__nav-btn--today:hover {
+  background: var(--brand-hover);
+  color: #fff;
+}
+
+/* 統計バッジ3つ */
+.haby-cal-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.haby-cal-hero__stat {
+  background: #fff;
+  border: 1px solid rgba(17, 123, 191, 0.14);
+  border-radius: var(--radius-md);
+  padding: 10px 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(17, 123, 191, 0.04);
+}
+
+.haby-cal-hero__stat dt {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin: 0 0 4px;
+}
+
+.haby-cal-hero__stat dd {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.haby-cal-hero__stat dd span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Calendar Card (白カード)
+   -------------------------------------------------------------------------- */
+.haby-cal-card {
+  background: #fff;
+  border: 1px solid rgba(17, 123, 191, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.simple-calendar.haby-cal {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+  max-width: 100%;
+}
+
+.haby-cal__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 6px;
+  table-layout: fixed;
+}
+
+/* 曜日ヘッダ */
+.haby-cal__weekdays th { padding: 0; }
+
+.haby-cal__weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-muted);
+  padding: 6px 0 10px;
+  letter-spacing: 0.04em;
+}
+
+/* 土曜 = ブランド青、日曜 = 柔らかい赤(既存ブランドに寄せる) */
+.haby-cal__weekday--wd5 { color: rgba(17, 123, 191, 0.85); }
+.haby-cal__weekday--wd6 { color: rgba(224, 92, 92, 0.85); }
+
+/* --------------------------------------------------------------------------
+   セル
+   -------------------------------------------------------------------------- */
+.haby-cal__cell {
+  height: 76px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  vertical-align: middle;
+}
+
+.haby-cal__cell-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  padding: 8px 4px;
+  border-radius: var(--radius-md);
+  background: #fafcff;
+  border: 1px solid rgba(17, 123, 191, 0.08);
+  color: var(--text);
+  text-decoration: none;
+  box-sizing: border-box;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    filter 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.haby-cal__date {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: color 160ms ease;
+}
+
+.haby-cal__mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: transform 180ms cubic-bezier(0.22, 0.8, 0.36, 1);
+}
+
+/* --- 状態別セル塗り --- */
+
+/* 全達成: ブランド青→水緑のグラデ塗り */
+.cal-day--all .haby-cal__cell-link {
+  background: linear-gradient(135deg, var(--brand), var(--brand-secondary));
+  border-color: transparent;
+  box-shadow: 0 6px 14px rgba(17, 123, 191, 0.22);
+}
+.cal-day--all .haby-cal__date { color: #fff; }
+.cal-day--all .haby-cal__mark {
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.28);
+}
+
+/* 一部達成: 薄い青カード + ハーフドット */
+.cal-day--partial .haby-cal__cell-link {
+  background: rgba(17, 123, 191, 0.10);
+  border-color: rgba(17, 123, 191, 0.22);
+}
+.cal-day--partial .haby-cal__mark {
+  background: linear-gradient(90deg, var(--brand) 50%, transparent 50%);
+  border: 1.5px solid var(--brand);
+}
+
+/* 未達(予定あり): 白カード + 空ドット枠 */
+.cal-day--none .haby-cal__cell-link {
+  background: #fff;
+  border-color: rgba(17, 123, 191, 0.10);
+}
+.cal-day--none .haby-cal__mark {
+  background: transparent;
+  border: 1.5px solid rgba(17, 123, 191, 0.28);
+}
+
+/* 予定なし: ほぼ無地、ドット非表示 */
+.cal-day--empty .haby-cal__cell-link {
+  background: rgba(15, 23, 42, 0.015);
+  border-color: rgba(15, 23, 42, 0.04);
+}
+.cal-day--empty .haby-cal__mark { visibility: hidden; }
+.cal-day--empty .haby-cal__date { color: var(--text-muted); font-weight: 700; }
+
+/* 今日: 青リングで強調(塗りは状態依存のまま) */
+.simple-calendar .today .haby-cal__cell-link {
+  box-shadow:
+    0 0 0 2px var(--brand),
+    0 8px 18px rgba(17, 123, 191, 0.22);
+}
+
+/* 前月・次月: フェード */
+.simple-calendar .prev-month .haby-cal__cell-link,
+.simple-calendar .next-month .haby-cal__cell-link {
+  opacity: 0.38;
+}
+
+/* ホバー */
+@media (hover: hover) and (pointer: fine) {
+  .haby-cal__cell-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(17, 123, 191, 0.14);
+    border-color: rgba(17, 123, 191, 0.32);
+  }
+  .cal-day--all .haby-cal__cell-link:hover {
+    filter: brightness(1.06);
+    box-shadow: 0 12px 24px rgba(17, 123, 191, 0.28);
+  }
+  .haby-cal__cell-link:hover .haby-cal__mark { transform: scale(1.12); }
+}
+
+.haby-cal__cell-link:active { transform: scale(0.97); }
+.haby-cal__cell-link:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Legend (凡例ピル)
+   -------------------------------------------------------------------------- */
+.haby-cal-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 4px 4px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.haby-cal-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #fff;
+  border: 1px solid rgba(17, 123, 191, 0.12);
+  border-radius: 999px;
+  padding: 6px 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.haby-cal-legend__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.haby-cal-legend__dot--all {
+  background: linear-gradient(135deg, var(--brand), var(--brand-secondary));
+  box-shadow: 0 0 0 2px rgba(17, 123, 191, 0.15);
+}
+.haby-cal-legend__dot--partial {
+  background: linear-gradient(90deg, var(--brand) 50%, transparent 50%);
+  border: 1.5px solid var(--brand);
+}
+.haby-cal-legend__dot--none {
+  background: transparent;
+  border: 1.5px solid rgba(17, 123, 191, 0.30);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 700px) {
+  .haby-cal-page { padding: 14px 10px 24px; gap: 12px; }
+
+  .haby-cal-hero { padding: 14px 14px 12px; }
+  .haby-cal-hero__head { margin-bottom: 12px; }
+  .haby-cal-hero__title { font-size: 20px; }
+  .haby-cal-hero__subtitle { font-size: 11px; margin-top: 2px; }
+
+  .haby-cal-hero__nav { padding: 3px; }
+  .haby-cal-hero__nav-btn { min-width: 30px; height: 30px; font-size: 16px; padding: 0 8px; }
+  .haby-cal-hero__nav-btn--today { font-size: 11px; padding: 0 12px; }
+
+  .haby-cal-hero__stat { padding: 8px 6px; }
+  .haby-cal-hero__stat dt { font-size: 10px; margin-bottom: 2px; }
+  .haby-cal-hero__stat dd { font-size: 18px; }
+  .haby-cal-hero__stat dd span { font-size: 11px; }
+
+  .haby-cal-card { padding: 10px; }
+  .haby-cal__table { border-spacing: 4px; }
+
+  .haby-cal__weekday { font-size: 11px; padding: 4px 0 8px; }
+
+  .haby-cal__cell { height: 56px; }
+  .haby-cal__cell-link { gap: 4px; padding: 6px 2px; }
+  .haby-cal__date { font-size: 12px; }
+  .haby-cal__mark { width: 12px; height: 12px; }
+
+  .haby-cal-legend { gap: 8px; }
+  .haby-cal-legend__item { padding: 5px 10px; font-size: 11px; }
+}
+
+@media (max-width: 400px) {
+  .haby-cal__cell { height: 50px; }
+  .haby-cal__date { font-size: 11px; }
+  .haby-cal__mark { width: 10px; height: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .haby-cal__cell-link,
+  .haby-cal__mark,
+  .haby-cal-hero__nav-btn { transition: none; }
+}

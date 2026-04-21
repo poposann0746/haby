@@ -1,0 +1,13 @@
+class StaticPagesController < ApplicationController
+  def privacy
+  end
+
+  def terms
+  end
+
+  def contact
+  end
+
+  def guide
+  end
+end

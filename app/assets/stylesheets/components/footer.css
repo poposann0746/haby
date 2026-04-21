@@ -1,0 +1,82 @@
+/* ===============================
+   Footer
+   =============================== */
+
+.app-footer {
+  background: #ffffff;
+  padding: 20px 0;
+  padding-bottom: calc(var(--bottom-nav-height) + 16px);
+  margin-top: 40px;
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 14px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.app-footer__inner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* コピーライト */
+.app-footer__copy {
+  text-align: left;
+  flex: 1;
+}
+
+/* 右側リンク */
+.app-footer__links {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+.app-footer__links a {
+  color: #333;
+  text-decoration: none;
+}
+
+.app-footer__links a:hover {
+  text-decoration: underline;
+}
+
+/* Footer: responsive */
+
+@media (max-width: 600px) {
+  .app-footer {
+    padding: 16px 0;
+    padding-bottom: calc(var(--bottom-nav-height) + 12px);
+    margin-top: 24px;
+  }
+
+  .app-footer__inner {
+    padding: 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .app-footer__copy {
+    text-align: left;
+    flex: none;
+    font-size: 13px;
+  }
+
+  .app-footer__links {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .app-footer__links a {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,40 @@
+<div class="auth-wrapper">
+  <div class="auth-card">  
+    <h2 class="auth-title">ログイン</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <div class="field">
+        <%= f.label :email, "メールアドレス" %><br/>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "パスワード" %><br/>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field field-remember">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, "ログイン状態を保持する" %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "ログイン", class: "auth-button", data: { loading_text: "ログイン中..." } %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/sns_buttons" %>
+
+    <div class="auth-links">
+      <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name), class: "auth-links__forgot" %>
+    </div>
+
+    <div class="auth-links">
+      <p class="auth-links__text">アカウントをお持ちでない方は</p>
+      <%= link_to "新規登録はこちら", new_user_registration_path, class: "auth-links__signup" %>
+    </div>
+  </div>
+</div>

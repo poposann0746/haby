@@ -21,7 +21,16 @@ module Haby
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    # タイムゾーン・ロケール
+    config.time_zone = "Asia/Tokyo"
+    config.i18n.default_locale = :ja
+    config.i18n.available_locales = %i[ja en]
     # config.eager_load_paths << Rails.root.join("extras")
+    # 不要なファイルを生成しない
+    config.generators do |g|
+      g.assets  false  # CSS/JS 生成しない
+      g.helper  false  # helper 生成しない
+      g.jbuilder false # jbuilder 生成しない
+    end
   end
 end
