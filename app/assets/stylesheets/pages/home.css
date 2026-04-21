@@ -1175,6 +1175,15 @@
     padding: 28px 48px;
   }
 
+  .slider__slide--photo {
+    padding: 0;
+  }
+
+  .slider__slide--photo .slider__slide-body {
+    justify-content: center;
+    padding: 0 24px;
+  }
+
   .slider__slide-icon {
     font-size: 36px;
     margin-bottom: 10px;
