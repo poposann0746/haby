@@ -35,8 +35,8 @@
   --space-6: 32px;
 
   /* Typography */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-               "Noto Sans JP", sans-serif;
+  --font-sans: "Noto Sans JP", ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", sans-serif;
   --font-size-base: 15px;
   --line-height: 1.6;
 
@@ -48,4 +48,33 @@
   /* Brand variations (便利) */
   --brand-weak: #e8f3fb;
   --brand-hover: #0e6aa5;
+  --brand-secondary: #6AACB0;
+
+  /* Card */
+  --card-bg: #ffffff;
+  --card-radius: var(--radius-lg);
+  --card-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  --card-border: rgba(17, 123, 191, 0.12);
+
+  /* Form input */
+  --input-bg: #f8fcff;
+  --input-border: #d0e3f3;
+  --input-radius: var(--radius-sm);
+  --input-focus-border: var(--brand);
+  --input-focus-shadow: 0 0 0 2px rgba(17, 123, 191, 0.18);
+
+  /* Page title */
+  --page-title-size: 20px;
+  --page-title-weight: 700;
+  --page-title-color: var(--brand);
+
+  /* Page container */
+  --page-max-width: 720px;
+  --page-padding: 18px 14px 28px;
+
+  /* Button (app内共通) */
+  --btn-radius: var(--radius-md);
+  --btn-font-size: 13px;
+  --btn-font-weight: 700;
+  --btn-padding: 10px 14px;
 }

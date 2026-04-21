@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_20_090022) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_17_075653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", limit: 100
+    t.string "email", null: false
+    t.text "message", null: false
+    t.boolean "replied", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_contacts_on_created_at"
+    t.index ["replied"], name: "index_contacts_on_replied"
+  end
 
   create_table "habit_logs", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -36,7 +47,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_20_090022) do
     t.integer "longest_streak", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "name"], name: "index_habits_on_user_id_and_name"
+    t.integer "schedule_days", default: [], array: true
+    t.index ["schedule_days"], name: "index_habits_on_schedule_days", using: :gin
+    t.index ["user_id", "name"], name: "index_habits_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_habits_on_user_id"
   end
 
@@ -49,7 +62,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_20_090022) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

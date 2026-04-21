@@ -2,22 +2,13 @@
 
 /* 画面全体 */
 .habit-show-page {
-  --haby-blue: #117BBF;
-  --haby-mint: #6AACB0;
-  --text: #0f172a;
-  --muted: #64748b;
-  --line: #e6eef5;
-  --bg: #f6fbff;
-  --card: #ffffff;
-  --danger: #ef4444;
-
   min-height: calc(100vh - var(--bottom-nav-height, 0px));
-  padding: 18px 14px 28px;
-  background: #fff;
+  padding: var(--page-padding);
+  background: var(--bg);
 }
 
 .habit-show-container {
-  max-width: 720px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   display: grid;
   gap: 14px;
@@ -25,11 +16,11 @@
 
 /* ヒーロー */
 .habit-show-hero {
-  background: linear-gradient(135deg, rgba(17,123,191,0.18), rgba(106,172,176,0.14));
-  border: 1px solid rgba(17,123,191,0.18);
-  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(17, 123, 191, 0.18), rgba(106, 172, 176, 0.14));
+  border: 1px solid rgba(17, 123, 191, 0.18);
+  border-radius: var(--card-radius);
   padding: 14px 14px 12px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow);
 }
 
 .habit-show-hero__titleRow {
@@ -41,15 +32,15 @@
 
 .habit-show-hero__title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 950;
+  font-size: var(--page-title-size);
+  font-weight: 800;
   color: var(--text);
 }
 
 .habit-show-hero__subtitle {
   margin: 6px 0 0;
   font-size: 13px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 /* バッジ */
@@ -59,7 +50,7 @@
   border-radius: 999px;
   font-size: 12px;
   font-weight: 900;
-  color: var(--haby-blue);
+  color: var(--brand);
   background: rgba(17,123,191,0.10);
   border: 1px solid rgba(17,123,191,0.18);
 }
@@ -68,11 +59,11 @@
 .habit-show-card {
   position: relative;
   overflow: hidden;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
   padding: 14px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow);
 }
 
 .habit-show-card::before {
@@ -95,7 +86,7 @@
   margin: 0;
   font-size: 12px;
   font-weight: 900;
-  color: var(--muted);
+  color: var(--text-muted);
   letter-spacing: 0.2px;
 }
 
@@ -111,48 +102,53 @@
 .habit-show-empty {
   text-align: center;
   padding: 22px 14px;
-  border-radius: 18px;
-  border: 1px dashed rgba(17,123,191,0.25);
-  background: rgba(17,123,191,0.06);
-  color: var(--muted);
+  border-radius: var(--card-radius);
+  border: 1px dashed rgba(17, 123, 191, 0.25);
+  background: rgba(17, 123, 191, 0.06);
+  color: var(--text-muted);
   position: relative;
 }
 
-/* ボタン */
-.habit-show-page .haby-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  font-weight: 900;
-  font-size: 13px;
-  text-decoration: none;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-.habit-show-page .haby-btn--primary {
-  color: #fff;
-  background: var(--haby-blue);
-  box-shadow: 0 10px 20px rgba(17,123,191,0.22);
-}
-
-.habit-show-page .haby-btn--ghost {
-  color: var(--text);
-  background: #fff;
-  border-color: #d9e6f2;
-}
-
-.habit-show-page .haby-btn--danger {
-  color: #fff;
-  background: var(--danger);
-  box-shadow: 0 10px 20px rgba(239,68,68,0.18);
-}
 
 .habit-show-actions {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .habit-show-page {
+    padding: 14px 10px 24px;
+  }
+
+  .habit-show-hero {
+    padding: 12px 12px 10px;
+    border-radius: var(--radius-md);
+  }
+
+  .habit-show-hero__titleRow {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .habit-show-hero__title {
+    font-size: 16px;
+  }
+
+  .habit-show-card {
+    padding: 12px;
+    border-radius: var(--radius-md);
+  }
+
+  .habit-show-card::before {
+    width: 120px;
+    height: 70px;
+    inset: -30px auto auto -40px;
+  }
+
+  .habit-show-actions {
+    gap: 6px;
+  }
+
 }
