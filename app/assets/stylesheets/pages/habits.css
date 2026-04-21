@@ -2,21 +2,13 @@
 
 /* ページ全体 */
 .habits-page {
-  --haby-blue: #117BBF;
-  --haby-mint: #6AACB0;
-  --text: #0f172a;
-  --muted: #64748b;
-  --line: #e6eef5;
-  --bg: #f6fbff;
-  --card: #ffffff;
-
   min-height: calc(100vh - var(--bottom-nav-height, 0px));
-  padding: 18px 14px 28px;
-  background: #fff;
+  padding: var(--page-padding);
+  background: var(--bg);
 }
 
 .habits-container {
-  max-width: 720px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   display: grid;
   gap: 14px;
@@ -26,18 +18,18 @@
 .habits-hero {
   background: linear-gradient(
     135deg,
-    rgba(17,123,191,0.18),
-    rgba(106,172,176,0.14)
+    rgba(17, 123, 191, 0.18),
+    rgba(106, 172, 176, 0.14)
   );
-  border: 1px solid rgba(17,123,191,0.18);
-  border-radius: 18px;
+  border: 1px solid rgba(17, 123, 191, 0.18);
+  border-radius: var(--card-radius);
   padding: 14px 14px 12px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow);
 }
 
 .habits-hero__title {
   margin: 0;
-  font-size: 18px;
+  font-size: var(--page-title-size);
   font-weight: 800;
   color: var(--text);
   letter-spacing: 0.2px;
@@ -46,16 +38,16 @@
 .habits-hero__subtitle {
   margin: 6px 0 0;
   font-size: 13px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 /* 共通カード */
 .haby-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
   padding: 14px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow);
 }
 
 /* 一覧グリッド */
@@ -68,11 +60,11 @@
 .habit-item {
   position: relative;
   overflow: hidden;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
   padding: 14px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow);
   transition:
     transform 0.12s ease,
     box-shadow 0.12s ease,
@@ -81,7 +73,7 @@
 
 .habit-item:hover {
   transform: translateY(-2px);
-  border-color: rgba(17,123,191,0.22);
+  border-color: rgba(17, 123, 191, 0.22);
   box-shadow: 0 14px 35px rgba(15, 23, 42, 0.10);
 }
 
@@ -105,7 +97,7 @@
 }
 
 .habit-item__name a:hover {
-  color: var(--haby-blue);
+  color: var(--brand);
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
@@ -118,9 +110,9 @@
   border-radius: 999px;
   font-size: 12px;
   font-weight: 800;
-  color: var(--haby-blue);
+  color: var(--brand);
   background: rgba(88, 157, 200, 0.10);
-  border: 1px solid rgba(17,123,191,0.18);
+  border: 1px solid rgba(17, 123, 191, 0.18);
 }
 
 .habit-badge-danger {
@@ -141,41 +133,15 @@
   gap: 15px;
 }
 
-/* ボタン */
-.habits-page .haby-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  font-weight: 800;
-  font-size: 13px;
-  text-decoration: none;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-.habits-page .haby-btn--primary {
-  color: #fff;
-  background: var(--haby-blue);
-  box-shadow: 0 10px 20px rgba(17,123,191,0.22);
-}
-
-.habits-page .haby-btn--ghost {
-  color: var(--text);
-  background: #fff;
-  border-color: var(--line);
-}
 
 /* 0件のとき */
 .habits-empty {
   text-align: center;
   padding: 22px 14px;
-  border-radius: 18px;
-  border: 1px dashed rgba(17,123,191,0.25);
-  background: rgba(17,123,191,0.06);
-  color: var(--muted);
+  border-radius: var(--card-radius);
+  border: 1px dashed rgba(17, 123, 191, 0.25);
+  background: rgba(17, 123, 191, 0.06);
+  color: var(--text-muted);
 }
 
 .habits-empty__title {
@@ -187,4 +153,44 @@
 .habits-empty__text {
   margin: 6px 0 0;
   font-size: 13px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .habits-page {
+    padding: 14px 10px 24px;
+  }
+
+  .habits-hero {
+    padding: 12px 12px 10px;
+    border-radius: 14px;
+  }
+
+  .habits-hero__title {
+    font-size: 16px;
+  }
+
+  .habit-item {
+    padding: 12px;
+    border-radius: var(--radius-md);
+  }
+
+  .habit-item__head {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .habit-item__name {
+    font-size: 14px;
+  }
+
+  .habit-badge,
+  .habit-badge-danger {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .habit-item__actions {
+    gap: 10px;
+  }
 }
