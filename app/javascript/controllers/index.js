@@ -12,3 +12,12 @@ application.register("habit-toggle", HabitToggleController)
 
 import ScheduleDaysController from "./schedule_days_controller"
 application.register("schedule-days", ScheduleDaysController)
+
+import ScrollRevealController from "./scroll_reveal_controller"
+application.register("scroll-reveal", ScrollRevealController)
+
+import SliderController from "./slider_controller"
+application.register("slider", SliderController)
+
+import LoadingController from "./loading_controller"
+application.register("loading", LoadingController)

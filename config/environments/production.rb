@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -46,7 +48,7 @@ Rails.application.configure do
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
-  # config.assume_ssl = true
+  config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
@@ -78,12 +80,45 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
+  # ---------------------------------------------------------------------------
+  # Action Mailer (Resend SMTP)
+  #
+  # NOTE:
+  # Render の Docker build 時（assets:precompile）では環境変数が揃っていないことがあるため、
+  # ENV.fetch で必須化するとビルドが落ちます。
+  # ここでは RESEND_API_KEY が揃っている時だけ delivery_method を設定します。
+  # ---------------------------------------------------------------------------
+  resend_api_key = ENV["RESEND_API_KEY"]
+
+  if resend_api_key.present?
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+
+    config.action_mailer.smtp_settings = {
+      address: "smtp.resend.com",
+      port: 587,
+      user_name: "resend",
+      password: resend_api_key,
+      authentication: :plain,
+      enable_starttls_auto: true
+    }
+  else
+    # build 時の保険。実行環境では必ず RESEND_API_KEY を設定する
+    config.action_mailer.perform_deliveries = false
+    config.action_mailer.raise_delivery_errors = false
+  end
+
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch("APP_HOST", "yourhaby.com"),
+    protocol: "https"
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
+  # the I18n.default_locale).
   config.i18n.fallbacks = true
 
   # Don't log any deprecations.

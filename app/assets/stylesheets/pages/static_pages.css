@@ -1,10 +1,5 @@
 /* 静的ページ（プライバシーポリシー・利用規約・お問い合わせ）共通 */
 .static-page {
-  --haby-blue: #117BBF;
-  --haby-mint: #6AACB0;
-  --text: #1e293b;
-  --muted: #64748b;
-  --line: #e2e8f0;
 
   min-height: calc(100vh - var(--bottom-nav-height, 0px));
   padding: 20px 16px 40px;
@@ -18,7 +13,7 @@
 
 /* ヒーローセクション（タイトル） */
 .static-page__hero {
-  background: linear-gradient(135deg, #57aee8 0%, #29adf9 100%);
+  background: linear-gradient(135deg, #117BBF 0%, #1a8fd4 100%);
   border-radius: 16px;
   padding: 28px 20px;
   margin-bottom: 20px;
@@ -41,14 +36,14 @@
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--haby-blue);
+  color: var(--brand);
   background: #ffffff;
 }
 
 /* コンテンツカード */
 .static-page__content {
   background: #ffffff;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -78,13 +73,13 @@
   display: block;
   width: 4px;
   height: 20px;
-  background: var(--haby-blue);
+  background: var(--brand);
   border-radius: 2px;
 }
 
 .static-page__text {
   font-size: 14px;
-  color: var(--muted);
+  color: var(--text-muted);
   line-height: 1.85;
   margin: 0 0 12px;
 }
@@ -103,7 +98,7 @@
 .static-page__list li {
   position: relative;
   font-size: 14px;
-  color: var(--muted);
+  color: var(--text-muted);
   line-height: 1.85;
   padding-left: 22px;
   margin-bottom: 10px;
@@ -120,7 +115,7 @@
   top: 8px;
   width: 6px;
   height: 6px;
-  background: var(--haby-blue);
+  background: var(--brand);
   border-radius: 50%;
 }
 
@@ -131,7 +126,7 @@
 
 /* リンク */
 .static-page__content a {
-  color: var(--haby-blue);
+  color: var(--brand);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
@@ -140,6 +135,30 @@
 .static-page__content a:hover {
   color: #0e6aa5;
   text-decoration: underline;
+}
+
+/* ヒーローサブタイトル */
+.static-page__hero-subtitle {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* ステップ番号バッジ */
+.static-page__step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--brand);
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* レスポンシブ */
@@ -171,4 +190,133 @@
   .static-page__list li {
     font-size: 13px;
   }
+}
+
+/* お問い合わせページタイトル */
+.contact-page__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brand);
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.contact-page__subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+/* お問い合わせフォーム */
+.contact-form {
+  max-width: 640px;
+}
+
+.contact-form__field {
+  margin-bottom: 18px;
+}
+
+.contact-form__label {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.contact-form__input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d0e3f3;
+  font-size: 14px;
+  outline: none;
+  background: #f8fcff;
+  min-height: 44px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.contact-form__input:focus {
+  border-color: #117bbf;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(17, 123, 191, 0.18);
+}
+
+.contact-form__input::placeholder {
+  color: #aab;
+  font-size: 13px;
+}
+
+.contact-form__textarea {
+  resize: vertical;
+  min-height: 160px;
+  line-height: 1.7;
+}
+
+.contact-form__errors {
+  padding: 14px 16px;
+  border: 1px solid #f5c2c0;
+  background: #fef2f2;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: #844;
+  line-height: 1.6;
+}
+
+.contact-form__errors ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.contact-form__actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.contact-form__submit {
+  display: inline-block;
+  min-width: 220px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  background: #117bbf;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(17, 123, 191, 0.3);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.2s ease,
+    opacity 0.15s ease;
+}
+
+.contact-form__submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(17, 123, 191, 0.35);
+  opacity: 0.95;
+}
+
+.contact-form__submit:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(17, 123, 191, 0.25);
+}
+
+.contact-form__honeypot {
+  display: none;
+}
+
+/* フィールドエラー時 */
+.contact-form .field_with_errors .contact-form__input {
+  border-color: #f5bcbc;
+  background: #fef2f2;
+}
+
+.contact-form .field_with_errors .contact-form__input:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.18);
 }

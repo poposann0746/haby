@@ -28,9 +28,12 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "登録する", class: "auth-button" %>
+        <%= f.submit "登録する", class: "auth-button", data: { loading_text: "登録中..." } %>
       </div>
     <% end %>
+
+    <%= render "devise/shared/sns_buttons" %>
+
     <div class="auth-links">
       <%= render "devise/shared/links" %>
     </div>

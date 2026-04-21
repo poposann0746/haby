@@ -26,9 +26,9 @@ class PagesController < ApplicationController
     all_habits = current_user.habits.select(:id, :schedule_days, :created_at).to_a
 
     @day_class = {}
+    scheduled_map = {}
 
     (from..to).each do |date|
-      # その日に実施すべき習慣を計算（曜日設定 + 作成日を考慮）
       scheduled_habits = all_habits.select do |habit|
         habit.created_at <= date.end_of_day && habit.scheduled_on?(date)
       end
@@ -37,10 +37,12 @@ class PagesController < ApplicationController
       completed_habit_ids = logs_in_month[date] || []
       taken = scheduled_habits.count { |h| completed_habit_ids.include?(h.id) }
 
+      scheduled_map[date] = total.positive?
+
       @day_class[date] =
-        if total == 0
-          "cal-day--none"
-        elsif taken == 0
+        if total.zero?
+          "cal-day--empty"
+        elsif taken.zero?
           "cal-day--none"
         elsif taken < total
           "cal-day--partial"
@@ -48,6 +50,27 @@ class PagesController < ApplicationController
           "cal-day--all"
         end
     end
+
+    @current_month_label = "#{base_date.year}年#{base_date.month}月"
+    @prev_month_path     = calendar_path(start_date: (from - 1.day).beginning_of_month.to_s)
+    @next_month_path     = calendar_path(start_date: (to + 1.day).to_s)
+
+    completed_days = @day_class.count { |_, cls| cls == "cal-day--all" }
+    scheduled_days = scheduled_map.values.count(true)
+
+    streak = 0
+    d = Date.current
+    while @day_class[d] == "cal-day--all"
+      streak += 1
+      d -= 1.day
+    end
+
+    @stats = {
+      completed_days: completed_days,
+      scheduled_days: scheduled_days,
+      streak: streak,
+      completion_rate: scheduled_days.zero? ? 0 : (completed_days.to_f / scheduled_days * 100).round
+    }
   end
 
 
@@ -106,12 +129,16 @@ class PagesController < ApplicationController
 
   # メールアドレス変更（現在のパスワードを要求）
   def edit_email
+    redirect_to account_path, alert: "Googleアカウントで連携中のため、メールアドレスは変更できません。" if current_user.provider.present?
   end
 
   def update_email
-    # Devise の update_with_password を利用（current_password が必要）
+    if current_user.provider.present?
+      redirect_to account_path, alert: "Googleアカウントで連携中のため、メールアドレスは変更できません。"
+      return
+    end
+
     if current_user.update_with_password(email_params)
-      # メールやパスワードを変えたら再ログイン状態を維持
       bypass_sign_in(current_user)
       redirect_to account_path, notice: "メールアドレスを変更しました。"
     else
@@ -121,9 +148,12 @@ class PagesController < ApplicationController
 
   # パスワード変更
   def edit_password
+    redirect_to account_path, alert: "SNSログインのためパスワード変更はできません。" if current_user.provider.present?
   end
 
   def update_password
+    return redirect_to account_path, alert: "SNSログインのためパスワード変更はできません。" if current_user.provider.present?
+
     if current_user.update_with_password(password_params)
       bypass_sign_in(current_user)
       redirect_to account_path, notice: "パスワードを変更しました。"
