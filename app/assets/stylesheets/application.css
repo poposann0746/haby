@@ -9,6 +9,7 @@
  *= require components/haby_calendar
  *= require components/bottom_nav
  *= require components/flash
+ *= require components/loading
  *= require pages/home
  *= require pages/devise
  *= require pages/account

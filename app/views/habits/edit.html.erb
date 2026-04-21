@@ -57,7 +57,7 @@
         </div>
 
         <div class="habit-form__actions">
-          <%= f.submit "更新する", class: "haby-btn haby-btn--primary" %>
+          <%= f.submit "更新する", class: "haby-btn haby-btn--primary", data: { loading_text: "更新中..." } %>
           <%= link_to "戻る", habits_path, class: "habit-form__back" %>
         </div>
       <% end %>

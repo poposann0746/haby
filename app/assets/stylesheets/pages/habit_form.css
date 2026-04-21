@@ -2,22 +2,13 @@
 
 /* 画面全体 */
 .habit-form-page {
-  --haby-blue: #117BBF;
-  --haby-mint: #6AACB0;
-  --text: #0f172a;
-  --muted: #64748b;
-  --line: #e6eef5;
-  --bg: #f6fbff;
-  --card: #ffffff;
-  --danger: #c43535;
-
   min-height: calc(100vh - var(--bottom-nav-height, 0px));
-  padding: 18px 14px 28px;
-  background: #fff;
+  padding: var(--page-padding);
+  background: var(--bg);
 }
 
 .habit-form-container {
-  max-width: 720px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   display: grid;
   gap: 14px;
@@ -31,33 +22,33 @@
     rgba(106, 172, 176, 0.14)
   );
   border: 1px solid rgba(17, 123, 191, 0.18);
-  border-radius: 18px;
+  border-radius: var(--card-radius);
   padding: 14px 14px 12px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow);
 }
 
 .habit-form-hero__title {
   margin: 0;
-  font-size: 18px;
-  font-weight: 900;
+  font-size: var(--page-title-size);
+  font-weight: 800;
   color: var(--text);
 }
 
 .habit-form-hero__subtitle {
   margin: 6px 0 0;
   font-size: 13px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 /* フォームカード */
 .habit-form-card {
   position: relative;
   overflow: hidden;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
   padding: 14px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow);
 }
 
 /* フォーム */
@@ -74,7 +65,7 @@
 
 .habit-form__label {
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
   color: var(--text);
   letter-spacing: 0.2px;
 }
@@ -82,18 +73,18 @@
 .habit-form__hint {
   margin: 0;
   font-size: 12px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 
 /* 入力 */
 .habit-form input[type="text"],
 .habit-form textarea {
   width: 100%;
-  padding: 12px 12px;
-  border-radius: 14px;
-  border: 1px solid #d9e6f2;
+  padding: 10px 12px;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--input-border);
   outline: none;
-  background: #fff;
+  background: var(--input-bg);
   color: var(--text);
   transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
@@ -105,8 +96,9 @@
 
 .habit-form input[type="text"]:focus,
 .habit-form textarea:focus {
-  border-color: rgba(17, 123, 191, 0.55);
-  box-shadow: 0 0 0 4px rgba(17, 123, 191, 0.12);
+  border-color: var(--input-focus-border);
+  background: #fff;
+  box-shadow: var(--input-focus-shadow);
 }
 
 /* エラー表示 */
@@ -145,48 +137,16 @@
   margin-top: 4px;
 }
 
-/* habyボタン */
-.habit-form-page .haby-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  font-weight: 900;
-  font-size: 13px;
-  text-decoration: none;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-.habit-form-page .haby-btn--primary {
-  color: #fff;
-  background: var(--haby-blue);
-  box-shadow: 0 10px 20px rgba(17, 123, 191, 0.22);
-}
-
-.habit-form-page .haby-btn--ghost {
-  color: var(--text);
-  background: #fff;
-  border-color: #d9e6f2;
-}
-
-.habit-form-page .haby-btn--danger {
-  color: #fff;
-  background: var(--danger);
-  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.18);
-}
 
 /* 補助リンク */
 .habit-form__back {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--text-muted);
   text-decoration: none;
 }
 
 .habit-form__back:hover {
-  color: var(--haby-blue);
+  color: var(--brand);
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
@@ -204,7 +164,7 @@
   border: 1px solid #d9e6f2;
   border-radius: 20px;
   background: #fff;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -212,8 +172,8 @@
 }
 
 .schedule-preset-btn:hover {
-  border-color: var(--haby-blue);
-  color: var(--haby-blue);
+  border-color: var(--brand);
+  color: var(--brand);
   background: rgba(17, 123, 191, 0.05);
 }
 
@@ -244,21 +204,21 @@
   border-radius: 50%;
   border: 2px solid #d9e6f2;
   background: #fff;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 13px;
   font-weight: 700;
   transition: all 0.15s ease;
 }
 
 .schedule-day-toggle:hover .schedule-day-toggle__label {
-  border-color: var(--haby-blue);
-  color: var(--haby-blue);
+  border-color: var(--brand);
+  color: var(--brand);
 }
 
 .schedule-day-toggle.is-selected .schedule-day-toggle__label,
 .schedule-day-toggle input[type="checkbox"]:checked + .schedule-day-toggle__label {
-  border-color: var(--haby-blue);
-  background: var(--haby-blue);
+  border-color: var(--brand);
+  background: var(--brand);
   color: #fff;
   box-shadow: 0 4px 12px rgba(17, 123, 191, 0.25);
 }
@@ -284,6 +244,57 @@
   background: #ef4444;
   color: #fff;
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .habit-form-page {
+    padding: 14px 10px 24px;
+  }
+
+  .habit-form-hero {
+    padding: 12px 12px 10px;
+    border-radius: var(--radius-md);
+  }
+
+  .habit-form-hero__title {
+    font-size: 16px;
+  }
+
+  .habit-form-card {
+    padding: 12px;
+    border-radius: var(--radius-md);
+  }
+
+  .schedule-days-presets {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .schedule-preset-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .schedule-day-toggle__label {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .schedule-days-buttons {
+    gap: 4px;
+  }
+
+  .habit-form__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .habit-form__actions .haby-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 

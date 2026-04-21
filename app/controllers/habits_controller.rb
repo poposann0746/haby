@@ -17,8 +17,7 @@ class HabitsController < ApplicationController
     if @habit.save
       redirect_to habits_path, notice: "習慣を追加しました"
     else
-      prepare_index
-      render :index, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -51,9 +50,5 @@ class HabitsController < ApplicationController
 
   def habit_params
     params.require(:habit).permit(:name, :detail, schedule_days: [])
-  end
-
-  def prepare_index
-    @habits = current_user.habits.order(created_at: :desc)
   end
 end

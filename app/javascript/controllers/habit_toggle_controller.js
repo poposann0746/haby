@@ -151,18 +151,18 @@ export default class extends Controller {
     if (!page) return
 
     // アニメーション後に移動
-    setTimeout(() => {
+    setTimeout(async () => {
       if (isNowCompleted) {
-        this.moveToCompletedSection(item)
+        await this.moveToCompletedSection(item)
       } else {
-        this.moveToIncompleteSection(item)
+        await this.moveToIncompleteSection(item)
       }
       this.updateSectionCounts()
       this.updateCompleteMessage()
     }, 300)
   }
 
-  moveToCompletedSection(item) {
+  async moveToCompletedSection(item) {
     let completedSection = document.querySelector(".todays-habits-section--completed")
 
     // 完了セクションがなければ作成
@@ -186,20 +186,20 @@ export default class extends Controller {
     item.style.opacity = "0"
     item.style.transform = "translateX(20px)"
 
-    setTimeout(() => {
-      list.appendChild(item)
-      requestAnimationFrame(() => {
-        item.style.transition = "opacity 0.3s ease, transform 0.3s ease"
-        item.style.opacity = "1"
-        item.style.transform = "translateX(0)"
-      })
-    }, 150)
+    await new Promise((resolve) => setTimeout(resolve, 150))
+
+    list.appendChild(item)
+    requestAnimationFrame(() => {
+      item.style.transition = "opacity 0.3s ease, transform 0.3s ease"
+      item.style.opacity = "1"
+      item.style.transform = "translateX(0)"
+    })
 
     // 未完了セクションが空になったら非表示
     this.hideEmptyIncompleteSection()
   }
 
-  moveToIncompleteSection(item) {
+  async moveToIncompleteSection(item) {
     let incompleteSection = document.querySelector(".todays-habits-section:not(.todays-habits-section--completed)")
 
     // 未完了セクションがなければ作成
@@ -223,14 +223,14 @@ export default class extends Controller {
     item.style.opacity = "0"
     item.style.transform = "translateX(-20px)"
 
-    setTimeout(() => {
-      list.appendChild(item)
-      requestAnimationFrame(() => {
-        item.style.transition = "opacity 0.3s ease, transform 0.3s ease"
-        item.style.opacity = "1"
-        item.style.transform = "translateX(0)"
-      })
-    }, 150)
+    await new Promise((resolve) => setTimeout(resolve, 150))
+
+    list.appendChild(item)
+    requestAnimationFrame(() => {
+      item.style.transition = "opacity 0.3s ease, transform 0.3s ease"
+      item.style.opacity = "1"
+      item.style.transform = "translateX(0)"
+    })
 
     // 完了セクションが空になったら非表示
     this.hideEmptyCompletedSection()
