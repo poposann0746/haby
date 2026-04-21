@@ -5,13 +5,6 @@ class HabitsController < ApplicationController
 
   def index
     @habits = current_user.habits.order(created_at: :asc)
-
-    # もし habits/index で「今日の実施/未実施」も表示するなら（エラー文に出てるので）
-    today_logs =
-      current_user.habit_logs
-        .where(log_date: Date.current.beginning_of_day..Date.current.end_of_day)
-
-    @today_logs_by_habit_id = today_logs.index_by(&:habit_id)
   end
 
   def new
@@ -24,8 +17,7 @@ class HabitsController < ApplicationController
     if @habit.save
       redirect_to habits_path, notice: "習慣を追加しました"
     else
-      prepare_index
-      render :index, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -57,14 +49,6 @@ class HabitsController < ApplicationController
   end
 
   def habit_params
-    params.require(:habit).permit(:name, :detail)
-  end
-
-  def prepare_index
-    @habits = current_user.habits.order(created_at: :desc)
-
-    today = Date.current
-    logs = HabitLog.where(user_id: current_user.id, log_date: today, habit_id: @habits.pluck(:id))
-    @today_logs_by_habit_id = logs.index_by(&:habit_id)
+    params.require(:habit).permit(:name, :detail, schedule_days: [])
   end
 end

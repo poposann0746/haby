@@ -8,16 +8,24 @@
     のアカウント設定
   </p>
 
+  <% if current_user.provider.present? %>
+    <p class="account-page__sns-info">
+      Googleアカウントで連携中
+    </p>
+  <% end %>
+
   <ul class="account-menu">
     <li class="account-menu__item">
       <%= link_to "名前を変更", edit_account_name_path, class: "account-menu__link" %>
     </li>
-    <li class="account-menu__item">
-      <%= link_to "メールアドレスを変更", edit_account_email_path, class: "account-menu__link" %>
-    </li>
-    <li class="account-menu__item">
-      <%= link_to "パスワードを変更", edit_account_password_path, class: "account-menu__link" %>
-    </li>
+    <% unless current_user.provider.present? %>
+      <li class="account-menu__item">
+        <%= link_to "メールアドレスを変更", edit_account_email_path, class: "account-menu__link" %>
+      </li>
+      <li class="account-menu__item">
+        <%= link_to "パスワードを変更", edit_account_password_path, class: "account-menu__link" %>
+      </li>
+    <% end %>
     <li class="account-menu__item account-menu__item--danger">
       <%= button_to "ログアウト",
                     destroy_user_session_path,

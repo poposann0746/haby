@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [
-    :calendar, :habits, :manage,
+    :calendar, :habits, :manage, :todays_habits,
     :account,
     :edit_name, :update_name,
     :edit_email, :update_email,
@@ -13,30 +13,36 @@ class PagesController < ApplicationController
     from = base_date.beginning_of_month
     to   = base_date.end_of_month
 
-    # その月の taken を「日付ごと」に DB で集計（habit_id の重複も排除）
-    taken_counts =
-      current_user.habit_logs
-        .where(log_date: from..to)
-        .where(is_taken: true)
-        .group("DATE(log_date)")
-        .distinct
-        .count(:habit_id)
-    # => { "2025-12-21" => 2, ... } みたいなHash（DBによりDateキーになる場合も）
+    # その月のログを一括取得
+    logs_in_month = current_user.habit_logs
+      .where(log_date: from..to)
+      .where(is_taken: true)
+      .pluck(:habit_id, :log_date)
+      .group_by { |_, date| date }
+      .transform_values { |records| records.map(&:first).uniq }
+    # => { Date => [habit_id, habit_id, ...], ... }
+
+    # 全習慣を取得（曜日設定と作成日を含む）
+    all_habits = current_user.habits.select(:id, :schedule_days, :created_at).to_a
 
     @day_class = {}
+    scheduled_map = {}
 
     (from..to).each do |date|
-      total =
-        current_user.habits
-          .where("created_at <= ?", date.end_of_day)
-          .count
+      scheduled_habits = all_habits.select do |habit|
+        habit.created_at <= date.end_of_day && habit.scheduled_on?(date)
+      end
 
-      taken = taken_counts[date] || taken_counts[date.to_s] || 0
+      total = scheduled_habits.size
+      completed_habit_ids = logs_in_month[date] || []
+      taken = scheduled_habits.count { |h| completed_habit_ids.include?(h.id) }
+
+      scheduled_map[date] = total.positive?
 
       @day_class[date] =
-        if total == 0
-          "cal-day--none"
-        elsif taken == 0
+        if total.zero?
+          "cal-day--empty"
+        elsif taken.zero?
           "cal-day--none"
         elsif taken < total
           "cal-day--partial"
@@ -44,6 +50,27 @@ class PagesController < ApplicationController
           "cal-day--all"
         end
     end
+
+    @current_month_label = "#{base_date.year}年#{base_date.month}月"
+    @prev_month_path     = calendar_path(start_date: (from - 1.day).beginning_of_month.to_s)
+    @next_month_path     = calendar_path(start_date: (to + 1.day).to_s)
+
+    completed_days = @day_class.count { |_, cls| cls == "cal-day--all" }
+    scheduled_days = scheduled_map.values.count(true)
+
+    streak = 0
+    d = Date.current
+    while @day_class[d] == "cal-day--all"
+      streak += 1
+      d -= 1.day
+    end
+
+    @stats = {
+      completed_days: completed_days,
+      scheduled_days: scheduled_days,
+      streak: streak,
+      completion_rate: scheduled_days.zero? ? 0 : (completed_days.to_f / scheduled_days * 100).round
+    }
   end
 
 
@@ -53,10 +80,35 @@ class PagesController < ApplicationController
 
   def manage; end
 
-  def auth
-    if user_signed_in?
-      redirect_to habits_path, notice: "すでにログインしています"
+  # 今日の習慣
+  def todays_habits
+    today = Date.current
+
+    # 今日実施すべき習慣を取得
+    habits = current_user.habits
+      .scheduled_for(today)
+      .active_on(today)
+      .order(created_at: :asc)
+
+    # 今日のログを一括取得（N+1対策）
+    today_logs = current_user.habit_logs
+      .where(habit: habits, log_date: today)
+      .index_by(&:habit_id)
+
+    # 完了/未完了に分類
+    @incomplete_habits = []
+    @completed_habits = []
+
+    habits.each do |habit|
+      log = today_logs[habit.id]
+      if log&.is_taken?
+        @completed_habits << { habit: habit, log: log }
+      else
+        @incomplete_habits << { habit: habit, log: log }
+      end
     end
+
+    @today = today
   end
 
   # マイページ
@@ -77,12 +129,16 @@ class PagesController < ApplicationController
 
   # メールアドレス変更（現在のパスワードを要求）
   def edit_email
+    redirect_to account_path, alert: "Googleアカウントで連携中のため、メールアドレスは変更できません。" if current_user.provider.present?
   end
 
   def update_email
-    # Devise の update_with_password を利用（current_password が必要）
+    if current_user.provider.present?
+      redirect_to account_path, alert: "Googleアカウントで連携中のため、メールアドレスは変更できません。"
+      return
+    end
+
     if current_user.update_with_password(email_params)
-      # メールやパスワードを変えたら再ログイン状態を維持
       bypass_sign_in(current_user)
       redirect_to account_path, notice: "メールアドレスを変更しました。"
     else
@@ -92,9 +148,12 @@ class PagesController < ApplicationController
 
   # パスワード変更
   def edit_password
+    redirect_to account_path, alert: "SNSログインのためパスワード変更はできません。" if current_user.provider.present?
   end
 
   def update_password
+    return redirect_to account_path, alert: "SNSログインのためパスワード変更はできません。" if current_user.provider.present?
+
     if current_user.update_with_password(password_params)
       bypass_sign_in(current_user)
       redirect_to account_path, notice: "パスワードを変更しました。"
