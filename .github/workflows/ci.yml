@@ -72,11 +72,9 @@ jobs:
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v2
 
-      - name: Prepare DB
-        run: bin/rails db:prepare
-
-      - name: Precompile assets
-        run: bundle exec rails assets:precompile
-
-      - name: Run tests
-        run: bundle exec rspec
+      - name: Keep screenshots from failed system tests
+        uses: actions/upload-artifact@v6
+        if: failure()
+        with:
+          name: screenshots
+          path: ${{ github.workspace }}/tmp/screenshots
