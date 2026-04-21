@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get "contacts/new"
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
   resources :habits, only: %i[new create index show edit update destroy]
   resources :habits do
     resource :today_log, only: [ :update ], controller: "habit_logs"
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
 
   get "privacy",  to: "static_pages#privacy"
   get "terms",    to: "static_pages#terms"
+  get "guide",    to: "static_pages#guide"
   get "contact", to: "contacts#new"
   post "contact", to: "contacts#create"
 

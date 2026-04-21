@@ -2,8 +2,61 @@ ja:
   activerecord:
     models:
       contact: "お問い合わせ"
+      user: "ユーザー"
+      habit: "習慣"
+      habit_log: "服用ログ"
     attributes:
       contact:
         name: "お名前"
         email: "メールアドレス"
         message: "お問い合わせ内容"
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        current_password: "現在のパスワード"
+      habit:
+        name: "習慣名"
+        detail: "メモ"
+        current_streak: "現在の連続日数"
+        longest_streak: "最長連続日数"
+        schedule_days: "実施曜日"
+      habit_log:
+        log_date: "記録日"
+        is_taken: "服用状況"
+        logged_at: "記録日時"
+  devise:
+    passwords:
+      no_token: "リセットトークンがありません。パスワードリセットメールのリンクからアクセスしてください。"
+      send_instructions: "パスワードリセットの手順をメールで送信しました。"
+      send_paranoid_instructions: "メールアドレスが登録されている場合、パスワードリセットの手順をメールで送信しました。"
+      updated: "パスワードが変更されました。ログインしました。"
+      updated_not_active: "パスワードが変更されました。"
+    failure:
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+      unauthenticated: "ログインしてください。"
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+      already_signed_out: "既にログアウトしています。"
+    registrations:
+      signed_up: "登録が完了しました。"
+      destroyed: "アカウントが削除されました。"
+      updated: "アカウント情報を更新しました。"
+    omniauth_callbacks:
+      success: "%{kind}アカウントでログインしました。"
+      failure: "%{kind}アカウントでの認証に失敗しました。(%{reason})"
+    mailer:
+      reset_password_instructions:
+        subject: "パスワードリセットのご案内"
+  errors:
+    messages:
+      expired: "の有効期限が切れています。新しくリクエストしてください。"
+      not_found: "は見つかりませんでした。"
+      already_confirmed: "は既に確認済みです。ログインしてください。"
+      not_locked: "はロックされていません。"
+      not_saved:
+        one: "1件のエラーが発生したため、保存できませんでした："
+        other: "%{count}件のエラーが発生したため、保存できませんでした："

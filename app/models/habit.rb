@@ -16,7 +16,9 @@ class Habit < ApplicationRecord
     4 => "木", 5 => "金", 6 => "土"
   }.freeze
 
-  validates :name, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 100 }, no_html_tags: true,
+                   uniqueness: { scope: :user_id, message: "は既に登録されています" }
+  validates :detail, length: { maximum: 5000 }, no_html_tags: true
   validates :current_streak, :longest_streak, numericality: { greater_than_or_equal_to: 0 }
 
   scope :active_on, ->(date) {
