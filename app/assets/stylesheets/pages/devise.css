@@ -2,36 +2,34 @@
 
 .devise-main {
   padding: 20px;
-  max-width: 480px;
-  margin: 0 auto;
 }
 
+/* 外側：中央寄せ */
 .auth-wrapper {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 20px;
+  padding: 32px 16px;
   width: 100%;
   box-sizing: border-box;
 }
 
+/* カード */
 .auth-card {
-  width: 100%;
-  max-width: 800px;
-  background: #fff;
-  padding: 32px 24px;
-  border-radius: 16px;
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(17, 123, 191, 0.08);
+  width: min(92vw, 520px);
+  background: var(--card-bg);
+  padding: 28px 20px;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
 }
 
+/* タイトル */
 .auth-title {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: var(--page-title-size);
+  font-weight: var(--page-title-weight);
   text-align: center;
-  margin-bottom: 24px;
-  color: #117BBF;
+  margin-bottom: 20px;
+  color: var(--page-title-color);
 }
 
 /* フォームのパーツ */
@@ -51,26 +49,29 @@
 .auth-card input[type="text"] {
   width: 100%;
   padding: 10px 12px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #d0d7de;
+  font-size: 16px;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
   box-sizing: border-box;
 }
 
 .auth-card input:focus {
   outline: none;
-  border-color: #117BBF;
-  box-shadow: 0 0 0 2px rgba(17, 123, 191, 0.15);
+  border-color: var(--input-focus-border);
+  background: #fff;
+  box-shadow: var(--input-focus-shadow);
 }
 
+/* ボタン */
 .auth-button {
   width: 100%;
   border: none;
-  padding: 10px 12px;
-  border-radius: 999px;
+  padding: 12px 12px;
+  border-radius: var(--btn-radius);
   font-size: 15px;
   font-weight: 600;
-  background: #117BBF;
+  background: var(--brand);
   color: #fff;
   cursor: pointer;
 }
@@ -83,29 +84,55 @@
   margin-top: 16px;
 }
 
+/* links */
 .auth-card a {
-  color: #117BBF;
+  color: var(--brand);
   font-size: 13px;
 }
 
-/* メモの小さい文字（パスワードの説明など） */
+/* メモの小さい文字 */
 .field-note {
   font-size: 12px;
   color: #6b7280;
   margin: 4px 0 6px;
 }
 
-/* remember_me の横並び */
+/* remember_me */
 .field-remember {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-/* Devise のリンク（パスワード忘れ・新規登録への導線など） */
 .auth-links {
-  margin-top: 16px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
   text-align: center;
+}
+
+.auth-links__text {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.auth-links__signup {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-weak);
+  border: 1px solid rgba(17, 123, 191, 0.2);
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.auth-links__signup:hover {
+  background: #e0f0fa;
+  border-color: rgba(17, 123, 191, 0.3);
 }
 
 .auth-links a {
@@ -113,16 +140,11 @@
   margin: 4px 0;
 }
 
-.user-name {
-  font-size: 24px;
-  color: #676464
-}
-
-/* エラーメッセージのスタイル（devise/shared/error_messages） */
+/* エラーメッセージ */
 .error_explanation {
   margin-bottom: 16px;
   padding: 12px 14px;
-  border-radius: 10px;
+  border-radius: var(--input-radius);
   background: #fef2f2;
   border: 1px solid #fecaca;
 }
@@ -142,4 +164,75 @@
 .error_explanation li {
   font-size: 13px;
   color: #b91c1c;
+}
+
+/* SNSログイン セパレーター */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0 20px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.auth-divider__text {
+  padding: 0 12px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* SNSボタン */
+.auth-sns-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-sns-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--btn-radius);
+  border: 1px solid var(--input-border);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.auth-sns-button--google {
+  background: #fff;
+  color: #3c4043;
+}
+
+.auth-sns-button--google:hover {
+  background: #f8f9fa;
+}
+
+.auth-sns-icon {
+  flex-shrink: 0;
+}
+
+/* スマホ微調整 */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: 24px 12px;
+  }
+
+  .auth-card {
+    padding: 24px 16px;
+  }
+
+  .auth-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
 }

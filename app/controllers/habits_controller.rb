@@ -1,9 +1,10 @@
 class HabitsController < ApplicationController
+  require "ostruct"
   before_action :authenticate_user!
   before_action :set_habit, only: %i[show edit update destroy]
 
   def index
-    @habits = current_user.habits.order(created_at: :desc)
+    @habits = current_user.habits.order(created_at: :asc)
   end
 
   def new
@@ -14,11 +15,9 @@ class HabitsController < ApplicationController
     @habit = current_user.habits.build(habit_params)
 
     if @habit.save
-      redirect_to habits_path, notice: "習慣を登録しました！"
+      redirect_to habits_path, notice: "習慣を追加しました"
     else
-      @habits = current_user.habits.order(created_at: :desc)
-      flash.now[:alert] = "入力内容を確認してください"
-      render :index, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -50,6 +49,6 @@ class HabitsController < ApplicationController
   end
 
   def habit_params
-    params.require(:habit).permit(:name, :detail)
+    params.require(:habit).permit(:name, :detail, schedule_days: [])
   end
 end

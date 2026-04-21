@@ -24,10 +24,14 @@ gem "jbuilder"
 gem "rails-i18n", "~> 7.0"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
+gem "simple_calendar"
+
 gem "devise"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 gem "devise-i18n"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
@@ -49,6 +53,11 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-byebug"
   gem "annotate"
+
+  # RSpec testing framework
+  gem "rspec-rails", "~> 7.1"
+  gem "factory_bot_rails"
+  gem "shoulda-matchers", "~> 6.0"
 end
 
 group :development do
@@ -56,6 +65,7 @@ group :development do
   gem "web-console"
   gem "better_errors"
   gem "binding_of_caller"
+  gem "letter_opener_web"
 end
 
 group :test do

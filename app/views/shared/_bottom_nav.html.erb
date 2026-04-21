@@ -1,6 +1,6 @@
 <!-- app/views/shared/_bottom_nav.html.erb -->
 <nav class="bottom-nav">
-  <%= link_to home_index_path,
+  <%= link_to todays_habits_path,
               class: "bottom-nav__item #{'bottom-nav__item--active' if current_page?(home_index_path)}" do %>
     <div class="bottom-nav__icon-wrapper">
       <%= image_tag "icons/checkbox.png", class: "bottom-nav__icon", alt: "" %>

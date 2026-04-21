@@ -1,0 +1,11 @@
+新しいお問い合わせが届きました。
+
+名前: <%= @contact.name.presence || "（未入力）" %>
+メール: <%= @contact.email %>
+
+本文:
+<%= @contact.message %>
+
+管理用:
+Contact ID: <%= @contact.id %>
+送信日時: <%= @contact.created_at %>

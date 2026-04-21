@@ -15,30 +15,43 @@
     <%= favicon_link_tag 'favicon.ico' %>
     <%= favicon_link_tag 'favicon_180.png', rel: 'apple-touch-icon', type: 'image/png' %>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
+  <body data-controller="loading">
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" data-loading-target="overlay">
+    <div class="loading-dots">
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+    </div>
+    <span class="loading-text">読み込み中...</span>
+  </div>
 
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+  <!-- Progress Bar -->
+  <div class="loading-progress" data-loading-target="progress">
+    <div class="loading-progress__bar" data-loading-target="progressBar"></div>
+  </div>
 
   <div class="app">
     <%= render "shared/header" %>
 
     <main class="app-main">
-    <%= yield %>
+      <div class="app-container">
+        <%= render "shared/flash" %>
+        <%= yield %>
+      </div>
     </main>
 
     <%= render "shared/footer" %>
   </div>
 
   <%= render "shared/bottom_nav" %>
-
-  </body>
+</body>
 </html>

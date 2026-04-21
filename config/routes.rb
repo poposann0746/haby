@@ -1,16 +1,26 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get "contacts/new"
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
   resources :habits, only: %i[new create index show edit update destroy]
+  resources :habits do
+    resource :today_log, only: [ :update ], controller: "habit_logs"
+  end
+  resources :habit_logs, only: %i[index]
 
   root "home#index"
   get "home/index"
 
   get "privacy",  to: "static_pages#privacy"
   get "terms",    to: "static_pages#terms"
-  get "contact",  to: "static_pages#contact"
+  get "guide",    to: "static_pages#guide"
+  get "contact", to: "contacts#new"
+  post "contact", to: "contacts#create"
 
   get "calendar", to: "pages#calendar"
   get "manage", to: "pages#manage"
+  get "todays_habits", to: "pages#todays_habits"
 
   # マイページ
   get "account", to: "pages#account", as: :account
@@ -42,4 +52,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

@@ -1,2 +1,52 @@
-<h1>Pages#calendar</h1>
-<p>Find me in app/views/pages/calendar.html.erb</p>
+<div class="haby-cal-page">
+  <section class="haby-cal-hero">
+    <div class="haby-cal-hero__head">
+      <div class="haby-cal-hero__title-block">
+        <h1 class="haby-cal-hero__title"><%= @current_month_label %></h1>
+        <p class="haby-cal-hero__subtitle">今月の記録</p>
+      </div>
+
+      <nav class="haby-cal-hero__nav" aria-label="月の移動">
+        <%= link_to @prev_month_path, class: "haby-cal-hero__nav-btn", aria: { label: "前の月" } do %>
+          <span aria-hidden="true">‹</span>
+        <% end %>
+        <%= link_to "今日", calendar_path, class: "haby-cal-hero__nav-btn haby-cal-hero__nav-btn--today" %>
+        <%= link_to @next_month_path, class: "haby-cal-hero__nav-btn", aria: { label: "次の月" } do %>
+          <span aria-hidden="true">›</span>
+        <% end %>
+      </nav>
+    </div>
+
+    <dl class="haby-cal-hero__stats" aria-label="今月の達成状況">
+      <div class="haby-cal-hero__stat">
+        <dt>達成</dt>
+        <dd><%= @stats[:completed_days] %><span>日</span></dd>
+      </div>
+      <div class="haby-cal-hero__stat">
+        <dt>連続</dt>
+        <dd><%= @stats[:streak] %><span>日</span></dd>
+      </div>
+      <div class="haby-cal-hero__stat">
+        <dt>達成率</dt>
+        <dd><%= @stats[:completion_rate] %><span>%</span></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="haby-cal-card" aria-label="カレンダー">
+    <%= month_calendar do |_date| %>
+    <% end %>
+  </section>
+
+  <footer class="haby-cal-legend" aria-label="達成状況の凡例">
+    <span class="haby-cal-legend__item">
+      <span class="haby-cal-legend__dot haby-cal-legend__dot--all" aria-hidden="true"></span>全達成
+    </span>
+    <span class="haby-cal-legend__item">
+      <span class="haby-cal-legend__dot haby-cal-legend__dot--partial" aria-hidden="true"></span>一部達成
+    </span>
+    <span class="haby-cal-legend__item">
+      <span class="haby-cal-legend__dot haby-cal-legend__dot--none" aria-hidden="true"></span>未達
+    </span>
+  </footer>
+</div>
