@@ -57,7 +57,7 @@ group :development, :test do
   # RSpec testing framework
   gem "rspec-rails", "~> 7.1"
   gem "factory_bot_rails"
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 7.0"
 end
 
 group :development do
