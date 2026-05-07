@@ -1,0 +1,192 @@
+class PagesController < ApplicationController
+  before_action :authenticate_user!, only: [
+    :calendar, :habits, :manage, :todays_habits,
+    :account,
+    :edit_name, :update_name,
+    :edit_email, :update_email,
+    :edit_password, :update_password,
+    :confirm_delete_account, :destroy_account
+  ]
+
+  def calendar
+    base_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.current
+    from = base_date.beginning_of_month
+    to   = base_date.end_of_month
+
+    # その月のログを一括取得
+    logs_in_month = current_user.habit_logs
+      .where(log_date: from..to)
+      .where(is_taken: true)
+      .pluck(:habit_id, :log_date)
+      .group_by { |_, date| date }
+      .transform_values { |records| records.map(&:first).uniq }
+    # => { Date => [habit_id, habit_id, ...], ... }
+
+    # 全習慣を取得（曜日設定と作成日を含む）
+    all_habits = current_user.habits.select(:id, :schedule_days, :created_at).to_a
+
+    @day_class = {}
+    scheduled_map = {}
+
+    (from..to).each do |date|
+      scheduled_habits = all_habits.select do |habit|
+        habit.created_at <= date.end_of_day && habit.scheduled_on?(date)
+      end
+
+      total = scheduled_habits.size
+      completed_habit_ids = logs_in_month[date] || []
+      taken = scheduled_habits.count { |h| completed_habit_ids.include?(h.id) }
+
+      scheduled_map[date] = total.positive?
+
+      @day_class[date] =
+        if total.zero?
+          "cal-day--empty"
+        elsif taken.zero?
+          "cal-day--none"
+        elsif taken < total
+          "cal-day--partial"
+        else
+          "cal-day--all"
+        end
+    end
+
+    @current_month_label = "#{base_date.year}年#{base_date.month}月"
+    @prev_month_path     = calendar_path(start_date: (from - 1.day).beginning_of_month.to_s)
+    @next_month_path     = calendar_path(start_date: (to + 1.day).to_s)
+
+    completed_days = @day_class.count { |_, cls| cls == "cal-day--all" }
+    scheduled_days = scheduled_map.values.count(true)
+
+    streak = 0
+    d = Date.current
+    while @day_class[d] == "cal-day--all"
+      streak += 1
+      d -= 1.day
+    end
+
+    @stats = {
+      completed_days: completed_days,
+      scheduled_days: scheduled_days,
+      streak: streak,
+      completion_rate: scheduled_days.zero? ? 0 : (completed_days.to_f / scheduled_days * 100).round
+    }
+  end
+
+
+
+
+
+
+  def manage; end
+
+  # 今日の習慣
+  def todays_habits
+    today = Date.current
+
+    # 今日実施すべき習慣を取得
+    habits = current_user.habits
+      .scheduled_for(today)
+      .active_on(today)
+      .order(created_at: :asc)
+
+    # 今日のログを一括取得（N+1対策）
+    today_logs = current_user.habit_logs
+      .where(habit: habits, log_date: today)
+      .index_by(&:habit_id)
+
+    # 完了/未完了に分類
+    @incomplete_habits = []
+    @completed_habits = []
+
+    habits.each do |habit|
+      log = today_logs[habit.id]
+      if log&.is_taken?
+        @completed_habits << { habit: habit, log: log }
+      else
+        @incomplete_habits << { habit: habit, log: log }
+      end
+    end
+
+    @today = today
+  end
+
+  # マイページ
+  def account
+  end
+
+  # 名前変更
+  def edit_name
+  end
+
+  def update_name
+    if current_user.update(name_params)
+      redirect_to account_path, notice: "名前を変更しました。"
+    else
+      render :edit_name, status: :unprocessable_entity
+    end
+  end
+
+  # メールアドレス変更（現在のパスワードを要求）
+  def edit_email
+    redirect_to account_path, alert: "Googleアカウントで連携中のため、メールアドレスは変更できません。" if current_user.provider.present?
+  end
+
+  def update_email
+    if current_user.provider.present?
+      redirect_to account_path, alert: "Googleアカウントで連携中のため、メールアドレスは変更できません。"
+      return
+    end
+
+    if current_user.update_with_password(email_params)
+      bypass_sign_in(current_user)
+      redirect_to account_path, notice: "メールアドレスを変更しました。"
+    else
+      render :edit_email, status: :unprocessable_entity
+    end
+  end
+
+  # パスワード変更
+  def edit_password
+    redirect_to account_path, alert: "SNSログインのためパスワード変更はできません。" if current_user.provider.present?
+  end
+
+  def update_password
+    return redirect_to account_path, alert: "SNSログインのためパスワード変更はできません。" if current_user.provider.present?
+
+    if current_user.update_with_password(password_params)
+      bypass_sign_in(current_user)
+      redirect_to account_path, notice: "パスワードを変更しました。"
+    else
+      render :edit_password, status: :unprocessable_entity
+    end
+  end
+
+  # アカウント削除確認
+  def confirm_delete_account
+  end
+
+  # 本当に削除
+  def destroy_account
+    user = current_user
+    sign_out user
+    user.destroy!
+    redirect_to root_path, notice: "アカウントを削除しました。ご利用ありがとうございました。"
+  end
+
+  private
+
+  def name_params
+    params.require(:user).permit(:name)
+  end
+
+  def email_params
+    # email + current_password だけを受け取る
+    params.require(:user).permit(:email, :current_password)
+  end
+
+  def password_params
+    # current_password + 新しいパスワード + 確認
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
+  end
+end

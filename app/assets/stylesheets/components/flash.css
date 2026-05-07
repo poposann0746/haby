@@ -1,0 +1,71 @@
+/* flash */
+.flash {
+  max-width: 640px;
+  margin: 12px auto;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.flash__message {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* success: 緑 */
+.flash--success {
+  background: #eaf7ef;
+  border-color: #bfe6cc;
+  color: #1f6b3a;
+}
+
+/* danger: 赤 */
+.flash--danger {
+  background: #fdecec;
+  border-color: #f5bcbc;
+  color: #9b1c1c;
+}
+
+/* info */
+.flash--info {
+  background: #eef5ff;
+  border-color: #c4dcff;
+  color: #124a9a;
+}
+
+/* form errors block */
+.form-errors {
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin: 12px 0 16px;
+  background: #fdecec;
+  border: 1px solid #f5bcbc;
+  color: #9b1c1c;
+}
+
+.form-errors__title {
+  margin: 0 0 8px;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.form-errors__list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.form-errors__item {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* rails default wrapper */
+.field_with_errors .habit-form__input,
+.field_with_errors input,
+.field_with_errors textarea,
+.field_with_errors select {
+  border-color: #f5bcbc !important;
+  background: #fff7f7;
+}

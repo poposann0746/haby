@@ -1,0 +1,30 @@
+<div class="simple-calendar haby-cal">
+  <table class="haby-cal__table" role="grid">
+    <thead>
+      <tr class="haby-cal__weekdays">
+        <% %w[月 火 水 木 金 土 日].each_with_index do |w, i| %>
+          <th class="haby-cal__weekday haby-cal__weekday--wd<%= i %>" scope="col"><%= w %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody class="haby-cal__body">
+      <% date_range.each_slice(7) do |week| %>
+        <tr class="haby-cal__row">
+          <% week.each do |day| %>
+            <% td_class     = calendar.td_classes_for(day) %>
+            <% result_class = @day_class&.[](day.to_date) %>
+            <% classes      = ["haby-cal__cell", td_class, result_class].compact %>
+
+            <%= content_tag :td, class: classes.join(" ") do %>
+              <%= link_to habit_logs_path(date: day.to_date.to_s), class: "haby-cal__cell-link", aria: { label: day.to_date.strftime("%Y年%-m月%-d日") } do %>
+                <span class="haby-cal__date"><%= day.day %></span>
+                <span class="haby-cal__mark" aria-hidden="true"></span>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

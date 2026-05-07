@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "private": true,
+  "devDependencies": {
+    "esbuild": "^0.27.1"
+  },
+  "scripts": {
+  "build": "esbuild app/javascript/application.js --bundle --sourcemap --outdir=app/assets/builds",
+  "build:js": "esbuild app/javascript/application.js --bundle --sourcemap --outdir=app/assets/builds",
+  "build:css": "echo \"skip css build\""
+  },
+
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.20"
+  }
+}
