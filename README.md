@@ -137,7 +137,7 @@ haby は、“達成感”と“シンプルな設計”を軸に「続けたく
 | **データベース**   | PostgreSQL                           |
 | **認証機能**       | Devise（メールアドレス・パスワード） |
 | **カレンダー機能** | SimpleCalender                       |
-| **スタイル/UI**    | Tailwind CSS / Figma デザイン反映    |
+| **スタイル/UI**    | CSS / Figma デザイン反映    |
 | **開発環境**       | Docker / docker-compose              |
 | **デプロイ先**     | Render                               |
 | **その他**         | Rubocop / RSpec                      |
